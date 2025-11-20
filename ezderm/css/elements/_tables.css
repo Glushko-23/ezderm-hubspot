@@ -1,0 +1,25 @@
+table{
+  border-collapse:collapse;
+  margin-bottom:1.4rem;
+  overflow-wrap:break-word;
+}
+td,
+th{
+  vertical-align:top;
+}
+thead th{
+  vertical-align:bottom;
+}
+
+.flex-table{
+  display:flex;
+  flex-direction:column;
+  width:max-content;
+}
+.flex-table__row{
+  display:flex;
+}
+.flex-table__column{
+  flex:0 0 auto;
+  min-width:0;
+}

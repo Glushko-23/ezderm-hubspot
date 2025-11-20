@@ -1,0 +1,55 @@
+[
+  {
+    "id": "statistics",
+    "name": "statistics",
+    "label": "Statistics Item",
+    "required": false,
+    "type": "group",
+    "occurrence": { "min": 1, "max": null },
+    "children": [
+      {
+        "id": "statistics.before_value",
+        "name": "first_value",
+        "label": "First value",
+        "type": "text",
+        "default": "10%"
+      },
+      {
+        "id": "statistics.after_value",
+        "name": "second_value",
+        "label": "Second value",
+        "type": "text",
+        "default": "100%"
+      },
+      {
+        "id": "statistics.description",
+        "name": "description",
+        "label": "Description",
+        "type": "text",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "id": "module.wrapper_class",
+    "name": "wrapper_class",
+    "label": "CSS Class",
+    "type": "text",
+    "tab": "STYLE",
+    "help_text": "Optional extra class for the wrapper.",
+    "default": null
+  },
+  {
+    "label": "Theme",
+    "name": "theme",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["light", "Light Theme"],
+      ["dark", "Dark Theme"],
+      ["accent", "Accent Theme"]
+    ],
+    "default": "light",
+    "help_text": "Select a theme for the module. Default is Light."
+  }
+]

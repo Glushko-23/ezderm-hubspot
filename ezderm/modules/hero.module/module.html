@@ -1,0 +1,68 @@
+{% set wrapper_class = module.wrapper_class|default('') %}
+{% set content_align_class = module.content_align %}
+{% set content = module.content|default('') %}
+{% set image = module.image|default({'src': '../../images/grayscale-mountain.png', 'alt': 'Placeholder'}) %}
+{% set hero_buttons = module.buttons if module.buttons is iterable else [] %}
+{% set hide_buttons = context.hide_buttons|default(false) %}
+
+{% if context.content_align is defined and context.content_align %}
+    {% set content_align_class = context.content_align %}
+{% endif %}
+
+{% if context.wrapper_class is defined and context.wrapper_class %}
+    {% set wrapper_class = context.wrapper_class %}
+{% endif %}
+
+<div class="hero {{ wrapper_class }} content-align--{{ content_align_class }}">
+
+    <div class="hero__inner">
+
+        <!-- Hero Content -->
+        <div class="hero__content">
+            <div class="hero__text">
+                {{ content }}
+            </div>
+
+            {% if not hide_buttons and hero_buttons|length > 0 %}
+                <div class="hero__actions">
+                    {% for btn in hero_buttons %}
+                        {% if btn.button %}
+                            {% set has_link = btn.link is defined and btn.link %}
+                            {% set link_attributes = '' %}
+                            {% if has_link %}
+                                {% set link_attributes = 'href="' ~ btn.link.url.href ~ '"' %}
+                                {% if btn.link.open_in_new_tab %} {% set link_attributes = link_attributes ~ ' target="_blank"' %} {% endif %}
+                                {% if btn.link.rel %} {% set link_attributes = link_attributes ~ ' rel="' ~ btn.link.rel ~ '"' %} {% endif %}
+                            {% endif %}
+                            {% set button_variant = btn.variant|default('primary') %}
+                            {% set button_arrow = btn.with_arrow|default(true) %}
+
+                            <a class="button button--{{ button_variant }}" {{ link_attributes }}>
+                                <span>{{ btn.button }}</span>
+
+                                {% if button_arrow %}
+                                    <svg class="button-arrow" xmlns="http://www.w3.org/2000/svg" width="21" height="12" viewBox="0 0 21 12" fill="none">
+                                        <path d="M20.5303 6.53033C20.8232 6.23744 20.8232 5.76256 20.5303 5.46967L15.7574 0.696701C15.4645 0.403807 14.9896 0.403807 14.6967 0.6967C14.4038 0.989594 14.4038 1.46447 14.6967 1.75736L18.9393 6L14.6967 10.2426C14.4038 10.5355 14.4038 11.0104 14.6967 11.3033C14.9896 11.5962 15.4645 11.5962 15.7574 11.3033L20.5303 6.53033ZM0 6L-6.55671e-08 6.75L20 6.75L20 6L20 5.25L6.55671e-08 5.25L0 6Z" fill="currentColor"/>
+                                    </svg>
+                                {% endif %}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Hero Image -->
+        {% if context.image is defined and (not context.image or context.image.src == '') %}
+            {% set image = {} %}
+        {% endif %}
+
+        {% if image.src %}
+            <div class="hero__image">
+                <img width="{{ image.width|default('600') }}"
+                     height="{{ image.height|default('600') }}"
+                     src="{{ image.src }}" alt="{{ image.alt|default('') }}">
+            </div>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,65 @@
+[
+  {
+    "name": "wrapper_class",
+    "label": "Wrapper CSS Class",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "name": "modal_title",
+    "label": "Dialog Title",
+    "type": "text",
+    "required": false,
+    "default": "Dialog"
+  },
+  {
+    "name": "modal_content",
+    "label": "Dialog Content",
+    "type": "richtext",
+    "required": false,
+    "default": "<p>No content provided.</p>"
+  },
+  {
+    "name": "button_text",
+    "label": "Button Text",
+    "type": "text",
+    "required": false,
+    "default": "Open Dialog"
+  },
+  {
+    "name": "modal_id",
+    "label": "Dialog ID",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "name": "is_modal",
+    "label": "Modal Mode",
+    "type": "boolean",
+    "required": false,
+    "default": true
+  },
+  {
+    "name": "confirm_button_text",
+    "label": "Confirm Button Text",
+    "type": "text",
+    "required": false,
+    "default": "Close"
+  },
+  {
+    "name": "show_cancel_button",
+    "label": "Show Cancel Button",
+    "type": "boolean",
+    "required": false,
+    "default": false
+  },
+  {
+    "name": "cancel_button_text",
+    "label": "Cancel Button Text",
+    "type": "text",
+    "required": false,
+    "default": "Cancel"
+  }
+]

@@ -1,0 +1,42 @@
+{% macro generate_anchors(body, prefix_id="block", heading="h2", modify_tags=true) %}
+    {% set anchors = [] %}
+    {% set modified_body = body %}
+    {% set parts = body|split('<' + heading) %}
+    {% set new_body_parts = [] %}
+
+    {# Split body by heading tag and process each part #}
+    {% for part in parts %}
+        {% if '</' + heading + '>' in part %}
+        {% set h_content_parts = part|split('</' + heading + '>') %}
+        {% set h_content = h_content_parts[0]|trim %}
+        {# Extract text, including nested tags #}
+        {% set h_text = h_content|regex_replace('^\\s*[^>]*>', '')|trim %}
+
+        {# Remove HTML tags for plain text in TOC #}
+        {% set h_clean_text = h_text|regex_replace('<[^>]+>', '')|trim %}
+
+        {% if h_clean_text %}
+            {# Generate unique ID for the heading #}
+            {% set unique_id = prefix_id + '-anchor-' + loop.index0|string %}
+            {% do anchors.append({ "id": unique_id, "text": h_clean_text }) %}
+
+            {# Create new heading tag with ID if modify_tags is true, else keep original #}
+            {% set new_h = modify_tags ? '<' + heading + ' id="' + unique_id + '">' + h_text + '</' + heading + '>' : '<' + heading + h_content + '</' + heading + '>' %}
+            {% do new_body_parts.append(new_h + h_content_parts[1]) %}
+        {% else %}
+            {# Keep empty or invalid headings unchanged #}
+            {% do new_body_parts.append('<' + heading + part) %}
+        {% endif %}
+        {% else %}
+            {# Keep non-heading parts unchanged #}
+            {% do new_body_parts.append(part) %}
+        {% endif %}
+    {% endfor %}
+
+    {# Join parts to form modified body #}
+    {% set modified_body = new_body_parts|join('') %}
+    {% set result = { "anchors": anchors, "modified_body": modified_body } %}
+
+    {# Return JSON result with anchors and modified body #}
+    {{ result|tojson }}
+{% endmacro %}

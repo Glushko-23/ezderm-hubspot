@@ -1,0 +1,91 @@
+[
+  {
+    "name": "image",
+    "label": "Image",
+    "type": "image",
+    "required": false,
+    "locked": false,
+    "default": ""
+  },
+  {
+    "name": "image_link",
+    "label": "Image link",
+    "type": "link",
+    "required": false,
+    "locked": false,
+    "default": {
+      "url": {
+        "href": "",
+        "type": "EXTERNAL"
+      },
+      "no_follow": false,
+      "open_in_new_tab": true
+    }
+  },
+  {
+    "label": "Styles",
+    "name": "styles",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "name": "image_align",
+        "label": "Image aligned",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["center", "Center"],
+          ["left", "Left"],
+          ["right", "Right"]
+        ],
+        "default": "left",
+        "required": true
+      },
+      {
+        "name": "full_width",
+        "label": "Full width",
+        "type": "boolean",
+        "default": false,
+        "display": "toggle"
+      },
+      {
+        "label": "Outer paddings",
+        "name": "outer_paddings",
+        "type": "group",
+        "children": [
+          {
+            "label": "Padding X",
+            "name": "padding_x",
+            "type": "number",
+            "default": "20"
+          },
+          {
+            "label": "Padding Y",
+            "name": "padding_y",
+            "type": "number",
+            "default": "20"
+          }
+        ]
+      },
+      {
+        "label": "Inner paddings",
+        "name": "inner_paddings",
+        "type": "group",
+        "children": [
+          {
+            "label": "Padding X",
+            "name": "padding_x",
+            "type": "number",
+            "default": "40"
+          },
+          {
+            "label": "Padding Y",
+            "name": "padding_y",
+            "type": "number",
+            "default": "40"
+          }
+        ]
+      }
+    ]
+  }
+]

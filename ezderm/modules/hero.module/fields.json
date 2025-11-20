@@ -1,0 +1,121 @@
+[
+  {
+    "id": "content",
+    "name": "content",
+    "label": "Hero Content",
+    "type": "richtext",
+    "default": "<h1>Main headline</h1><p>Description here</p>"
+  },
+  {
+    "id": "image",
+    "name": "image",
+    "label": "Hero Image",
+    "type": "image",
+    "default": {
+      "src": "../../images/grayscale-mountain.png",
+      "alt": "Placeholder"
+    }
+  },
+  {
+    "id": "buttons",
+    "name": "buttons",
+    "label": "Hero Buttons",
+    "required": false,
+    "type": "group",
+    "occurrence": {
+      "min": 0,
+      "max": null
+    },
+    "children": [
+      {
+        "id": "button",
+        "name": "button",
+        "label": "Button Text",
+        "type": "text",
+        "default": "Hero Button"
+      },
+      {
+        "id": "link",
+        "name": "link",
+        "label": "Button Link",
+        "type": "link",
+        "default": {
+          "url": {
+            "content_id": null,
+            "type": "EXTERNAL",
+            "href": "#"
+          }
+        }
+      },
+      {
+        "label": "Variant",
+        "name": "variant",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["primary", "Primary"],
+          ["light", "Light"]
+        ],
+        "default": "primary"
+      },
+      {
+        "label": "With arrow",
+        "name": "with_arrow",
+        "type": "boolean",
+        "display": "toggle",
+        "default": true
+      }
+    ],
+    "default": [
+      {
+        "button": "Hero Button",
+        "link": {
+          "url": {
+            "content_id": null,
+            "type": "EXTERNAL",
+            "href": ""
+          }
+        }
+      }
+    ],
+    "hide_buttons": {
+      "id": "hide_buttons",
+      "label": "Hide Button",
+      "name": "hide_buttons",
+      "type": "boolean",
+      "display": "toggle",
+      "default": false
+    }
+  },
+  {
+    "label": "Image Position",
+    "name": "image_position",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["image_left", "Image Left"],
+      ["image_right", "Image Right"]
+    ],
+    "default": "image_right"
+  },
+  {
+    "label": "Content Align",
+    "name": "content_align",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["left", "Left"],
+      ["center", "Center"]
+    ],
+    "default": "left"
+  },
+  {
+    "id": "wrapper_class",
+    "name": "wrapper_class",
+    "label": "CSS Class",
+    "type": "text",
+    "tab": "STYLE",
+    "help_text": "Optional extra class to add to the wrapper.",
+    "default": ""
+  }
+]

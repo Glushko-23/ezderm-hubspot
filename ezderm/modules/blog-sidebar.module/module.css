@@ -1,0 +1,16 @@
+.multi__column {
+    padding: 1rem 0;
+}
+
+.multi__column--item {
+    position: relative;
+}
+
+.multi__column--link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}

@@ -1,0 +1,20 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Base Page
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container"
+%}
+
+  {% dnd_section
+    vertical_alignment="TOP"
+  %}
+  {% end_dnd_section %}
+
+{% end_dnd_area %}
+{% endblock body %}

@@ -1,0 +1,36 @@
+{% macro vspace(height=20) %}
+<tr>
+    <td height="{{ height }}" style="font-size: 0; line-height: 0;"></td>
+</tr>
+{% endmacro %}
+
+{% macro hspace(width=10, height=1) %}
+<td width="{{ width }}" height="{{ height }}" style="font-size: 0; line-height:0;"></td>
+{% endmacro %}
+
+{% macro hr(height=1, bg='#525583') %}
+<table class="table" role="presentation" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td style="padding: 0; line-height: 0;">
+            <table class="table" role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td height="{{ height }}" bgcolor="{{ bg }}" style="border-top: {{ height }}px solid transparent; height: {{ height }}px; background: {{ bg }}; font-size: 0; line-height: 0;"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+{% endmacro %}
+
+{% macro cta(cta_link="#", cta_text="CTA text", cta_width="auto", align="center", button_bg="#FB8569", text_color="#1F1713", border_radius="10px", button_border_color="#FB8569") %}
+<table role="presentation" width="{{ cta_width }}" cellpadding="0" cellspacing="0" border="0" align="{{ align }}" style="text-align: {{ align }}; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse:separate!important;">
+    <tr>
+        <td align="{{ align }}" valign="middle" bgcolor="{{ button_bg }}" style="word-break: break-word; text-align: {{ align }}; border-radius: {{ border_radius }}; cursor: auto; border: 2px solid {{ button_border_color }}; box-sizing: border-box; mso-padding-alt: 10px 40px;">
+            <a class="button" href="{{ cta_link }}" target="_blank"
+               style="display: block; width: {{ cta_width }}; box-sizing: border-box; text-align: center; padding: 10px 40px; font-weight: normal; font-size: 16px; color: {{ text_color }}; text-transform: none; text-decoration: none; border-radius: {{ border_radius }};">
+                <strong style="color: {{ text_color }}; text-align: center; font-weight: normal; text-decoration: none; font-style: normal;">{{ cta_text }}</strong>
+            </a>
+        </td>
+    </tr>
+</table>
+{% endmacro %}

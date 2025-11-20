@@ -1,0 +1,23 @@
+[
+  {
+    "name": "size",
+    "label": "Size (in px)",
+    "type": "number",
+    "required": false,
+    "locked": false,
+    "default": "1"
+  },
+  {
+    "name": "variant",
+    "label": "Variant",
+    "type": "choice",
+    "display": "select",
+    "locked": false,
+    "choices": [
+      ["horizontal", "Horizontal"],
+      ["vertical", "Vertical"]
+    ],
+    "default": "vertical",
+    "required": true
+  }
+]

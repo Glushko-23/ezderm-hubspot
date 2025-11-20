@@ -1,0 +1,46 @@
+<!--
+  templateType: section
+  label: Hero carousel
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/hero.png
+  description: "Hero carousel section"
+-->
+{% dnd_section
+  class="hero__wrapper hero-carousel"
+%}
+    {% dnd_area "hero-top"
+        label="Hero top",
+        class="hero-top" %}
+    {% end_dnd_area %}
+
+{% dnd_module
+  path="../modules/carousel",
+  carousel=[
+  {
+      "carousel_img": {
+        "src": "../../images/grayscale-mountain.png",
+        "alt": "Placeholder"
+      },
+      "carousel_text": "<h2>This is your main headline.</h2><p>You can replace it with your own content.</p>",
+      "buttons": [
+          {
+              "text": "Learn more",
+              "link": {
+              "url": { "type": "EXTERNAL", "href": "" },
+              "open_in_new_tab": false
+          },
+              "variant": "primary",
+              "with_arrow": true
+          }
+        ]
+    }
+  ],
+  theme="dark",
+  settings={
+    "carousel_count": 1,
+    "show_arrows": false,
+    "show_pagination": true
+  }
+%}
+{% end_dnd_module %}
+{% end_dnd_section %}

@@ -1,0 +1,102 @@
+[
+  {
+    "name": "wrapper_class",
+    "label": "Wrapper CSS Class",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "name": "anchors_title",
+    "label": "Anchors title",
+    "type": "text",
+    "required": false,
+    "default": "Table of Contents"
+  },
+  {
+    "name": "prefix_id",
+    "label": "Prefix for ID",
+    "type": "text",
+    "required": false,
+    "default": "block"
+  },
+  {
+    "name": "target_tag",
+    "label": "Target tag",
+    "type": "text",
+    "required": false,
+    "default": "h2"
+  },
+  {
+    "id": "settings",
+    "name": "settings",
+    "label": "Anchor Settings",
+    "type": "group",
+    "children": [
+      {
+        "label": "Modify tags",
+        "name": "modify_tags",
+        "type": "boolean",
+        "default": false,
+        "display": "toggle"
+      },
+      {
+        "label": "Sticky anchors",
+        "name": "sticky_anchors",
+        "type": "boolean",
+        "default": false,
+        "display": "toggle"
+      },
+      {
+        "label": "Update URL",
+        "name": "update_url",
+        "type": "boolean",
+        "default": true,
+        "display": "toggle"
+      },
+      {
+        "label": "Target content element",
+        "name": "target_content",
+        "type": "text",
+        "default": "",
+        "help_text": "Enter class or ID block content"
+      }
+    ]
+  },
+  {
+    "id": "custom_anchors",
+    "name": "custom_anchors",
+    "label": "Custom anchors",
+    "required": false,
+    "type": "group",
+    "occurrence": {
+      "min": 0,
+      "max": null
+    },
+    "children": [
+      {
+        "id": "anchor_text",
+        "name": "anchor_text",
+        "label": "Anchor text",
+        "type": "text",
+        "default": "",
+        "help_text": "Enter custom text for the anchor link in the Table of Contents. Applied in the order of headings. If empty, the heading text will be used."
+      },
+      {
+        "id": "anchor_id",
+        "name": "anchor_id",
+        "label": "Anchor ID",
+        "type": "text",
+        "default": "",
+        "help_text": "Enter a custom ID for the anchor link (e.g., my-anchor-1). Applied in the order of headings. If empty, the generated ID (e.g., block-anchor-1) will be used."
+      }
+    ]
+  },
+  {
+    "name": "content_body",
+    "label": "Content",
+    "type": "richtext",
+    "required": false,
+    "default": ""
+  }
+]

@@ -1,0 +1,126 @@
+{% set video_ratio = module.settings.ratio|replace("/", ":") %}
+{% set video_autoplay = module.settings.autoplay %}
+{% set video_controls = module.settings.controls %}
+{% set video_muted = module.settings.muted %}
+{% set video_debug = module.settings.debug %}
+{% set show_controls_default = module.settings.show_controls_default %}
+{% set with_shadow = module.settings.with_shadow %}
+{% set show_controls_default_class = show_controls_default ? '' : 'hide-controls-by-default' %}
+{% set with_shadow_class = with_shadow ? 'with-shadow' : '' %}
+
+{% set video_width = module.settings.width.width_value ~ module.settings.width.width_unit %}
+
+{% set video_settings = '{' ~
+    '"ratio": "' ~ video_ratio ~ '",' ~
+    '"debug": ' ~ video_debug ~ ',' ~
+    '"muted": ' ~ video_muted ~ ',' ~
+    '"autoplay": ' ~ video_autoplay ~
+    (video_controls is sameas(false) ? ',"controls": false' : '') ~
+    '}'
+%}
+
+<div
+    data-video-settings='{{ video_settings|escape }}'
+    class="video-wrapper {{ module.wrapper_class|default('') }} {{show_controls_default_class }} {{ with_shadow_class }}"
+    style="--video-max-width: {{ video_width }}; aspect-ratio: {{ module.settings.ratio }};"
+>
+    {% set video_input = module.video_id %}
+    {% set video_id = video_input %}
+    {% set video_source = module.video_source %}
+
+    {% if module.video_id %}
+        {% if "youtu" in video_input %}
+            {% set video_source = "youtube" %}
+            {% set video_id = video_input
+            | replace("https://youtu.be/", "")
+            | replace("https://www.youtube.com/watch?v=", "")
+            | replace("https://youtube.com/watch?v=", "")
+            | replace("https://www.youtube.com/embed/", "")
+            | split("?") | first
+            | split("&") | first %}
+        {% elif "vimeo" in video_input %}
+            {% set video_source = "vimeo" %}
+            {% set video_id = video_input
+            | replace("https://vimeo.com/", "")
+            | replace("https://player.vimeo.com/video/", "")
+            | split("?") | first
+            | split("/") | first %}
+        {% endif %}
+
+        <div class="js-player" data-plyr-provider="{{ video_source }}" data-plyr-embed-id="{{ video_id }}"></div>
+    {% endif %}
+
+    {% if module.video_html %}
+        {% set controls_attr = video_controls is sameas(false) ? 'controls' : '' %}
+        {% set autoplay_attr = video_autoplay is sameas(true) ? 'autoplay' : '' %}
+        {% set muted_attr = video_muted is sameas(true) ? 'muted' : '' %}
+        {% set video_attrs = (controls_attr ~ ' ' ~ autoplay_attr)|trim %}
+
+        {{ module.video_html
+        | regex_replace('<video\\s*', '<video ' ~ video_attrs ~ ' class="js-player" ')
+        | safe
+        }}
+    {% endif %}
+
+    <input aria-label="video {{ name }}" class="video-detect-input" name="video_{{ name }}" type="hidden" value="{{ video_input }}" />
+
+    {% if request.postDict.inpageEditorUI %}
+        <script type="text/javascript">
+            // Script to handle re-rendering the video after admin parameters are updated:
+            if (!window.videoObserverInitialized) {
+                const SELECTOR = '.video-detect-input';
+
+                function reinitVideos() {
+                    if (typeof Plyr === 'undefined') {
+                        console.warn('Plyr not loaded yet, retrying...');
+                        setTimeout(reinitVideos, 100);
+                        return;
+                    }
+
+                    if (window.videoPlayers && window.videoPlayers.length) {
+                        window.videoPlayers.forEach((p) => {
+                            try { p.destroy(); } catch (e) {}
+                        });
+                        window.videoPlayers = [];
+                    }
+                    window.videoPlayers = window.initPlyrPlayers();
+                }
+
+                function handleValueChange(input, value) {
+                    console.log('🎬 Module video updated:', {input, value});
+                    clearTimeout(window._plyrRerenderTimeout);
+                    window._plyrRerenderTimeout = setTimeout(reinitVideos, 400);
+                }
+
+                // --- Attach observer to inputs ---
+                function attachLogger(input) {
+                    if (!input || input.dataset.hasLogger) return;
+                    input.dataset.hasLogger = '1';
+
+                    handleValueChange(input, input.value);
+
+                    input.addEventListener('input', () => {
+                        handleValueChange(input, input.value);
+                    });
+
+                    const attrObs = new MutationObserver(() => {
+                        handleValueChange(input, input.value);
+                    });
+                    attrObs.observe(input, {attributes: true, attributeFilter: ['value']});
+                }
+
+                // --- Observe for dynamically added inputs ---
+                const rootObs = new MutationObserver(() => {
+                    document.querySelectorAll(SELECTOR).forEach(attachLogger);
+                });
+
+                rootObs.observe(document.body, {childList: true, subtree: true});
+
+                // --- Initial scan ---
+                document.querySelectorAll(SELECTOR).forEach(attachLogger);
+
+                window.videoObserverInitialized = true;
+            }
+        </script>
+    {% endif %}
+</div>

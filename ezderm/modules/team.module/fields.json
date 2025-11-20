@@ -1,0 +1,37 @@
+[
+  {
+    "name": "table_id",
+    "label": "Table ID",
+    "type": "text",
+    "required": true,
+    "default": "134769061"
+  },
+  {
+    "name": "wrapper_class",
+    "label": "Wrapper CSS Class",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "name": "use_dialog",
+    "label": "Open full bio in dialog",
+    "type": "boolean",
+    "required": false,
+    "default": true
+  },
+  {
+    "name": "selected_slugs",
+    "label": "Selected Team Members (slugs, comma-separated)",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "name": "show_all",
+    "label": "Show All Team Members",
+    "type": "boolean",
+    "required": false,
+    "default": true
+  }
+]

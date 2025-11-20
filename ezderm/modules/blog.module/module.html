@@ -1,0 +1,105 @@
+{% import '../../macros/pagination.html' as pagination_macros %}
+{% import '../../macros/category-filters.html' as filters_macros %}
+{% import '../../macros/utils.html' as utils %}
+{% import '../../macros/article-item.html' as article_macros %}
+
+{% set all_posts = blog_recent_posts("default", 1000) %}
+{% set all_tags = blog_tags("default", 1000) %}
+
+{% set tag_filter = request.query_dict.category|default('all') %}
+{% set page = request.query_dict.page|default(1)|int %}
+{% set per_page = module.pagination_settings.per_page %}
+
+{% set latest_updated = 0 %}
+{% set ns = namespace(max=0, filtered=[]) %}
+
+{% if tag_filter == 'all' %}
+    {% set ns.filtered = all_posts %}
+{% else %}
+    {% for post in all_posts %}
+        {# Latest updated #}
+        {% set updated_post = (post.updated|int / 1000)|round(0, 'floor') %}
+        {% if updated_post > ns.max %}
+            {% set ns.max = updated_post %}
+        {% endif %}
+
+        {# Filtered #}
+        {% if post.topic_list is iterable %}
+            {% for topic in post.topic_list %}
+                {% if topic.slug == tag_filter %}
+                    {% do ns.filtered.append(post) %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% set latest_updated = ns.max %}
+{% set filtered_posts = ns.filtered %}
+
+{% set pagination_enabled = module.pagination %}
+{% set live_reload = module.pagination_settings.live_reload and pagination_enabled %}
+{% set featured_articles = articles_all|selectattr('featured')|list %}
+{% set variant = module.variant %}
+
+{% set total_posts = filtered_posts|length %}
+{% set total_pages = (total_posts / per_page)|round(0, 'ceil')|int %}
+{% set offset = (page - 1) * per_page %}
+{% set current_posts = filtered_posts[offset:offset + per_page] %}
+
+{% set cache_config = {
+    "enabled": module.use_cache,
+    "ttl": module.cache_ttl,
+    "buster": "v" ~ module.cache_buster ~ "-" ~ latest_updated
+} %}
+
+{% set pagination_config = {
+    "loader": module.pagination_settings.show_loader,
+    "perPage": module.pagination_settings.per_page,
+    "scrollTop": module.pagination_settings.scroll_top
+} %}
+
+<div
+    class="article__wrapper"
+    data-live-reload="{{ live_reload }}"
+    data-pagination-wrapper="blog"
+    data-cache='{{ cache_config|tojson|safe }}'
+    data-pagination='{{ pagination_config|tojson|safe }}'
+    data-sort="{{ module.sort_by }}"
+    data-mode="{{ module.display_mode }}"
+>
+    {{ filters_macros.render(all_tags) }}
+
+    <div class="article__grid article__grid--post" data-pagination-list>
+        {% for post in current_posts %}
+            {{ article_macros.render(post, utils, show_label=true, variant='post', mode=module.display_mode) }}
+        {% endfor %}
+    </div>
+
+    {% if pagination_enabled %}
+        <div class="pagination-wrapper{% if module.display_mode=='slider' %} pagination-wrapper__slider{% endif %}" data-total-pages="{{ total_pages }}">
+            {{ pagination_macros.pagination(
+                page,
+                total_pages,
+                request.path,
+                preserve_filter=live_reload,
+                filter_key='tag'
+            ) }}
+        </div>
+    {% endif %}
+</div>
+
+<template id="article-template">
+    {{ article_macros.render({
+        name: '',
+        description: '',
+        absolute_url: '#',
+        image: { url: '' },
+        category: ['uncategorized'],
+    },
+        utils,
+        variant=variant,
+        mode=module.display_mode)
+    }}
+</template>

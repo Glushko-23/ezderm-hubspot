@@ -1,0 +1,23 @@
+<!--
+  templateType: section
+  label: Hero banner
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/hero.png
+  description: "Hero banner"
+-->
+{% dnd_section
+  vertical_alignment="MIDDLE"
+  class="hero__wrapper"
+%}
+    {% dnd_area "hero-top"
+        label="Hero top",
+        class="hero-top" %}
+    {% end_dnd_area %}
+
+    {% dnd_module
+        path="../modules/hero",
+        content="{{ context.content }}",
+        buttons="{{ context.buttons }}"
+    %}
+    {% end_dnd_module %}
+{% end_dnd_section %}

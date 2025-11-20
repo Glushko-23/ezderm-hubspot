@@ -1,0 +1,34 @@
+<!--
+  templateType: section
+  label: Certifications
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/certifications.png
+  description: "Certifications"
+-->
+
+{% dnd_section
+  background_color={{ context.background_color or theme.global_colors.accent.color }}
+  vertical_alignment="MIDDLE"
+  class="certifications"
+%}
+  {% dnd_column
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/multi-column"
+        label="Certifications"
+        wrapper_class="certifications-grid"
+        description={{ context.content or "<h2>Our certifications for your peace of mind.</h2>" }}
+        multi_column=[
+          {
+            "column_img": {"src": "../images/certification-item.png"},
+            "column_text": "Lorem Ipsum Dolor",
+            "link": {"url": {"href": "#"}, "open_in_new_tab": false, "rel": null}
+          }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

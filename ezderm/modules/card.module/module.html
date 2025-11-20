@@ -1,0 +1,45 @@
+<div class="cards-wrapper {{ module.wrapper_class|default('') }}">
+    {% if module.cards|length > 0 %}
+        <div class="card-grid {{ module.columns_count }}">
+            {% for card in module.cards %}
+                <div class="card-item">
+                    <div class="card-item__inner">
+                        <div class="card-item__group flex-{{ module.item_direction }}">
+                            {% if card.image.src %}
+                                <div class="card-item__image">
+                                    <img src="{{ card.image.src }}" width="30" height="40" alt="{{ card.title }}">
+                                </div>
+                            {% endif %}
+
+                            <div class="card-item__content">
+                                {% if card.title %}
+                                    <h4 class="card-item__title">{{ card.title }}</h4>
+                                {% endif %}
+
+                                {% if card.content %}
+                                    <div class="card-item__description">{{ card.content }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if card.link.url %}
+                        <a href="{{ card.link.url.href }}" class="card-item__link">
+                            <span class="show-for-sr">View</span>
+
+                            <div class="card-button__icon">
+                                <svg class="icon" width="48" height="48">
+                                    <use xlink:href="#icon-arrow-link"></use>
+                                </svg>
+                            </div>
+                        </a>
+                    {% endif %}
+
+                    <div class="card-item__decor">
+                        {% include "ezderm/templates/partials/decor/decor-item-bottom.html" %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

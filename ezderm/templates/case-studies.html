@@ -1,0 +1,108 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Case Studies
+-->
+{% extends "./layouts/base.html" %}
+{% import '../macros/article-item.html' as article_macros %}
+
+{% block body %}
+
+{% if request.postDict.inpageEditorUI %}
+    <p>Table ID:</p>
+    {% module "table_id"
+        path="@hubspot/text",
+        label="Table ID",
+        value="141037986"
+    %}
+{% endif %}
+
+{% module "table_id"
+    path="@hubspot/text",
+    label="Table ID",
+    value="141037986",
+    export_to_template_context=True
+%}
+
+{% set get_table_id = widget_data.table_id.value %}
+{% set dynamic_page_hubdb_table_id = get_table_id %}
+
+{% if dynamic_page_hubdb_row %}
+    {% set case_row = dynamic_page_hubdb_row %}
+    {% set related = case_row.related_cases %}
+
+    <section class="section-gap-y">
+        <div class="container-lg">
+            <h1 class="main-title">{{ case_row.name }}</h1>
+            <p>{{ case_row.description }}</p>
+        </div>
+    </section>
+
+    <section class="section-gap-y">
+        <div class="container-main">
+            {% if case_row.image.url %}
+                <div class="span6">
+                    <img src="{{ case_row.image.url }}" width="500" height="440" alt="{{ case_row.hs_name }}">
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="section-gap-y">
+        {% if case_row.full_description %}
+            <div class="container-lg">
+                {{ case_row.full_description }}
+            </div>
+        {% endif %}
+    </section>
+
+    {% if related|length > 0 %}
+        <section class="dnd-section related-articles">
+            <div class="row-fluid">
+                <div class="span12">
+                    <h3 class="main-title">Related Articles</h3>
+
+                    <div class="article__grid article__grid--post">
+                        {% for item in related %}
+                            {# Build object compatible with your render() macro #}
+
+                            {% set article_obj = {
+                                "name": item.name,
+                                "hs_path": item.hs_path,
+                                "image": { "url": item.image.url },
+                                "description": item.description
+                            } %}
+
+                            {{ article_macros.render(article_obj, utils, true, 'post', 'default', false) }}
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endif %}
+
+{% elif dynamic_page_hubdb_table_id %}
+
+    {% dnd_area "dnd_area"
+        label="Area Case Studies List",
+        class="area-case-studies-list"
+    %}
+
+    {% include_dnd_partial
+        path="../sections/hero-banner.html"
+        context={
+            "background_color": "none",
+            "content": "<h1>Case Studies</h1><p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do.</p>",
+            "image": {
+            "src": ""
+        },
+            "buttons": [],
+            "hide_buttons": true
+        }
+    %}
+
+    {% end_dnd_area %}
+{% endif %}
+
+{% endblock body %}

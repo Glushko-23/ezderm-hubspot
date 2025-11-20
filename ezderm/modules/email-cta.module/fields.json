@@ -1,0 +1,78 @@
+[
+  {
+    "name": "cta_link",
+    "label": "CTA Link",
+    "type": "link",
+    "supported_types": [
+      "EXTERNAL",
+      "FILE",
+      "CALL_TO_ACTION"
+    ],
+    "required": false,
+    "locked": false,
+    "default": ""
+  },
+  {
+    "name": "cta_text",
+    "label": "CTA text",
+    "type": "text",
+    "required": false,
+    "locked": false,
+    "default": "CTA Text"
+  },
+  {
+    "label": "Styles",
+    "name": "styles",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "name": "background_color",
+        "label": "CTA Background Color",
+        "type": "color",
+        "default": "#FB8569"
+      },
+      {
+        "label": "CTA Text Color",
+        "name": "text_color",
+        "type": "color",
+        "default": "#1F1713"
+      },
+      {
+        "name": "align",
+        "label": "Alignment",
+        "type": "choice",
+        "display": "select",
+        "locked": false,
+        "choices": [
+          ["center", "Center"],
+          ["left", "Left"],
+          ["right", "Right"]
+        ],
+        "default": "center",
+        "required": true
+      },
+      {
+        "name": "variant",
+        "label": "Variant",
+        "type": "choice",
+        "display": "select",
+        "locked": false,
+        "choices": [
+          ["flat", "Flat"],
+          ["outline", "Outline"]
+        ],
+        "default": "flat",
+        "required": true
+      },
+      {
+        "name": "full_width",
+        "label": "Full width",
+        "locked": false,
+        "display": "toggle",
+        "type": "boolean",
+        "default": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,163 @@
+[
+  {
+    "label": "Menu",
+    "name": "menu",
+    "type": "menu",
+    "default": "default"
+  },
+  {
+    "label": "Max levels",
+    "name": "max_levels",
+    "type": "number",
+    "help_text": "Determines the number of menu tree children that can be expanded in the menu",
+    "display": "text",
+    "max": 3,
+    "min": 1,
+    "step": 1,
+    "required": true,
+    "default": 3
+  },
+  {
+    "label": "Styles",
+    "name": "styles",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "label": "Text",
+        "name": "text",
+        "type": "group",
+        "children": [
+          {
+            "label": "Color",
+            "name": "color",
+            "type": "color",
+            "visibility": {
+              "hidden_subfields": {
+                "opacity": true
+              }
+            }
+          }
+        ]
+      },
+      {
+        "label": "Drop downs",
+        "name": "drop_downs",
+        "type": "group",
+        "children": [
+          {
+            "label": "Text",
+            "name": "text",
+            "type": "group",
+            "children": [
+              {
+                "label": "Color",
+                "name": "color",
+                "type": "color",
+                "visibility": {
+                  "hidden_subfields": {
+                    "opacity": true
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "label": "Background",
+            "name": "background",
+            "type": "group",
+            "children": [
+              {
+                "label": "Color",
+                "name": "color",
+                "type": "color"
+              }
+            ]
+          },
+          {
+            "label": "Border",
+            "name": "border",
+            "type": "group",
+            "children": [
+              {
+                "label" : "Border",
+                "name" : "border",
+                "type" : "border"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "megamenu_items",
+    "name": "megamenu_items",
+    "label": "Megamenu items",
+    "required": false,
+    "type": "group",
+    "occurrence": { "min": 0, "max": 100 },
+    "children": [
+      {
+        "id": "parent_menu_item",
+        "name": "parent_menu_item",
+        "label": "Parent Menu Item",
+        "type": "text",
+        "help_text": "Enter the label of the menu item this submenu belongs to (e.g., 'Home')."
+      },
+      {
+        "id": "submenu_type",
+        "label": "Submenu type",
+        "name": "submenu_type",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["default", "Default"],
+          ["module", "Module"],
+          ["html", "HTML"]
+        ],
+        "default": "default"
+      },
+      {
+        "id": "submenu_module_path",
+        "name": "submenu_module_path",
+        "label": "Submenu Module Name",
+        "type": "text",
+        "help_text": "Enter the name to the module (e.g., 'products').",
+        "visibility": {
+          "controlling_field_path": "megamenu_items.submenu_type",
+          "controlling_value_regex": "module",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "id": "submenu_html",
+        "name": "submenu_html",
+        "label": "Submenu HTML",
+        "type": "richtext",
+        "help_text": "Enter custom HTML",
+        "visibility": {
+          "controlling_field_path": "megamenu_items.submenu_type",
+          "controlling_value_regex": "html",
+          "operator": "EQUAL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "settings",
+    "name": "settings",
+    "label": "Settings",
+    "type": "group",
+    "children": [
+      {
+        "label": "Use toggle button",
+        "name": "toggle_button",
+        "type": "boolean",
+        "default": true,
+        "display": "toggle",
+        "help_text": "Use a toggle button for submenu items on mobile"
+      }
+    ]
+  }
+]

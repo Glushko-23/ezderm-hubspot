@@ -1,0 +1,37 @@
+{% set wrapper_class = module.wrapper_class|default('') %}
+{% set theme = module.theme %}
+
+<div {% if module.accordion_id %}id="{{ module.accordion_id }}"{% endif %} class="accordion__wrapper {{ theme }}-theme {{ wrapper_class }}">
+    {% if module.description %}
+        <div class="accordion__description description">{{ module.description }}</div>
+    {% endif %}
+
+    <div
+        data-accordion='{
+            "showMultiple": {{ module.settings.show_multiple }},
+            "duration": "{{ module.settings.duration }}",
+            "openOnInit": [{{ module.settings.open_on_init }}]
+        }'
+        class="accordion-container" style="{{ theme.global_fonts.secondary.style }}"
+    >
+        {% for accordion_item in module.accordion %}
+            <div class="ac">
+                {% if accordion_item.accordion_button %}
+                    <h2 class="ac-header">
+                        <button type="button" class="ac-trigger">
+                            {{ accordion_item.accordion_button }}
+                        </button>
+                    </h2>
+                {% endif %}
+
+                {% if accordion_item.accordion_content %}
+                    <div class="ac-panel">
+                        <div class="ac-text">
+                            {{ accordion_item.accordion_content }}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

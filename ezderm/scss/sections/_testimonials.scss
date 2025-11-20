@@ -1,0 +1,86 @@
+@use "../core/mixines";
+
+.testimonials {
+  &[class*="background-gradient"] {
+    .testimonials__item {
+      background-color: #FDFDF5;
+    }
+  }
+
+  &__wrapper {
+    --fs-description-text: var(--fs-base);
+    --ff-item-text: var(--ff-primary);
+    --fs-name-text: var(--fs-large);
+
+    &.view-variant_2 {
+      --fs-description-text: 1.5rem;
+      --fs-name-text: var(--fs-base);
+      --ff-item-text: var(--ff-secondary);
+
+      .testimonials__description {
+        order: -1;
+        margin-bottom: 0.5rem;
+      }
+
+      .testimonials__name {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: 1rem;
+
+    @include mixines.mq-from-md {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  &__description {
+    font-size: var(--fs-description-text);
+  }
+
+  &__quote {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--ff-item-text), sans-serif;
+  }
+
+  &__item {
+    text-align: center;
+    background-color: #F4F0ED;
+    border-radius: var(--border-radius-medium);
+    padding: 1.75rem 2.875rem;
+  }
+
+  &__name {
+    font-size: var(--fs-name-text);
+    font-weight: 500;
+  }
+
+  &__position {
+    font-weight: 500;
+  }
+
+  &__avatar {
+    width: 6.25rem;
+    height: 6.25rem;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-pistachio);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

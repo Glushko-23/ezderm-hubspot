@@ -1,0 +1,111 @@
+.compare{
+  color:#fff;
+}
+.compare > .row-fluid{
+  background-color:var(--color-accent-lighter);
+  border-radius:var(--border-radius-main);
+  padding:2.5rem 1rem;
+  gap:1.875rem;
+}
+@media screen and (min-width: 768px){
+  .compare > .row-fluid{
+    padding:4.375rem;
+  }
+}
+@media screen and (max-width: 991px){
+  .compare > .row-fluid{
+    flex-wrap:wrap;
+  }
+}
+.compare > .row-fluid > .dnd-column{
+  flex-grow:1;
+}
+@media screen and (max-width: 991px){
+  .compare > .row-fluid > .dnd-column{
+    width:100%;
+  }
+}
+.compare > .row-fluid > .dnd-column:first-child{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+}
+@media screen and (min-width: 768px){
+  .compare > .row-fluid > .dnd-column:first-child{
+    align-items:flex-start;
+    max-width:25rem;
+  }
+}
+.compare > .row-fluid > .dnd-column:first-child h2{
+  font-size:var(--fs-title-main);
+}
+.compare h2{
+  color:#fff;
+}
+
+.comparison-table{
+  --text-column-width:50%;
+  --check-column-width:25%;
+  --check-column-min-width:5.875rem;
+  --row-border-color:var(--color-accent-lighter);
+  width:100%;
+  font-family:var(--ff-secondary), sans-serif;
+  position:relative;
+  padding-bottom:2.2rem;
+}
+.comparison-table:before{
+  content:"";
+  display:block;
+  position:absolute;
+  left:var(--text-column-width);
+  top:0;
+  height:100%;
+  width:var(--check-column-width);
+  min-width:var(--check-column-min-width);
+  border-radius:10px;
+  box-shadow:var(--box-shadow-main);
+  background-color:var(--color-accent);
+  pointer-events:none;
+}
+.accent-theme .comparison-table{
+  --row-border-color:rgba(255, 255, 255, 0.25);
+}
+.comparison-table .flex-table__header .feature-title{
+  margin:0;
+}
+@media screen and (min-width: 992px){
+  .comparison-table .flex-table__header .feature-title{
+    font-size:var(--fs-large);
+  }
+}
+.comparison-table .flex-table__row{
+  border-bottom:1px solid var(--row-border-color);
+}
+.comparison-table .flex-table__column{
+  flex-basis:var(--check-column-width);
+  min-width:var(--check-column-min-width);
+  display:flex;
+  align-items:center;
+  position:relative;
+  padding:1rem;
+}
+@media screen and (min-width: 992px){
+  .comparison-table .flex-table__column{
+    padding:1.625rem 1rem;
+  }
+}
+.comparison-table .flex-table__column:where(:not(:first-child)){
+  justify-content:center;
+}
+.comparison-table .flex-table__column:first-child{
+  flex-shrink:0;
+  padding-left:0;
+  flex-basis:var(--text-column-width);
+}
+@media screen and (max-width: 991px){
+  .comparison-table .flex-table__column .icon{
+    width:1.5rem;
+    height:1.5rem;
+  }
+}

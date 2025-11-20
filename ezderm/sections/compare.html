@@ -1,0 +1,60 @@
+<!--
+  templateType: section
+  label: Compare
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/compare.png
+  description: "Compare Section"
+-->
+{% dnd_section
+  class="compare"
+%}
+
+  {# Left column: rich text + button #}
+  {% dnd_column
+    offset=0,
+    width=6
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text"
+        html={{ context.content or "<h2>How do we Compare?</h2>" }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/button"
+        button_text={{ context.button_text or "Learn More" }}
+        variant={{ "light" }}
+        with_arrow={{ false }}
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+
+  {# Right column: table #}
+  {% dnd_column
+    offset=6,
+    width=6
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/compare",
+        label="Compare Table",
+        premium_feature_title="ezderm",
+        standard_feature_title="Them",
+        theme="accent",
+        comparison=[
+            {
+                "premium_feature_check": true,
+                "standard_feature_check": false,
+                "description": "100% dedicated to dermatology"
+            }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

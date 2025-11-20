@@ -1,0 +1,83 @@
+[
+  {
+    "id": "comparison",
+    "name": "comparison",
+    "label": "Comparison Item",
+    "required": false,
+    "type": "group",
+    "occurrence": { "min": 1, "max": null },
+    "children": [
+      {
+        "id": "comparison.description",
+        "name": "description",
+        "label": "Description",
+        "type": "text",
+        "default": "100% dedicated to dermatology"
+      },
+      {
+        "id": "comparison.premium_feature_check",
+        "name": "premium_feature_check",
+        "label": "Premium Feature Check",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "id": "comparison.standard_feature_check",
+        "name": "standard_feature_check",
+        "label": "Standard Feature Check",
+        "type": "boolean",
+        "default": false
+      }
+    ]
+  },
+  {
+    "id": "module.premium_feature_title",
+    "name": "premium_feature_title",
+    "label": "Premium Feature Title",
+    "type": "text",
+    "default": "Premium Features"
+  },
+  {
+    "id": "module.standard_feature_title",
+    "name": "standard_feature_title",
+    "label": "Standard Feature Title",
+    "type": "text",
+    "default": "Standard Features"
+  },
+  {
+    "id": "module.premium_feature_logo",
+    "name": "premium_feature_logo",
+    "label": "Premium Feature Logo",
+    "type": "image",
+    "default": null
+  },
+  {
+    "id": "module.standard_feature_logo",
+    "name": "standard_feature_logo",
+    "label": "Standard Feature Logo",
+    "type": "image",
+    "default": null
+  },
+  {
+    "id": "module.wrapper_class",
+    "name": "wrapper_class",
+    "label": "CSS Class",
+    "type": "text",
+    "tab": "STYLE",
+    "help_text": "Optional extra class for the wrapper.",
+    "default": null
+  },
+  {
+    "label": "Theme",
+    "name": "theme",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["light", "Light Theme"],
+      ["dark", "Dark Theme"],
+      ["accent", "Accent Theme"]
+    ],
+    "default": "light",
+    "help_text": "Select a theme for the module. Default is Accent."
+  }
+]

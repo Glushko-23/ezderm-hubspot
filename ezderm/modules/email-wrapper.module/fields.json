@@ -1,0 +1,223 @@
+[
+  {
+    "name": "blocks",
+    "label": "Content blocks",
+    "type": "group",
+    "occurrence": { "min": 0, "max": null },
+    "children": [
+      {
+        "name": "block_type",
+        "label": "Block type",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["text", "Text"],
+          ["image", "Image"],
+          ["cta", "CTA"],
+          ["spacer", "Spacer"]
+        ],
+        "default": "text",
+        "required": true
+      },
+      {
+        "name": "block_text",
+        "label": "Text content",
+        "type": "richtext",
+        "visibility": {
+          "controlling_field_path": "blocks.block_type",
+          "controlling_value_regex": "text",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "text_width_group",
+        "label": "Text width settings",
+        "type": "group",
+        "display": "inline",
+        "visibility": {
+          "controlling_field_path": "blocks.block_type",
+          "controlling_value_regex": "text",
+          "operator": "EQUAL"
+        },
+        "children": [
+          {
+            "name": "block_text_width",
+            "label": "Text width",
+            "type": "number",
+            "default": 100
+          },
+          {
+            "name": "block_text_unit",
+            "label": "Text unit",
+            "type": "choice",
+            "display": "select",
+            "choices": [
+              ["px", "px"],
+              ["%", "%"]
+            ],
+            "default": "%",
+            "required": true
+          },
+          {
+            "name": "block_text_align",
+            "label": "Text aligned",
+            "type": "choice",
+            "display": "select",
+            "choices": [
+              ["center", "Center"],
+              ["left", "Left"],
+              ["right", "Right"]
+            ],
+            "default": "left",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "block_image",
+        "label": "Image",
+        "type": "image",
+        "visibility": {
+          "controlling_field_path": "blocks.block_type",
+          "controlling_value_regex": "image",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "block_image_link",
+        "label": "Image link",
+        "type": "link",
+        "visibility": {
+          "controlling_field_path": "blocks.block_type",
+          "controlling_value_regex": "image",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "block_image_align",
+        "label": "Image aligned",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["center", "Center"],
+          ["left", "Left"],
+          ["right", "Right"]
+        ],
+        "default": "left",
+        "required": true,
+        "visibility": {
+          "controlling_field_path": "blocks.block_type",
+          "controlling_value_regex": "image",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "block_cta",
+        "label": "CTA Link",
+        "type": "link",
+        "visibility": {
+          "controlling_field_path": "blocks.block_type",
+          "controlling_value_regex": "cta",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "block_cta_text",
+        "label": "CTA Text",
+        "type": "text",
+        "visibility": {
+          "controlling_field_path": "blocks.block_type",
+          "controlling_value_regex": "cta",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "block_spacer",
+        "label": "Spacer (in px)",
+        "type": "number",
+        "visibility": {
+          "controlling_field_path": "blocks.block_type",
+          "controlling_value_regex": "spacer",
+          "operator": "EQUAL"
+        }
+      }
+    ]
+  },
+  {
+    "label": "Styles",
+    "name": "styles",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "name": "background_color",
+        "label": "Background Color",
+        "type": "color",
+        "default": "#F0EDEC"
+      },
+      {
+        "label": "Radius",
+        "name": "radius",
+        "type": "number",
+        "default": "10"
+      },
+      {
+        "label": "Block width",
+        "name": "block_width",
+        "type": "number",
+        "step": 10,
+        "default": ""
+      },
+      {
+        "label": "Block width unit",
+        "name": "block_width_unit",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["px", "px"],
+          ["%", "%"]
+        ],
+        "default": "%",
+        "required": true
+      },
+      {
+        "label": "Outer paddings",
+        "name": "outer_paddings",
+        "type": "group",
+        "children": [
+          {
+            "label": "Padding X",
+            "name": "padding_x",
+            "type": "number",
+            "default": "20"
+          },
+          {
+            "label": "Padding Y",
+            "name": "padding_y",
+            "type": "number",
+            "default": "20"
+          }
+        ]
+      },
+      {
+        "label": "Inner paddings",
+        "name": "inner_paddings",
+        "type": "group",
+        "children": [
+          {
+            "label": "Padding X",
+            "name": "padding_x",
+            "type": "number",
+            "default": "40"
+          },
+          {
+            "label": "Padding Y",
+            "name": "padding_y",
+            "type": "number",
+            "default": "40"
+          }
+        ]
+      }
+    ]
+  }
+]

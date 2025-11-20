@@ -1,0 +1,30 @@
+[
+  {
+    "name": "table_id",
+    "label": "Table ID",
+    "type": "text",
+    "required": true,
+    "default": "131879956"
+  },
+  {
+    "name": "wrapper_class",
+    "label": "Wrapper CSS Class",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "name": "selected_slugs",
+    "label": "Selected Products (slugs, comma-separated)",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "name": "show_all",
+    "label": "Show All Products",
+    "type": "boolean",
+    "required": false,
+    "default": true
+  }
+]

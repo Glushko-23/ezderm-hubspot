@@ -1,0 +1,35 @@
+<!--
+  templateType: section
+  label: Benefits
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/benefits.png
+  description: "Benefits with list Section"
+-->
+
+{% dnd_section
+  class="benefits"
+%}
+  {% dnd_column
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/multi-column"
+        label="Benefits"
+        wrapper_class="benefits-grid"
+        extra_html='<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <circle cx="15" cy="15" r="15" fill="#1F1713"/>
+        <path d="M23.7071 15.7071C24.0976 15.3166 24.0976 14.6834 23.7071 14.2929L17.3431 7.92893C16.9526 7.53841 16.3195 7.53841 15.9289 7.92893C15.5384 8.31946 15.5384 8.95262 15.9289 9.34315L21.5858 15L15.9289 20.6569C15.5384 21.0474 15.5384 21.6805 15.9289 22.0711C16.3195 22.4616 16.9526 22.4616 17.3431 22.0711L23.7071 15.7071ZM7 15V16H23V15V14H7V15Z" fill="white"/>
+        </svg>'
+        description={{ context.content or "<h2>This is your main headline.</h2><p>Use this space to tell everyone about what you have to offer.</p>" }}
+        multi_column=[
+          {
+            "column_text": "Benefit Item",
+            "link": {"url": {"href": "#"}, "open_in_new_tab": false, "rel": null}
+          }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

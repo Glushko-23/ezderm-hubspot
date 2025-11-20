@@ -1,0 +1,24 @@
+<!--
+  templateType: "email"
+  isAvailableForNewContent: true
+  label: Custom Email Template
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ email.subject }}</title>
+  {% include "email_base_includes" %}
+  {{ dnd_area_stylesheet }}
+</head>
+<body>
+<div>test</div>
+  {% dnd_area "main" label="Main Email Area" %}
+    {% dnd_row %}
+      {% dnd_module path="@hubspot/rich_text" %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_area %}
+</body>
+</html>

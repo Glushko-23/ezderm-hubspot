@@ -1,0 +1,9 @@
+{
+  "functions": [
+    {
+      "file": "blog.js",
+      "endpoint": "/blog-posts",
+      "secrets": ["HUBSPOT_API_TOKEN"]
+    }
+  ]
+}

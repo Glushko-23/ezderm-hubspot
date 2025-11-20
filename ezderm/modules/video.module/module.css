@@ -1,0 +1,22 @@
+.video-wrapper > video {
+    width: 100%;
+    height: 100%;
+}
+
+.video-wrapper {
+    --video-max-width: 100%;
+}
+
+.hide-controls-by-default .plyr__controls {
+    display: none;
+}
+
+.hide-controls-by-default .plyr--playing .plyr__controls {
+    display: flex;
+}
+
+@media (min-width: 768px) {
+    .video-wrapper {
+        max-width: var(--video-max-width);
+    }
+}

@@ -1,0 +1,131 @@
+{% macro render(article, utils, show_label=true, variant='post', mode='pagination', prepend_path=true) %}
+
+{% set item_categories = [] %}
+{% set categories = article.category or article.tag_list or [] %}
+
+{% if article.tag_list is defined and article.tag_list is iterable and article.tag_list is not string and article.tag_list|length > 0 %}
+{% set categories = article.tag_list %}
+{% endif %}
+
+{% if categories|length > 0 %}
+    {% for cat in categories %}
+        {% set cat_name = '' %}
+        {% set cat_slug = '' %}
+
+        {# 1. HubDB / Blog category object: {name: "...", slug: "..."} #}
+        {% if cat is mapping and cat.name is defined %}
+            {% set cat_name = cat.name|trim %}
+            {% set cat_slug = cat.slug|default(utils.slugify(cat_name))|trim %}
+
+        {# 2. Blog tag_list: ["Tag 1", "Tag 2"] #}
+        {% elif cat.slug is defined %}
+            {% set cat_name = cat.name|trim %}
+            {% set cat_slug = cat.slug|trim %}
+
+        {% else %}
+            {% continue %}
+        {% endif %}
+
+        {% if cat_name != '' and cat_slug != '' %}
+            {% do item_categories.append({
+                'name': cat_name,
+                'slug': cat_slug
+            }) %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
+{% set raw_description = article.description or article.post_summary or '' %}
+{% set raw_description_clean = raw_description|striptags|trim|truncate(90, True, '') %}
+
+{% set article_url = article.hs_path or article.absolute_url %}
+
+{% if article.hs_path %}
+    {% set link_href = prepend_path
+        ? request.path ~ '/' ~ article.hs_path
+        : article.hs_path
+    %}
+{% else %}
+    {% set link_href = article.absolute_url %}
+{% endif %}
+
+{% set img_url = article.image.url or article.featured_image %}
+{% set img_alt = article.name or article.title %}
+
+<div class="article__item{% if mode=='slider' %} article__item--slide{% endif %}" data-category="{{ item_categories|map(attribute='slug')|join(' ') }}">
+        {% if article_url %}
+            <a href="{{ link_href }}" class="article__item--inner link">
+        {% endif %}
+
+        <div class="article__item--image image">
+            {% if variant == 'video' %}
+                <svg width="34" height="39" class="icon video-icon--play">
+                    <use xlink:href="#icon-play-video"></use>
+                </svg>
+            {% endif %}
+
+            {% if img_url %}
+                <img loading="lazy" src="{{ img_url }}" width="406" height="270" alt="{{ img_alt }}">
+            {% else %}
+                <img loading="lazy" src="{{ get_asset_url('../images/grayscale-mountain.png') }}" width="406" height="270" alt="{{ article.name }}">
+            {% endif %}
+        </div>
+
+        {% if variant == 'post' %}
+            <div class="card-item">
+                <div class="card-item__inner">
+                    <div class="card-item__group">
+                        <div class="card-item__content">
+                            <h4 class="card-item__title title">
+                                {{ article.name }}
+                            </h4>
+
+                            <div class="article__item--description description">
+                                {{ raw_description_clean }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-item__link">
+                    <div class="card-button__icon">
+                        <svg class="icon" width="48" height="48">
+                            <use xlink:href="#icon-arrow-link"></use>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="card-item__decor">
+                    {% include "ezderm/templates/partials/decor/decor-item-bottom.html" %}
+                </div>
+            </div>
+        {% else %}
+            <div>
+                <h4 class="article__item--title title">
+                    {{ article.name }}
+                </h4>
+
+                {% if article.description %}
+                    <div class="card-item__description description">
+                        {{ article.description }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if show_label %}
+            {% if categories|length > 0 %}
+                <div class="label-list">
+                    {% for cat in categories %}
+                        <div class="label-item">{{ cat.name|title }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endif %}
+
+    {% if article_url %}
+        </a>
+    {% endif %}
+</div>
+{% endmacro %}

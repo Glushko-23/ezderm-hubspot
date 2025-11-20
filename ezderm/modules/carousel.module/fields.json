@@ -1,0 +1,227 @@
+[
+  {
+    "id": "carousel",
+    "name": "carousel",
+    "label": "Carousel Item",
+    "required": false,
+    "type": "group",
+    "occurrence": { "min": 1, "max": null },
+    "children": [
+      {
+        "id": "carousel.carousel_img",
+        "name": "carousel_img",
+        "label": "Image",
+        "type": "image",
+        "default": {
+          "src": "../../images/grayscale-mountain.png",
+          "alt": "Placeholder"
+        }
+      },
+      {
+        "id": "carousel.carousel_text",
+        "name": "carousel_text",
+        "label": "Text",
+        "type": "richtext",
+        "default": null
+      },
+      {
+        "id": "carousel.link",
+        "name": "link",
+        "label": "Link",
+        "type": "link",
+        "default": {
+          "url": { "content_id": null, "type": "EXTERNAL", "href": "#" }
+        }
+      },
+      {
+        "id": "carousel.buttons",
+        "name": "buttons",
+        "label": "Buttons",
+        "type": "group",
+        "occurrence": { "min": 0, "max": null },
+        "children": [
+          {
+            "id": "carousel.buttons.text",
+            "name": "text",
+            "label": "Button Text",
+            "type": "text",
+            "required": true
+          },
+          {
+            "id": "carousel.buttons.link",
+            "name": "link",
+            "label": "Button Link",
+            "type": "link",
+            "required": false
+          },
+          {
+            "label": "Variant",
+            "name": "variant",
+            "type": "choice",
+            "display": "select",
+            "choices": [
+              ["primary", "Primary"],
+              ["light", "Light"]
+            ],
+            "default": "primary"
+          },
+          {
+            "label": "With arrow",
+            "name": "with_arrow",
+            "type": "boolean",
+            "default": true,
+            "display": "toggle"
+          }
+        ]
+      },
+      {
+        "id": "carousel.extra_html",
+        "name": "extra_html",
+        "label": "Extra HTML",
+        "type": "richtext",
+        "default": null
+      }
+    ]
+  },
+
+  {
+    "id": "carousel_json",
+    "name": "carousel_json",
+    "label": "Carousel JSON",
+    "type": "text",
+    "default": ""
+  },
+
+  {
+    "id": "settings",
+    "name": "settings",
+    "label": "Carousel Settings",
+    "type": "group",
+    "children": [
+      {
+        "id": "settings.carousel_count",
+        "name": "carousel_count",
+        "label": "Carousel Count",
+        "type": "number",
+        "default": 1,
+        "help_text": "Desktop Number of columns. Default 1 for single column."
+      },
+      {
+        "id": "settings.gap",
+        "name": "gap",
+        "label": "Gap",
+        "type": "number",
+        "default": 0,
+        "help_text": "Gap between of slides. Default 0"
+      },
+      {
+        "id": "breakpoints",
+        "name": "breakpoints",
+        "label": "Breakpoints",
+        "type": "group",
+        "children": [
+          {
+            "id": "settings.breakpoints.tablet_breakpoint",
+            "name": "tablet_breakpoint",
+            "label": "Tablet Breakpoint",
+            "type": "number",
+            "default": 1024,
+            "help_text": "Tablet Breakpoint. Default 1024px"
+          },
+          {
+            "id": "settings.breakpoints.tablet_count",
+            "name": "tablet_count",
+            "label": "Tablet Count",
+            "type": "number",
+            "default": 1,
+            "help_text": "Tablet Number of columns."
+          },
+          {
+            "id": "settings.breakpoints.mobile_breakpoint",
+            "name": "mobile_breakpoint",
+            "label": "Mobile Breakpoint",
+            "type": "number",
+            "default": 640,
+            "help_text": "Mobile Breakpoint. Default 640px"
+          },
+          {
+            "id": "settings.breakpoints.mobile_count",
+            "name": "mobile_count",
+            "label": "Mobile Count",
+            "type": "number",
+            "default": 1,
+            "help_text": "Mobile Number of columns."
+          }
+        ]
+      },
+      {
+        "id": "settings.show_arrows",
+        "name": "show_arrows",
+        "label": "Show Arrows",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "id": "settings.show_pagination",
+        "name": "show_pagination",
+        "label": "Show Pagination",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "id": "settings.autoplay",
+        "name": "autoplay",
+        "label": "Autoplay",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "id": "settings.loop",
+        "name": "loop",
+        "label": "Loop",
+        "type": "boolean",
+        "default": false
+      }
+    ]
+  },
+
+  {
+    "label": "Theme",
+    "name": "theme",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["light", "Light Theme"],
+      ["dark", "Dark Theme"],
+      ["accent", "Accent Theme"]
+    ],
+    "default": "light",
+    "help_text": "Select a theme for the module. Default is Light."
+  },
+
+  {
+    "id": "module.wrapper_class",
+    "name": "wrapper_class",
+    "label": "CSS Class",
+    "type": "text",
+    "tab": "STYLE",
+    "help_text": "Optional extra class for the wrapper.",
+    "default": null
+  },
+
+  {
+    "id": "module.description",
+    "name": "description",
+    "label": "Description",
+    "type": "richtext",
+    "default": null
+  },
+
+  {
+    "id": "module.extra_html",
+    "name": "extra_html",
+    "label": "Extra HTML",
+    "type": "richtext",
+    "default": null
+  }
+]

@@ -1,0 +1,19 @@
+{% macro render(categories) %}
+{% set category_filter = request.query_dict.category|default('all') %}
+<nav class="article__filters">
+    <ul class="article__filters--list">
+        <li>
+            <a data-category-id="all" data-category="all" data-category-link href="#all"
+               class="{{ 'active' if category_filter == 'all' else '' }}">All</a>
+        </li>
+        {% for category in categories %}
+            <li>
+                <a data-category-id="{{ category.id }}" data-category="{{ category.slug }}" data-category-link href="#{{ category.slug }}"
+                   class="{{ 'active' if category_filter == category.slug else '' }}">
+                    {{ category.name|title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endmacro %}

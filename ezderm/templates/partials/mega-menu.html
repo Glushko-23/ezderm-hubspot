@@ -1,0 +1,100 @@
+{% if request.postDict.inpageEditorUI %}
+    {% module "navigation_primary"
+        path="../../modules/menu",
+        label="Primary navigation",
+    %}
+{% else %}
+    {% module "navigation_primary"
+        path="../../modules/menu",
+        label="Primary navigation",
+        export_to_template_context=True
+    %}
+{% endif %}
+
+{% set menu_items = menu('Primary navigation', 'site_root').children %}
+{% set megamenu_items = widget_data.navigation_primary.megamenu_items %}
+{% set settings = widget_data.navigation_primary.settings %}
+
+{% macro render_menu(items, depth) %}
+    <ul class="mega-nav{% if depth > 1 %} mega-nav__submenu{% endif %}">
+        {% for item in items %}
+            {% set has_megamenu = false %}
+            {% set has_submenu = item.children|length > 0 %}
+
+            {% set has_megamenu = (megamenu_items | selectattr("parent_menu_item", "equalto", item.label) | list | length) > 0 %}
+
+            {% set has_any_submenu = has_submenu or has_megamenu %}
+
+            {# ✅ Build item classes #}
+            {% set item_classes = "mega-nav__item mega-nav__item--depth-" ~ depth %}
+            {% if has_any_submenu %}
+                {% set item_classes = item_classes ~ " mega-nav__item--has-children" %}
+            {% endif %}
+            {% if item.activeNode %}
+                {% set item_classes = item_classes ~ " mega-nav__item--active" %}
+            {% endif %}
+            {% if settings.toggle_button and has_any_submenu %}
+                {% set item_classes = item_classes ~ " mega-nav__item--has-toggle" %}
+            {% endif %}
+            {% if has_megamenu %}
+                {% set item_classes = item_classes ~ " mega-nav__item--has-complex" %}
+            {% endif %}
+
+            {# ✅Build link attributes #}
+            {% set link_attrs = "" %}
+            {% if has_any_submenu %}
+                {% set link_attrs = link_attrs ~ ' aria-haspopup="true" aria-expanded="false"' %}
+            {% endif %}
+            {% if item.linkTarget == "_blank" %}
+                {% set link_attrs = link_attrs ~ ' target="_blank" rel="noopener"' %}
+            {% endif %}
+
+            <li data-children="{{ has_any_submenu }}" class="{{ item_classes }}" data-menu-label="{{ item.label }}">
+                {% if settings.toggle_button %}
+                    <div role="button" class="mega-nav__toggle mega-nav__link">{{ item.label }}</div>
+                {% endif %}
+
+                <a {{ link_attrs|safe }} class="mega-nav__link" href="{{ item.url|escape_url }}">{{ item.label }}</a>
+
+                {# Check for megamenu matching this item #}
+                {% for megamenu in megamenu_items %}
+                    {% if megamenu.parent_menu_item|trim == item.label|trim %}
+                        {% set has_megamenu = true %}
+                        <div class="mega-nav__submenu submenu-complex submenu-type-{{ megamenu.submenu_type }}">
+                            <div class="mega-nav__submenu__inner">
+                                {% if megamenu.submenu_module_path %}
+                                    {% set module_name = item.label|trim|replace(' ', '_')|lower %}
+                                    {% set module_path = "../../modules/" ~ megamenu.submenu_module_path %}
+
+                                    <div class="container-main">
+                                        {% module "module_name"
+                                            path="{{ module_path }}"
+                                            label="{{ megamenu.parent_menu_item }}"
+                                        %}
+                                    </div>
+                                {% endif %}
+
+                                {% if megamenu.submenu_html %}
+                                    <div class="container-main">
+                                        {{ megamenu.submenu_html }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                {# If no megamenu module, render children recursively #}
+                {% if not has_megamenu and item.children %}
+                    {{ render_menu(item.children, depth + 1) }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
+{% if not request.postDict.inpageEditorUI %}
+    <nav class="mega-nav__wrapper" aria-label="Main menu">
+        {{ render_menu(menu_items, 1) }}
+    </nav>
+{% endif %}

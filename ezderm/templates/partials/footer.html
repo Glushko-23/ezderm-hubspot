@@ -1,0 +1,115 @@
+<!--
+  templateType: global_partial
+  label: Footer
+-->
+
+<footer class="footer dark">
+    <div class="footer__container content-wrapper">
+        <div class="footer__side">
+            <div class="footer__side--inner">
+                {% module "footer_side"
+                    path="@hubspot/rich_text",
+                    html='<h4>EZ Launch</h4><p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>'
+                %}
+
+                {% dnd_area "footer_side_bottom"
+                    label="Footer Side Bottom" %}
+                {% end_dnd_area %}
+            </div>
+
+            <div class="footer__side--cta">
+                {% module "footer_button"
+                    path="../../modules/button",
+                    extra_html='<svg class="icon"><use xlink:href="#icon-arrow-link"></use></svg>',
+                    hide_label=true
+                %}
+            </div>
+
+            <div class="decor-bottom__wrapper">
+                {% include "./decor/decor-item-bottom.html" %}
+            </div>
+        </div>
+
+        <div class="footer__main">
+            <div class="footer__certifications">
+                {% module "certifications"
+                    path="../../modules/multi-column",
+                    label="Certifications",
+                    description='<h5 class="f-title">Certifications</h5>'
+                ]
+                %}
+            </div>
+
+            <div class="footer__navigation">
+                {% module "footer-menu"
+                    path="../../modules/footer-menu",
+                    label="Footer Navigation", %}
+
+                <div>
+                    {% module "f-menu-header"
+                        path="@hubspot/header",
+                        header_tag="h5",
+                        value="Need Help?"
+                    %}
+
+                    {% module "address-text"
+                        path="@hubspot/rich_text",
+                        html="<p>Phone: <a href='tel:(877) 443-9337'>(877) 443-9337</a></p><p>Email: Contact us <a href='#'>here</a></p>"
+                    %}
+
+                    <div class="social-follow mobile">
+                        {% module "social-follow-mobile"
+                            path="../../modules/social-follow",
+                            social_link=[
+                                {"social_account": "facebook-f"},
+                                {"social_account": "linkedin-in"},
+                                {"social_account": "twitter"},
+                                {"social_account": "instagram"}
+                            ]
+                        %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__actions">
+                <div class="social-follow desktop">
+                    {% module "social-follow-desktop"
+                        path="../../modules/social-follow",
+                        social_link=[
+                            {"social_account": "facebook-f"},
+                            {"social_account": "linkedin-in"},
+                            {"social_account": "twitter"},
+                            {"social_account": "instagram"}
+                        ]
+                    %}
+                </div>
+
+                {% module "footer-button" button_text="Find my ROI" path="../../modules/button" %}
+            </div>
+        </div>
+    </div>
+
+    <div class="footer__container content-wrapper">
+        <div class="footer__panel-bottom">
+            <div class="footer__copyright">
+                {% module "footer_copyright"
+                    path="@hubspot/rich_text",
+                    html='© EZDERM {{ year }}'
+                %}
+            </div>
+
+            <nav class="footer__links">
+                {% module "footer_links_menu"
+                    path="@hubspot/menu",
+                %}
+            </nav>
+
+            <div class="footer__address">
+                {% module "footer_address"
+                    path="@hubspot/rich_text",
+                    html='4850 Tamiami Trail N, Suite. 301, Naples, FL 34103'
+                %}
+            </div>
+        </div>
+    </div>
+</footer>

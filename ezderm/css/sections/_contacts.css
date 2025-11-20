@@ -1,0 +1,24 @@
+.contacts .grid-items{
+  display:flex;
+}
+.contacts .grid-items .item{
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.contact-items{
+  display:grid;
+  gap:1rem;
+}
+.contact-items .item{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+}
+.contact-items .item p{
+  margin:0;
+}
+.contact-items .image{
+  flex:1;
+  max-width:40px;
+}

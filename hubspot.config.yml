@@ -1,0 +1,34 @@
+defaultPortal: ezderm_dev
+watch:
+  ignore:
+    - '**/node_modules/**'
+    - '**/.git/**'
+    - '**/tests/**'
+    - '**/*.log'
+    - '**/drafts/**'
+portals:
+  - name: ezderm
+    portalId: 21960656
+    env: prod
+    authType: personalaccesskey
+    auth:
+      tokenInfo:
+        accessToken: >-
+          CP7Z8c-RMxIWQlNQMl8kQEwrAgkACAk2RQMBJAJ4ARjQr7wKIKDEgBco7ukMMhRGoBHCerspUyN0mXQFWbRoL2HFqToiQlNQMl8kQEwrAgsAEBkGAPgAlAABAA0AAQBgAAEAlgEBAEIUBlZv--IEa4Vbn1_6kh3PCzaBsDJKA25hMVIAWgBgAWigxIAXcAB4AA
+        expiresAt: '2025-09-05T13:06:37.484Z'
+    accountType: STANDARD
+    personalAccessKey: >-
+      CiRuYTEtYjIwNi00ZGQzLTRhYzQtOWExNS1jYzI2YTM2YzI1NTcQ0K-8ChigxIAXKhkABeaRguebMJ8VAmPrUPmVZDGnd2P5OeXgSgNuYTE
+  - name: ezderm_dev
+    portalId: 50456160
+    env: prod
+    authType: personalaccesskey
+    auth:
+      tokenInfo:
+        accessToken: >-
+          CK3hiJSqMxItQlNQMl8kQEwrAiAACAkCARMXAQEBAgECAQIBDQMKAQIDBxsBAQEBJAIcAVsBGODMhxggoMSAFyju6QwyFGgl1YIfpQyAe_7XIupdUA_k8UFgOqYBQlNQMl8kQEwrAk0AEBMGAAYAHQABAAEAAQBRACsAHAABAAEAAQABAA8AAQABAAQABQABAAEAAQABAAQAAQAFAAEAAQABAAgAAQAGAAIAAwABABAABAAPAAEACAAEAAEAAQABAAEAAQAEAAEABQABABIACQADAAEAMQABAAEAAQAEAAEAAQABAAEAAQABAAEAAQBBAAEABwAXAAEAQgAaAAEAOQEBAEIUlwpNOVXfWGPLd41FHPLD_6GSpEJKA25hMVIAWgBgAWigxIAXcAB4AA
+        expiresAt: '2025-11-20T18:23:52.532Z'
+    accountType: DEVELOPER_TEST
+    personalAccessKey: >-
+      CiRuYTEtYWNiNS1jMjQ3LTQ5ZDEtYTNlYy05MzBmMDIxNWY3NDQQ4MyHGBigxIAXKhkABeaRgsTqdQVeVv4VloVzCYOmB_n0TVXISgNuYTE
+    parentAccountId: 21960656

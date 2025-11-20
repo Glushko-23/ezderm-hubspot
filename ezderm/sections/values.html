@@ -1,0 +1,30 @@
+<!--
+  templateType: section
+  label: Values
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/multi-column-content.png
+  description: "Values Section"
+-->
+{% dnd_section
+  class="values-section"
+%}
+  {% dnd_column
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/multi-column"
+        label="Values"
+        wrapper_class="values-grid"
+        description={{ context.content or "<h2>Our Values</h2>" }}
+        multi_column=[
+          {
+            "column_img": {"src": "../images/grayscale-mountain.png"},
+            "column_text": "<h4>Integrity</h4><p>Honesty and trust always</p>",
+          }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

@@ -1,0 +1,44 @@
+{
+  "content_tags" : [ {
+    "name" : "OTHER_INDUSTRY",
+    "source" : "MARKETPLACE"
+  }, {
+    "name" : "COMPATIBLE_ANY",
+    "source" : "MARKETPLACE"
+  } ],
+  "extra_classes" : "widget-type-social_sharing",
+  "global" : false,
+  "content_types" : [ "QUOTE_TEMPLATE", "MEMBERSHIP", "LANDING_PAGE", "SITE_PAGE", "SUBSCRIPTION", "BLOG_LISTING", "BLOG_POST" ],
+  "master_language" : "en",
+  "categories" : [ "social" ],
+  "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "module_id" : 197469911349,
+  "other_assets" : [ {
+    "autoload" : false,
+    "path" : "../../../mV0_d-web-default-modules_hubspot/img/facebook-color.png",
+    "name" : "facebook-color.png"
+  }, {
+    "autoload" : false,
+    "path" : "../../../mV0_d-web-default-modules_hubspot/img/linkedin-color.png",
+    "name" : "linkedin-color.png"
+  }, {
+    "autoload" : false,
+    "path" : "../../../mV0_d-web-default-modules_hubspot/img/twitter-color.png",
+    "name" : "twitter-color.png"
+  }, {
+    "autoload" : false,
+    "path" : "../../../mV0_d-web-default-modules_hubspot/img/pinterest-color.png",
+    "name" : "pinterest-color.png"
+  }, {
+    "autoload" : false,
+    "path" : "../../../mV0_d-web-default-modules_hubspot/img/email-color.png",
+    "name" : "email-color.png"
+  }, {
+    "autoload" : false,
+    "path" : "../../../mV0_d-web-default-modules_hubspot/img/x-twitter-color.png",
+    "name" : "x-twitter-color.png"
+  } ],
+  "label" : "Social Sharing",
+  "icon": "../../images/module-icons/share-circle.svg",
+  "is_available_for_new_content" : true
+}

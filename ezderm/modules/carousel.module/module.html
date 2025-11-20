@@ -1,0 +1,92 @@
+{% set theme = module.theme %}
+
+{% if module.description %}
+    <div class="carousel__description description">{{ module.description }}</div>
+{% endif %}
+
+<div
+    data-splide='{
+        "perPage": {{ module.settings.carousel_count }},
+        "type": "slide",
+        "easing": "linear",
+        "arrows": {{ module.settings.show_arrows }},
+        "pagination": {{ module.settings.show_pagination }},
+        "autoplay": {{ module.settings.autoplay }},
+        "loop": {{ module.settings.loop }},
+        "gap": {{ module.settings.gap }},
+        "breakpoints": {
+            "{{ module.settings.breakpoints.mobile_breakpoint }}": {
+                "perPage": {{ module.settings.breakpoints.mobile_count }}
+            },
+            "{{ module.settings.breakpoints.tablet_breakpoint }}": {
+                "perPage": {{ module.settings.breakpoints.tablet_count }}
+            }
+        }
+    }'
+    class="splide carousel__wrapper wrapper columns--{{ module.carousel_count }} {{ theme }}-theme {{ module.wrapper_class|default('') }}"
+>
+    <div class="splide__track">
+        <div class="splide__list">
+            {% for carousel_item in module.carousel %}
+                {% if carousel_item.carousel_text or carousel_item.carousel_img or carousel_item.link.url.href %}
+                {% set has_link = carousel_item.link is defined and carousel_item.link.url is defined and carousel_item.link.url.href %}
+                {% set use_anchor = has_link and not carousel_item.buttons|length %}
+
+                {% set link_attributes = '' %}
+                {% if has_link %}
+                    {% set link_attributes = 'href="' ~ carousel_item.link.url.href ~ '"' %}
+                    {% if carousel_item.link.open_in_new_tab %} {% set link_attributes = link_attributes ~ ' target="_blank"' %} {% endif %}
+                    {% if carousel_item.link.rel %} {% set link_attributes = link_attributes ~ ' rel="' ~ carousel_item.link.rel ~ '"' %} {% endif %}
+                {% endif %}
+
+                <div class="splide__slide carousel--item item span{{ module.carousel_count}} {% if not has_link %}no-link{% endif %}">
+                    {% if use_anchor %}
+                        <a class="carousel--link link" {{ link_attributes }}></a>
+                    {% endif %}
+
+                    {% if carousel_item.carousel_img and carousel_item.carousel_img.src %}
+                        <div class="carousel--image image">
+                            <img src="{{ carousel_item.carousel_img.src }}"
+                                 alt="{{ carousel_item.carousel_img.alt|default('Image')|escape }}"
+                                 width="{{ carousel_item.carousel_img.width|default('300') }}"
+                                 height="{{ carousel_item.carousel_img.height|default('200') }}"
+                                 class="carousel--img"
+                            />
+                        </div>
+                    {% endif %}
+
+                    <div class="carousel--content content">
+                        {% if carousel_item.carousel_text %}
+                            <div class="carousel--text text">{{ carousel_item.carousel_text|safe }}</div>
+                        {% endif %}
+
+                        {% if carousel_item.extra_html %}
+                            <div class="carousel--extra extra">{{ carousel_item.extra_html }}</div>
+                        {% endif %}
+
+                        {% if carousel_item.buttons %}
+                            <div class="carousel--buttons">
+                                {% for btn in carousel_item.buttons %}
+                                    {% set btn_link = btn.link.url.href %}
+                                    <a class="button button--{{ btn.variant }}" href="{{ btn_link }}"
+                                       {% if btn.link.open_in_new_tab %} target="_blank"{% endif %}
+                                       {% if btn.link.rel %} rel="{{ btn.link.rel }}"{% endif %}
+                                    >
+                                        {{ btn.text }}
+
+                                        {% if btn.with_arrow %}
+                                        <svg class="button-arrow" xmlns="http://www.w3.org/2000/svg" width="21" height="12" viewBox="0 0 21 12" fill="none">
+                                            <path d="M20.5303 6.53033C20.8232 6.23744 20.8232 5.76256 20.5303 5.46967L15.7574 0.696701C15.4645 0.403807 14.9896 0.403807 14.6967 0.6967C14.4038 0.989594 14.4038 1.46447 14.6967 1.75736L18.9393 6L14.6967 10.2426C14.4038 10.5355 14.4038 11.0104 14.6967 11.3033C14.9896 11.5962 15.4645 11.5962 15.7574 11.3033L20.5303 6.53033ZM0 6L-6.55671e-08 6.75L20 6.75L20 6L20 5.25L6.55671e-08 5.25L0 6Z" fill="currentColor"/>
+                                        </svg>
+                                        {% endif %}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

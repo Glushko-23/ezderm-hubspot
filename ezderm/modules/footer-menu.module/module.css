@@ -1,0 +1,13 @@
+.f-menu-item {
+  list-style: none;
+  padding: 0;
+}
+
+.f-menu-submenu {
+  padding: 0;
+}
+
+.f-menu-wrapper {
+  display: flex;
+  gap: 6rem;
+}

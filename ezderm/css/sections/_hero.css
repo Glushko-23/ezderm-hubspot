@@ -1,0 +1,126 @@
+.hero{
+  position:relative;
+}
+.hero.content-align--center{
+  text-align:center;
+}
+.hero.content-align--center .hero__actions{
+  justify-content:center;
+}
+.hero__inner{
+  display:flex;
+  align-items:center;
+  gap:2rem;
+  justify-content:space-between;
+}
+.hero__content{
+  flex-grow:1;
+  max-width:38rem;
+}
+.hero__actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+.hero__text h1, .hero__text h2, .hero__text h3{
+  color:inherit;
+}
+.accent-theme .hero__text{
+  color:#fff;
+}
+.hero__wrapper{
+  min-height:21.875rem;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+  width:var(--container-with-gap-x);
+  max-width:var(--container-size-xl);
+  margin:0 auto;
+  border-radius:var(--border-radius-main);
+}
+.hero__wrapper[class*=background-image]{
+  isolation:isolate;
+  position:relative;
+}
+.hero__wrapper[class*=background-image]::before{
+  content:"";
+  background:rgba(31, 23, 19, 0.35);
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:-1;
+  display:block;
+  width:100%;
+  height:100%;
+  border-radius:inherit;
+}
+.hero__wrapper[class*=background-image] .hero__text{
+  color:#fff;
+}
+
+.hero-video h3, .hero-video .h3{
+  font-size:3.25rem;
+}
+
+.hero-carousel{
+  position:relative;
+  min-height:unset;
+}
+.hero-carousel.dnd-section{
+  padding-top:unset;
+  padding-bottom:unset;
+}
+.hero-carousel.dnd-section > .row-fluid{
+  max-width:unset;
+}
+.hero-carousel .carousel--text{
+  max-width:40rem;
+}
+.hero-carousel .dark-theme .carousel--image::before{
+  content:"";
+  background:rgba(31, 23, 19, 0.35);
+  display:block;
+  height:100%;
+  left:0;
+  position:absolute;
+  top:0;
+  width:100%;
+  border-radius:inherit;
+}
+.hero-carousel .carousel--image{
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  border-radius:var(--border-radius-main);
+}
+.hero-carousel .carousel--image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:inherit;
+}
+.hero-carousel .carousel--content{
+  position:relative;
+  z-index:1;
+  max-width:50%;
+  margin-left:auto;
+  padding:6rem 0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:32rem;
+}
+.hero-carousel .carousel--content h1, .hero-carousel .carousel--content h2, .hero-carousel .carousel--content h3{
+  font-size:3.25rem;
+}
+.hero-carousel .splide__pagination{
+  position:absolute;
+  bottom:3rem;
+  max-width:50%;
+  right:0;
+  width:100%;
+  justify-content:flex-start;
+  margin:0;
+}

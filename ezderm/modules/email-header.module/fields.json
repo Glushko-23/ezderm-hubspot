@@ -1,0 +1,23 @@
+[
+  {
+    "name": "header_logo",
+    "label": "Logo",
+    "type": "image",
+    "required": false,
+    "locked": false,
+    "default": ""
+  },
+  {
+    "name": "header_logo_link",
+    "label": "Logo Link",
+    "type": "link",
+    "supported_types": [
+      "EXTERNAL",
+      "FILE",
+      "CALL_TO_ACTION"
+    ],
+    "required": false,
+    "locked": false,
+    "default": ""
+  }
+]

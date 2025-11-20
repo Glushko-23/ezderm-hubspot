@@ -1,0 +1,41 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: false
+  enableDomainStylesheets: false
+  label: Blog API
+  screenshotPath: ../images/template-previews/contact.png
+-->
+
+{% extends "./layouts/base.html" %}
+
+
+{% block body %}
+
+{% dnd_area "dnd_area"
+    label="Main section",
+    class="body-container body-container--blog-index"
+%}
+
+    {% dnd_section
+        class="blog-hero"
+    %}
+
+    {% dnd_module
+        label="Hero blog",
+        path="../modules/hero"
+    %}
+    {% end_dnd_module %}
+{% end_dnd_section %}
+
+{% end_dnd_area %}
+
+<div class="dnd-section">
+    <div class="row-fluid">
+        {% module "blog"
+            path="../modules/blog",
+            label="Blog"
+        %}
+    </div>
+</div>
+
+{% endblock body %}

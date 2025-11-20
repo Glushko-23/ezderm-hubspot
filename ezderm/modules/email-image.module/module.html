@@ -1,0 +1,34 @@
+{% import 'ezderm/macros/email-macros.html' as email_macros %}
+
+{% set image = module.image %}
+{% set image_link = module.image_link %}
+{% set image_align = module.styles.image_align|default('left') %}
+{% set full_width = module.styles.full_width %}
+
+{% if full_width %}
+    {% set image_width = '100%' %}
+    {% set image_height = 'auto' %}
+{% else %}
+    {% set image_width = image.width ~ 'px' %}
+    {% set image_height = image.height ~ 'px' %}
+{% endif %}
+
+<table width="100%" align="{{ image_align }}" class="table" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="{{ image_align }}" class="spacing-column">
+            {% if image_link.url.href %}
+                <a href="{{ image_link.url.href }}">
+            {% endif %}
+            <img
+                src="{{ image.src }}"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+                style="border: 0; text-decoration: none; width: {{ image_width }}; height: {{ image_height }}; max-height: {{ image_height }}; max-width: {{ image_width }};"
+                alt="{{ image.alt }}"
+            />
+            {% if image_link.url.href %}
+                </a>
+            {% endif %}
+        </td>
+    </tr>
+</table>

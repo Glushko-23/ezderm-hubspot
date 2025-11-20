@@ -1,0 +1,32 @@
+<!--
+  templateType: section
+  label: Program Steps
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/program-steps.png
+  description: "Program Steps"
+-->
+
+{% dnd_section
+  class="program-steps"
+%}
+  {% dnd_column
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/multi-column"
+        label="Program Steps"
+        wrapper_class="program-steps-grid"
+        multi_column=[
+          {
+            "column_img": {"src": "../images/grayscale-mountain.png"},
+            "column_text": "<h2>This is your main headline.</h2><p>You can replace it with your own content.</p>",
+            "link": {"url": {"href": "#"}, "open_in_new_tab": false, "rel": null},
+            "button_text": "Ready to Partner?"
+          }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

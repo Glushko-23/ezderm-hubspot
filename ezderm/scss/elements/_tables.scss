@@ -1,0 +1,36 @@
+/* Table */
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 1.4rem;
+  overflow-wrap: break-word;
+}
+
+/* Table cells */
+
+td,
+th {
+  vertical-align: top;
+}
+
+/* Table header */
+
+thead th {
+  vertical-align: bottom;
+}
+
+
+.flex-table {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+
+  &__row {
+    display: flex;
+  }
+
+  &__column {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+}

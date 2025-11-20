@@ -1,0 +1,29 @@
+.accent-theme .h1, .accent-theme .h2, .accent-theme h1, .accent-theme h2, .accent-theme h3, .accent-theme .h3, .accent-theme h4, .accent-theme .h5, .accent-theme h6, .accent-theme h1, .accent-theme h2, .accent-theme h3, .accent-theme h4, .accent-theme h5, .accent-theme h6,
+.accent-theme p, .accent-theme .section-subheader,
+.dark-theme .h1,
+.dark-theme .h2,
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme .h3,
+.dark-theme h4,
+.dark-theme .h5,
+.dark-theme h6,
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme h6,
+.dark-theme p,
+.dark-theme .section-subheader{
+  color:#fff;
+}
+.accent-theme a,
+.dark-theme a{
+  color:#fff;
+}
+.accent-theme a:hover,
+.dark-theme a:hover{
+  color:#fff;
+}

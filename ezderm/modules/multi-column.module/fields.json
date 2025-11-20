@@ -1,0 +1,114 @@
+[
+  {
+    "id": "multi_column",
+    "name": "multi_column",
+    "label": "Multi Column",
+    "required": false,
+    "locked": false,
+    "occurrence": {
+      "min": 1,
+      "max": null,
+      "sorting_label_field": "multi_column.column_text",
+      "default": null
+    },
+    "children": [
+      {
+        "id": "multi_column.column_img",
+        "name": "column_img",
+        "label": "Image",
+        "required": false,
+        "locked": false,
+        "type": "image",
+        "default": {
+          "src": "../../images/grayscale-mountain.png",
+          "alt": "Placeholder"
+        }
+      },
+      {
+        "id": "multi_column.column_text",
+        "name": "column_text",
+        "label": "Text",
+        "required": false,
+        "locked": false,
+        "validation_regex": "",
+        "allow_new_line": false,
+        "show_emoji_picker": false,
+        "type": "richtext",
+        "default": null
+      },
+      {
+        "id": "multi_column.link",
+        "name": "link",
+        "label": "Link",
+        "required": false,
+        "locked": false,
+        "type": "link",
+        "default": null
+      },
+      {
+        "id": "multi_column.button_text",
+        "name": "button_text",
+        "label": "Button",
+        "type": "text",
+        "default": null
+      },
+      {
+        "id": "multi_column.with_arrow",
+        "name": "with_arrow",
+        "label": "Button with arrow",
+        "type": "boolean",
+        "display": "toggle",
+        "default": true
+      },
+      {
+        "id": "multi_column.extra_html",
+        "name": "extra_html",
+        "label": "Extra HTML",
+        "type": "richtext",
+        "default": null
+      }
+    ],
+    "type": "group",
+    "default": [
+      {
+        "column_text": "Multi Column Item",
+        "column_img": null,
+        "link": null,
+        "extra_html": null,
+        "button": null,
+        "with_arrow": true
+      }
+    ]
+  },
+  {
+    "id": "module.column_count",
+    "name": "column_count",
+    "label": "Column Count",
+    "type": "number",
+    "default": 0,
+    "help_text": "Enter the number of columns (e.g., 1 to 12) to define the layout width. Default is 12 for full width."
+  },
+  {
+    "id": "module.wrapper_class",
+    "name": "wrapper_class",
+    "label": "CSS Class",
+    "type": "text",
+    "tab": "STYLE",
+    "help_text": "Optional extra class to add to the wrapper.",
+    "default": null
+  },
+  {
+    "id": "module.description",
+    "name": "description",
+    "label": "Description",
+    "type": "richtext",
+    "default": null
+  },
+  {
+    "id": "module.extra_html",
+    "name": "extra_html",
+    "label": "Extra HTML",
+    "type": "richtext",
+    "default": null
+  }
+]

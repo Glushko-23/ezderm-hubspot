@@ -1,0 +1,25 @@
+@use "sass:string";
+
+.certifications {
+  background-color: var(--color-accent);
+  color: #fff;
+  .description {
+    text-align: center;
+  }
+
+  h2 {
+    color: inherit;
+  }
+
+  &-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 3rem;
+
+    .item {
+      max-width: 8rem;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.certifications{
+  background-color:var(--color-accent);
+  color:#fff;
+}
+.certifications .description{
+  text-align:center;
+}
+.certifications h2{
+  color:inherit;
+}
+.certifications-grid{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:3rem;
+}
+.certifications-grid .item{
+  max-width:8rem;
+  text-align:center;
+}

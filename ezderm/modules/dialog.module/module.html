@@ -1,0 +1,9 @@
+<div class="dialog__wrapper {{ module.wrapper_class|default('') }}">
+    <button class="dialog__trigger"
+            data-modal-id="{{ module.modal_id|default('dialog-' ~ random()) }}"
+            data-title="{{ module.modal_title|default('Dialog') }}"
+            data-content="{{ module.modal_content|default('<p>No content provided.</p>') }}"
+            data-is-modal="{{ module.is_modal|default(true) }}">
+        {{ module.button_text|default('Open Dialog') }}
+    </button>
+</div>

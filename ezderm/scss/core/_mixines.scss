@@ -1,0 +1,336 @@
+@use 'sass:map';
+@use "sass:string";
+
+$breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+);
+
+$screen-sm: map.get($breakpoints, sm);
+$screen-md: map.get($breakpoints, md);
+$screen-lg: map.get($breakpoints, lg);
+$screen-xl: map.get($breakpoints, xl);
+$screen-xxl: map.get($breakpoints, xxl);
+
+
+/* Mixin for screens from $screen-sm:
+
+Example:
+@include mq-from-sm {
+   .element {
+     display: none;
+   }
+}
+
+*/
+@mixin mq-from-sm {
+  @media screen and (min-width: $screen-sm) {
+    @content;
+  }
+}
+
+/* Mixin for screens from $screen-md:
+
+Example:
+@include mq-from-md {
+   .element {
+     display: none;
+   }
+}
+
+*/
+@mixin mq-from-md {
+  @media screen and (min-width: $screen-md) {
+    @content;
+  }
+}
+
+/* Mixin for screens from $screen-lg:
+
+Example:
+@include mq-from-lg {
+   .element {
+     display: none;
+   }
+}
+
+*/
+@mixin mq-from-lg {
+  @media screen and (min-width: $screen-lg) {
+    @content;
+  }
+}
+
+/* Mixin for screens from $screen-xl:
+
+Example:
+@include mq-from-xl {
+   .element {
+     display: none;
+   }
+}
+
+*/
+@mixin mq-from-xl {
+  @media screen and (min-width: $screen-xl) {
+    @content;
+  }
+}
+
+/* Mixin for screens from $screen-xxl:
+
+Example:
+@include mq-from-xxl {
+   .element {
+     display: none;
+   }
+}
+
+*/
+@mixin mq-from-xxl {
+  @media screen and (min-width: $screen-xxl) {
+    @content;
+  }
+}
+
+/* Mixin for screens below $screen-lg:
+
+Example:
+@include mq-below-lg {
+   .element {
+     display: none;
+   }
+}
+
+*/
+@mixin mq-below-lg {
+  @media screen and (max-width: $screen-lg - 1) {
+    @content;
+  }
+}
+
+/* Mixin for screens below $screen-md:
+
+Example:
+@include mq-below-md {
+   .element {
+     display: none;
+   }
+}
+
+*/
+@mixin mq-below-md {
+  @media screen and (max-width: $screen-md - 1) {
+    @content;
+  }
+}
+
+/* Mixin for screens below $screen-sm:
+
+Example:
+@include mq-below-sm {
+   .element {
+     display: none;
+   }
+}
+
+*/
+@mixin mq-below-sm {
+  @media screen and (max-width: $screen-sm - 1) {
+    @content;
+  }
+}
+
+/* Mixin for screens below $screen-xl:
+
+Example:
+@include mq-below-xl {
+   .element {
+     display: none;
+   }
+}
+
+*/
+@mixin mq-below-xl {
+  @media screen and (max-width: $screen-xl - 1) {
+    @content;
+  }
+}
+
+/* Mixin for hover supported:
+
+Example:
+@include hover-supported {
+   .element {
+     color: white;
+   }
+}
+
+*/
+@mixin hover-supported {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover:not(:disabled) {
+      @content;
+    }
+  }
+}
+
+@function str-replace($string, $search, $replace: "") {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace +
+      str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@function svg-data-uri($svg) {
+  $escaped: $svg;
+  $escaped: str-replace($escaped, "#", "%23");
+  $escaped: str-replace($escaped, "<", "%3C");
+  $escaped: str-replace($escaped, ">", "%3E");
+  $escaped: str-replace($escaped, '"', "'");
+  $escaped: str-replace($escaped, "&", "%26");
+  @return url("data:image/svg+xml,#{$escaped}");
+}
+
+/* Mixin for underline text:
+
+Example:
+.element {
+  @include underline-text(#ff0000);
+}
+
+*/
+@mixin underline-text($stroke-color: currentColor) {
+  background-image: svg-data-uri('<svg xmlns="http://www.w3.org/2000/svg" width="154" height="10" viewBox="0 0 154 10" fill="none"><path d="M2 8C25.3166 4.42905 87.9598 -1.28692 152 4.41686" stroke="#{$stroke-color}" stroke-width="4" stroke-linecap="round"/></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+}
+
+/* Mixin for form fields: */
+@mixin form-text-input {
+  appearance: none;
+  height: var(--input-height);
+  font-size: var(--input-font-size);
+  font-weight: 400;
+  padding: var(--input-spaces);
+  border: 1px solid #EDF0F5;
+  border-radius: var(--input-border-radius);
+  background-color: var(--input-background-color);
+  width: 100%;
+  line-height: 1.4;
+  color: var(--base-text);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &::placeholder {
+    opacity: 1;
+    color: rgba(2, 24, 47, 0.4);
+    font-weight: 400;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline-color: transparent;
+    box-shadow: 0 0 0 2px var(--primary-100);
+  }
+}
+
+/* Mixin for form checkbox: */
+@mixin form-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #EDF0F5;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-inline-end: 6px;
+  position: relative;
+  cursor: pointer;
+  background-color: var(--input-border-radius);
+  transition: background-color 0.2s, border-color 0.2s;
+  outline: none;
+
+  &:checked {
+    background-color: var(--primary-100);;
+    border-color: var(--primary-100);;
+  }
+
+  &:checked::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 5px;
+    width: 4px;
+    height: 9px;
+    border: solid var(--light);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  &:focus {
+    outline: none;
+    outline-color: transparent;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+@mixin spinner-pulse($size: 16px, $color: var(--primary-100)) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: $color;
+  animation: pulseSpinner 2s ease-in-out infinite;
+  @keyframes pulseSpinner {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.4);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+// Mixin to create flexible columns
+// @param $columns - number of columns
+// @param $gap - gap between columns (default: 20px)
+@mixin flex-columns($columns, $gap: 20px) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap;
+
+  // Apply width to all direct children
+  > * {
+    // Each column width = (100% - total gaps) / number of columns
+    width: calc((100% - (#{$columns - 1} * #{$gap})) / #{$columns});
+  }
+}
+
+@function svg-data-uri($svg) {
+  $escaped: $svg;
+  $escaped: str-replace($escaped, "#", "%23");
+  $escaped: str-replace($escaped, "<", "%3C");
+  $escaped: str-replace($escaped, ">", "%3E");
+  $escaped: str-replace($escaped, '"', "'");
+  $escaped: str-replace($escaped, "&", "%26");
+  @return url("data:image/svg+xml,#{$escaped}");
+}

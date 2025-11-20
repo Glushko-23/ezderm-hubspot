@@ -1,0 +1,87 @@
+[
+  {
+    "id": "tabs",
+    "name": "tabs",
+    "label": "Tab Item",
+    "required": false,
+    "type": "group",
+    "occurrence": { "min": 1, "max": null },
+    "children": [
+      {
+        "id": "tabs.tab_button",
+        "name": "tab_button",
+        "label": "Button",
+        "type": "text",
+        "required": true,
+        "default": "Tab Button Text"
+      },
+      {
+        "id": "tabs.tab_content",
+        "name": "tab_content",
+        "label": "Content",
+        "type": "richtext",
+        "required": false,
+        "default": null
+      },
+      {
+        "id": "tabs.tab_id",
+        "name": "tab_id",
+        "label": "ID",
+        "type": "text",
+        "required": false,
+        "default": null
+      }
+    ],
+    "default": [
+      {
+        "tab_button": "Tab Button Text",
+        "tab_content": null,
+        "tab_id": null
+      }
+    ]
+  },
+  {
+    "id": "settings",
+    "name": "settings",
+    "label": "Tabs Settings",
+    "type": "group",
+    "children": [
+      {
+        "id": "settings.vertical_nav",
+        "name": "vertical_nav",
+        "label": "Vertical navigation",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "id": "settings.duration",
+        "name": "duration",
+        "label": "Duration",
+        "type": "number",
+        "default": 0
+      }
+    ]
+  },
+  {
+    "id": "module.wrapper_class",
+    "name": "wrapper_class",
+    "label": "CSS Class",
+    "type": "text",
+    "tab": "STYLE",
+    "help_text": "Optional extra class for the wrapper.",
+    "default": null
+  },
+  {
+    "label": "Theme",
+    "name": "theme",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["light", "Light Theme"],
+      ["dark", "Dark Theme"],
+      ["accent", "Accent Theme"]
+    ],
+    "default": "light",
+    "help_text": "Select a theme for the module. Default is Light."
+  }
+]

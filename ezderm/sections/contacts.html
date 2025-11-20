@@ -1,0 +1,80 @@
+<!--
+  templateType: section
+  label: Contacts
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/contacts.png
+  description: "Contacts section"
+-->
+{% dnd_section
+  background_color={{ context.background_color or theme.global_colors.accent.color }},
+  class="contacts accent-theme"
+%}
+
+{# Left column: header + items #}
+{% dnd_column
+  offset=0,
+  width=6
+%}
+  {% dnd_row %}
+    {% dnd_module
+      path="@hubspot/section_header",
+      header="Have Questions?",
+      subheader="Current ezderm user? Our dedicated Care Team can help! Reach us via phone, email, or the form below."
+    %}
+    {% end_dnd_module %}
+  {% end_dnd_row %}
+
+  {% dnd_row %}
+    {% dnd_module
+        path="../modules/multi-column"
+        label="Contact Items"
+        wrapper_class="contact-items"
+        multi_column=[
+            {
+              "column_img": {"src": "../images/icons/contact.svg"},
+              "column_text": "<p>Call us at: (877) 443-9337</p>"
+            },
+            {
+              "column_img": {"src": "../images/icons/contact.svg"},
+              "column_text": "<p>Email us at: <a href='mailto:techsupport@ezderm.com'>techsupport@ezderm.com</a></p>"
+            },
+            {
+              "column_img": {"src": "../images/icons/contact.svg"},
+              "column_text": "<p>Take a look at <a href='#'>our frequently asked questions</a>.</p>"
+            }
+      ]
+    %}
+    {% end_dnd_module %}
+  {% end_dnd_row %}
+{% end_dnd_column %}
+
+{# Right column: links #}
+{% dnd_column
+  offset=6,
+  width=6
+%}
+  {% dnd_row %}
+    {% dnd_module
+        path="../modules/card"
+        label="Auth cards"
+        wrapper_class="auth-cards"
+        cards=[
+            {
+                "image": {"src": "../images/module-icons/dotted-circle.svg"},
+                "title": "Provider Login",
+                "content": "Login to ezpm.",
+                "link": {"url": {"href": "#"}, "open_in_new_tab": true, "rel": null}
+            },
+            {
+                "image": {"src": "../images/module-icons/dotted-circle.svg"},
+                "title": "ezschool Login",
+                "content": "Login to ezschool.",
+                "link": {"url": {"href": "#"}, "open_in_new_tab": true, "rel": null}
+            }
+        ]
+    %}
+    {% end_dnd_module %}
+  {% end_dnd_row %}
+{% end_dnd_column %}
+
+{% end_dnd_section %}

@@ -1,0 +1,30 @@
+{% set wrapper_class = module.wrapper_class|default('') %}
+{% set theme = module.theme %}
+
+<div class="statistics__wrapper {{ theme }}-theme {{ wrapper_class }}">
+    {% for statistics_item in module.statistics %}
+        <div class="statistics__row">
+            {% if statistics_item.first_value %}
+                <div class="statistics__value first-value">
+                    {{ statistics_item.first_value }}
+                </div>
+            {% endif %}
+
+            <svg class="icon" width="71" height="16">
+                <use xlink:href="#icon-arrow-long"></use>
+            </svg>
+
+            {% if statistics_item.second_value %}
+                <div class="statistics__value second-value">
+                    {{ statistics_item.second_value }}
+                </div>
+            {% endif %}
+
+            {% if statistics_item.description %}
+                <div class="statistics__description">
+                    {{ statistics_item.description }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>

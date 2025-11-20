@@ -1,0 +1,76 @@
+{% import 'ezderm/macros/email-macros.html' as email_macros %}
+
+{% set bg = module.styles.background_color %}
+{% set radius = module.styles.radius %}
+{% set inner_paddings = module.styles.inner_paddings %}
+{% set outer_paddings = module.styles.outer_paddings %}
+{% set block_width = module.styles.block_width %}
+{% set block_width_unit = module.styles.block_unit|default('%') %}
+
+{% if block_width %}
+    {% set block_width_render = block_width ~ block_width_unit %}
+{% else %}
+    {% set block_width_render = 'auto' %}
+{% endif %}
+
+<table role="presentation" class="table" width="100%" cellpadding="0" cellspacing="0">
+    {{ email_macros.vspace(outer_paddings.padding_y) }}
+
+    <tr>
+        {{ email_macros.hspace(outer_paddings.padding_x) }}
+
+        <td class="section-with-bg" width="{{ block_width_render }}" style="padding: {{ inner_paddings.padding_y }}px {{ inner_paddings.padding_x }}px; border-radius: {{ radius }}px; background: {{ bg }};" bgcolor="{{ bg }}">
+            {% for block in module.blocks %}
+                {% if block.block_type == "text" %}
+                    {% set text_width = block.text_width_group.block_text_width|default(100) %}
+                    {% set text_unit = block.text_width_group.block_text_unit|default('%') %}
+                    {% set text_width_render = text_width ~ text_unit %}
+                    {% set text_align = block.text_width_group.block_text_align|default('left') %}
+
+                    <table width="100%" role="presentation" class="table" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="{{ text_align }}" style="padding: 0; margin: 0;">
+                                <table width="{{ text_width_render }}" role="presentation" class="table width-full--mobile" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="padding: 0; margin: 0;">
+                                            {{ block.block_text }}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                {% elif block.block_type == "image" %}
+                    {% set image_align = block.block_image_align|default('left') %}
+
+                    <table width="100%" align="{{ image_align }}" class="table" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="{{ image_align }}">
+                                <img
+                                    src="{{ block.block_image.src }}"
+                                    width="{{ block.block_image.width }}"
+                                    height="{{ block.block_image.height }}"
+                                    style="border: 0; text-decoration: none; max-height: {{ block.block_image.height }}px; max-width: {{ block.block_image.width }}px;"
+                                    alt="{{ block.block_image.alt }}"
+                                />
+                            </td>
+                        </tr>
+                    </table>
+                {% elif block.block_type == "cta" %}
+                    {{ email_macros.cta(
+                        cta_link=block.block_cta.href,
+                        cta_text=block.block_cta_text
+                    ) }}
+                {% elif block.block_type == "spacer" %}
+                    <table role="presentation" width="100%" class="table" cellspacing="0" cellpadding="0">
+                        {{ email_macros.vspace(block.block_spacer) }}
+                    </table>
+                {% endif %}
+            {% endfor %}
+        </td>
+
+        {{ email_macros.hspace(outer_paddings.padding_x) }}
+    </tr>
+
+    {{ email_macros.vspace(outer_paddings.padding_y) }}
+</table>

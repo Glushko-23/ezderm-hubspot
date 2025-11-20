@@ -1,0 +1,11 @@
+{
+  "label": "Email Image",
+  "global" : false,
+  "content_types" : [ "EMAIL" ],
+  "smart_type" : "NOT_SMART",
+  "host_template_types": ["EMAIL"],
+  "editor_options": {
+    "content_editable": true
+  },
+  "is_available_for_new_content" : true
+}

@@ -1,0 +1,73 @@
+{% import '../../macros/generate-anchors.html' as macros %}
+
+{% set target_tag = module.target_tag|default('h2') %}
+{% set anchor_data = macros.generate_anchors(module.content_body, module.prefix_id, target_tag, module.settings.modify_tags)|fromjson %}
+{{ id }}
+<div class="{{ module.wrapper_class|default('') }}"
+     data-target="{{ module.settings.target_content }}"
+     data-anchors='{"target_tag": "{{ target_tag }}", "prefix_id": "{{ module.prefix_id }}", "modify_tags": {{ module.settings.modify_tags }}, "custom_anchors": {{ module.custom_anchors|default([])|tojson|safe }}}'
+     {% if module.settings.update_url %} data-update-url {% endif %}
+>
+
+    {% if anchor_data.anchors|length %}
+        <div class="table-of-contents" data-content>
+            {% if module.anchors_title %}
+                <h4>{{ module.anchors_title }}</h4>
+            {% endif %}
+
+            <ul class="anchors">
+                {% for anchor in anchor_data.anchors %}
+                    {# Find matching custom anchor by index to preserve order #}
+                    {% set custom_anchor = module.custom_anchors[loop.index0] if module.custom_anchors[loop.index0] else null %}
+                    {% set link_text = custom_anchor.anchor_text|default(anchor.text)|safe %}
+                    {% set link_id = custom_anchor and custom_anchor.anchor_id ? custom_anchor.anchor_id : anchor.id %}
+                    <li><a href="#{{ link_id }}">{{ link_text }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <ul class="anchors">
+            <li><a href="#default">Default Section</a></li>
+        </ul>
+    {% endif %}
+</div>
+
+{% if module.settings.modify_tags %}
+    <div>
+        {{ anchor_data.modified_body|safe }}
+    </div>
+{% endif %}
+
+<script>
+    if (!window.__anchorsInitialized) {
+        window.__anchorsInitialized = true;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const modules = document.querySelectorAll('[data-anchors]');
+            modules.forEach(module => {
+                const parent = module.parentElement;
+                const stickyAnchors = {{ module.settings.sticky_anchors }};
+
+                if (stickyAnchors) {
+                    parent.setAttribute('data-sticky', '');
+                    parent.style.setProperty('--offset-gap', 'var(--header-height)');
+
+                    // Set min-height equal to module height
+                    const updateMinHeight = () => {
+                        const height = module.querySelector('[data-content]').offsetHeight;
+                        // module.style.minHeight = `${height}px`;
+                    };
+
+                    // Initial call
+                    updateMinHeight();
+
+                    // Observe size changes of the module
+                    const resizeObserver = new ResizeObserver(() => {
+                        updateMinHeight();
+                    });
+                    resizeObserver.observe(module);
+                }
+            });
+        });
+    }
+</script>

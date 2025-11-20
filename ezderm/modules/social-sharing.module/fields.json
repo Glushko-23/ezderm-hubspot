@@ -1,0 +1,354 @@
+[
+  {
+    "id": "9a398615-5e5e-5824-85f9-f020e3bec27e",
+    "name": "link",
+    "label": "Link URL",
+    "help_text": "This is the destination link that will be shortened for easier sharing on social networks.",
+    "required": false,
+    "locked": false,
+    "placeholder": "Optional Custom Page URL",
+    "allow_new_line": false,
+    "type": "text",
+    "display_width": null
+  },
+  {
+    "id": "icon_color",
+    "name": "icon_color",
+    "label": "Icon color",
+    "required": false,
+    "locked": false,
+    "type": "color",
+    "default": "#000"
+  },
+  {
+    "id": "bbdaf5b8-be6c-3bda-3769-6c70d7fdad08",
+    "name": "facebook",
+    "label": "Facebook",
+    "required": false,
+    "locked": false,
+    "children": [
+      {
+        "id": "a6a59b62-7d01-3d33-5c9e-4de364fc8703",
+        "name": "enabled",
+        "label": "Enabled?",
+        "required": true,
+        "locked": false,
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "65b48e58-e2e2-a61e-6042-f3da01b5806c",
+        "name": "custom_link_format",
+        "label": "Link",
+        "required": true,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "a6a59b62-7d01-3d33-5c9e-4de364fc8703",
+          "controlling_field_path": null,
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "MATCHES_REGEX",
+          "access": null
+        },
+        "allow_new_line": false,
+        "type": "text",
+        "display_width": null,
+        "default": "https://www.facebook.com/share.php?u={{ social_link_url|urlencode }}"
+      },
+      {
+        "id": "facebook_svg_icon",
+        "name": "svg_icon",
+        "label": "SVG Icon",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "display_width": null,
+        "default": "<svg aria-labelledby=\"Facebook\" role=\"img\" class=\"icon icon--facebook-f\" width=\"36\" height=\"36\"><use xlink:href=\"#icon-facebook-f\"></use></svg>"
+      }
+    ],
+    "tab": "CONTENT",
+    "expanded": false,
+    "group_occurrence_meta": null,
+    "type": "group",
+    "display_width": null,
+    "default": {
+      "enabled": false,
+      "custom_link_format": "https://www.facebook.com/share.php?u={{ social_link_url|urlencode }}"
+    }
+  },
+  {
+    "id": "08a32e3c-ec26-48bc-7586-caf20f046c8f",
+    "name": "twitter",
+    "label": "Twitter",
+    "required": false,
+    "locked": false,
+    "children": [
+      {
+        "id": "8dfe9c1f-078c-8ada-2417-ae17fe470673",
+        "name": "enabled",
+        "label": "Enabled?",
+        "required": true,
+        "locked": false,
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "twitter.twitter_icon",
+        "name": "twitter_icon",
+        "label": "Twitter icon",
+        "required": true,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "8dfe9c1f-078c-8ada-2417-ae17fe470673",
+          "controlling_field_path": null,
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "MATCHES_REGEX",
+          "access": null
+        },
+        "display": "select",
+        "choices": [
+          [
+            "twitter",
+            "Twitter bird"
+          ],
+          [
+            "x-twitter",
+            "Twitter X"
+          ]
+        ],
+        "multiple": false,
+        "reordering_enabled": true,
+        "preset": null,
+        "type": "choice",
+        "display_width": null,
+        "default": "twitter"
+      },
+      {
+        "id": "afdf7387-4274-d706-886d-e306f8f7e1b9",
+        "name": "custom_link_format",
+        "label": "Link",
+        "required": true,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "8dfe9c1f-078c-8ada-2417-ae17fe470673",
+          "controlling_field_path": null,
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "MATCHES_REGEX",
+          "access": null
+        },
+        "allow_new_line": false,
+        "type": "text",
+        "display_width": null,
+        "default": "https://twitter.com/intent/tweet?original_referer={{ social_link_url|urlencode }}&url={{ social_link_url|urlencode }}&source=tweetbutton&text={{ social_page_title|urlencode }}"
+      },
+      {
+        "id": "twitter_svg_icon",
+        "name": "svg_icon",
+        "label": "SVG Icon",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "display_width": null,
+        "default": "<svg aria-labelledby=\"Twitter\" role=\"img\" class=\"icon icon--x-twitter\" width=\"36\" height=\"36\"><use xlink:href=\"#icon-x-twitter\"></use></svg>"
+      }
+    ],
+    "tab": "CONTENT",
+    "expanded": false,
+    "group_occurrence_meta": null,
+    "type": "group",
+    "display_width": null,
+    "default": {
+      "enabled": false,
+      "custom_link_format": "https://twitter.com/intent/tweet?original_referer={{ social_link_url|urlencode }}&url={{ social_link_url|urlencode }}&source=tweetbutton&text={{ social_page_title|urlencode }}",
+      "twitter_icon": "twitter"
+    }
+  },
+  {
+    "id": "7ef8e3a8-e9b8-0a08-8a45-12430b26b68d",
+    "name": "linkedin",
+    "label": "LinkedIn",
+    "required": false,
+    "locked": false,
+    "children": [
+      {
+        "id": "d8ce09cb-86bf-67a6-8ee7-ca299e342de1",
+        "name": "enabled",
+        "label": "Enabled?",
+        "required": true,
+        "locked": false,
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "5c32728c-533a-6df7-c9c8-42cf3c570766",
+        "name": "custom_link_format",
+        "label": "Link",
+        "required": true,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "d8ce09cb-86bf-67a6-8ee7-ca299e342de1",
+          "controlling_field_path": null,
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "MATCHES_REGEX",
+          "access": null
+        },
+        "allow_new_line": false,
+        "type": "text",
+        "display_width": null,
+        "default": "https://www.linkedin.com/shareArticle?mini=true&url={{ social_link_url|urlencode }}"
+      },
+      {
+        "id": "linkedin_svg_icon",
+        "name": "svg_icon",
+        "label": "SVG Icon",
+        "required": false,
+        "locked": false,
+        "type": "text",
+        "display_width": null,
+        "default": "<svg aria-labelledby=\"LinkedIn\" role=\"img\" class=\"icon icon--linkedin-in\" width=\"36\" height=\"36\"><use xlink:href=\"#icon-linkedin-in\"></use></svg>"
+      }
+    ],
+    "tab": "CONTENT",
+    "expanded": false,
+    "group_occurrence_meta": null,
+    "type": "group",
+    "display_width": null,
+    "default": {
+      "enabled": false,
+      "custom_link_format": "https://www.linkedin.com/shareArticle?mini=true&url={{ social_link_url|urlencode }}"
+    }
+  },
+  {
+    "id": "5d776950-53b5-47d6-5e2e-ae29efe83023",
+    "name": "pinterest",
+    "label": "Pinterest",
+    "required": false,
+    "locked": false,
+    "children": [
+      {
+        "id": "68a63444-eef7-c3c0-e668-8a57a3bb12c9",
+        "name": "enabled",
+        "label": "Enabled?",
+        "required": true,
+        "locked": false,
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "e917e6d1-b8a2-3410-fba8-2c2543aa9716",
+        "name": "custom_link_format",
+        "label": "Link",
+        "required": true,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "68a63444-eef7-c3c0-e668-8a57a3bb12c9",
+          "controlling_field_path": null,
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": "MATCHES_REGEX",
+          "access": null
+        },
+        "allow_new_line": false,
+        "type": "text",
+        "display_width": null,
+        "default": "https://pinterest.com/pin/create/button/?url={{ social_link_url|urlencode }}&media={{ pinterest_media }}"
+      },
+      {
+        "id": "a28d7333-37c4-1f39-56b8-871b682f3756",
+        "name": "pinterest_media",
+        "label": "Pin image",
+        "required": false,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "68a63444-eef7-c3c0-e668-8a57a3bb12c9",
+          "controlling_field_path": null,
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": null,
+          "access": null
+        },
+        "responsive": false,
+        "resizable": true,
+        "show_loading": false,
+        "type": "image",
+        "display_width": null,
+        "default": {
+          "src": "",
+          "alt": null
+        }
+      }
+    ],
+    "tab": "CONTENT",
+    "expanded": false,
+    "group_occurrence_meta": null,
+    "type": "group",
+    "display_width": null,
+    "default": {
+      "enabled": false,
+      "custom_link_format": "https://pinterest.com/pin/create/button/?url={{ social_link_url|urlencode }}&media={{ pinterest_media }}",
+      "pinterest_media": {
+        "src": "",
+        "alt": null
+      }
+    }
+  },
+  {
+    "id": "e2987376-4d37-7818-654c-2cfba7fc51fc",
+    "name": "email",
+    "label": "Email",
+    "required": false,
+    "locked": false,
+    "children": [
+      {
+        "id": "4747966f-3fd4-bcff-a15d-c7927b1db80d",
+        "name": "enabled",
+        "label": "Enabled?",
+        "required": true,
+        "locked": false,
+        "display": "checkbox",
+        "type": "boolean",
+        "display_width": null,
+        "default": false
+      },
+      {
+        "id": "17f7621a-e3d4-1302-742a-f3c7ec93d2c3",
+        "name": "custom_link_format",
+        "label": "Link",
+        "required": true,
+        "locked": false,
+        "visibility": {
+          "controlling_field": "4747966f-3fd4-bcff-a15d-c7927b1db80d",
+          "controlling_field_path": null,
+          "controlling_value_regex": "true",
+          "property": null,
+          "operator": null,
+          "access": null
+        },
+        "allow_new_line": false,
+        "type": "text",
+        "display_width": null,
+        "default": "mailto:?subject=Check+out+{{ social_link_url|urlencode }}&body=Check+out+{{ social_link_url|urlencode }}"
+      }
+    ],
+    "tab": "CONTENT",
+    "expanded": false,
+    "group_occurrence_meta": null,
+    "type": "group",
+    "display_width": null,
+    "default": {
+      "enabled": false,
+      "custom_link_format": "mailto:?subject=Check+out+{{ social_link_url|urlencode }}&body=Check+out+{{ social_link_url|urlencode }}"
+    }
+  }
+]

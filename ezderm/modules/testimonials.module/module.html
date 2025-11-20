@@ -1,0 +1,43 @@
+{% set variant = module.view %}
+{% set selected_type = module.type %}
+{% set all_rows = hubdb_table_rows(module.table_id, false) %}
+
+{% set testimonials = all_rows|selectattr("type.name", "equalto", selected_type)|list %}
+{% set testimonials = testimonials + (all_rows|rejectattr("type.name")|list) %}
+
+{% if not module.show_all and module.selected_slugs %}
+    {% set slugs_list = module.selected_slugs|split(',')|map('trim') %}
+    {% set testimonials = testimonials|selectattr("slug", "in", slugs_list)|list %}
+{% endif %}
+
+<div class="testimonials__wrapper view-{{variant}} {{ module.wrapper_class|default('') }}">
+    {% if testimonials|length > 0 %}
+        <div class="testimonials__grid">
+            {% for testimonial in testimonials %}
+                <div class="testimonials__item item">
+                    {% if testimonial.avatar.url %}
+                        <div class="testimonials__avatar">
+                            <img src="{{ testimonial.avatar.url }}" width="100" height="100" alt="{{ testimonial.name }}">
+                        </div>
+                    {% endif %}
+
+                    <blockquote class="testimonials__quote">
+                        {% if testimonial.name %}
+                            <h5 class="testimonials__name">
+                                {{ testimonial.name }}{% if variant == "variant_2" and testimonial.position %},{% endif %}
+                            </h5>
+                        {% endif %}
+
+                        {% if testimonial.description %}
+                            <div class="testimonials__description">{{ testimonial.description }}</div>
+                        {% endif %}
+
+                        {% if testimonial.position %}
+                            <div class="testimonials__position">{{ testimonial.position }}</div>
+                        {% endif %}
+                    </blockquote>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,59 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Thank You Page
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+    {% dnd_area "dnd_area"
+        label="Thank You",
+        class="thank-you-page"
+    %}
+
+    {% include_dnd_partial
+        path="../sections/hero-banner.html"
+        context={
+            "background_color": "none",
+            "content": "<h1>Thank You Heading</h1><p>Thank You Description</p>",
+            "buttons": [
+                {
+                "button": "CTA Here",
+                    "link": {
+                    "url": { "type": "EXTERNAL", "href": "" },
+                    "open_in_new_tab": false
+                },
+                    "variant": "primary",
+                    "with_arrow": true
+                }
+            ],
+        }
+    %}
+
+    {% include_dnd_partial
+        path="../sections/hero-banner.html"
+        context={
+            "background_color": "#001F99",
+            "content": "<h1>Thank You Heading</h1><p>Thank You Description</p>",
+            "image": {
+                "src": ""
+            },
+            "buttons": [
+                {
+                    "button": "CTA Here",
+                    "link": {
+                        "url": { "type": "EXTERNAL", "href": "" },
+                        "open_in_new_tab": false
+                    },
+                    "variant": "light",
+                    "with_arrow": false
+                }
+            ],
+            "content_align": "center",
+            "wrapper_class": "accent-theme",
+        }
+    %}
+
+    {% end_dnd_area %}
+{% endblock body %}

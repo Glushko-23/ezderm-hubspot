@@ -1,0 +1,9 @@
+.multi-column-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--column-gap);
+}
+
+.multi-column-grid .item {
+    flex-grow: 1;
+}

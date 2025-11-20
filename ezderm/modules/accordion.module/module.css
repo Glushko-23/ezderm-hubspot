@@ -1,0 +1,26 @@
+.accordion__wrapper.accent-theme {
+    color: #fff;
+}
+
+.ac {
+    border: 0;
+    background: none;
+}
+
+.ac .ac-trigger,
+.ac .ac-panel,
+.ac .ac-panel .ac-text {
+    font-family: inherit;
+}
+.ac .ac-panel {
+    visibility: hidden;
+}
+
+.ac .ac-trigger,
+.ac .ac-panel .ac-text {
+    color: inherit;
+}
+
+.ac .ac-trigger:focus {
+    color: inherit;
+}

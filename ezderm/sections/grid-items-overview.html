@@ -1,0 +1,32 @@
+<!--
+  templateType: section
+  label: Grid Items Overview
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/grid-items.png
+  description: "Grid Items Overview Section"
+-->
+{% dnd_section
+  background_color={{ context.background_color or "#ffffff" }}
+  vertical_alignment="TOP"
+  class="grid-items-overview"
+%}
+  {% dnd_column
+    width=12
+  %}
+    {% dnd_row %}
+        {% dnd_module
+            path="@hubspot/rich_text",
+            html={{ context.column_one_content or "<h2>Title</h2><p>Description</p>" }}
+        %}
+        {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/card"
+        label="Grid Items"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

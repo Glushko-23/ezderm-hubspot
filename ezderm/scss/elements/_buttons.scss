@@ -1,0 +1,72 @@
+.button,
+.hs-button {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    transition: all 0.15s linear;
+    white-space: normal;
+    min-height: var(--field-base-height);
+    gap: 1rem;
+}
+
+.button {
+  &.button--flat {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  &.button--light {
+    background: var(--color-light);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 1);
+  }
+
+  &--has-arrow {
+    justify-content: space-between;
+    padding: 0.375rem 1.125rem !important;
+    gap: 3rem;
+    min-width: var(--field-base-width);
+  }
+}
+
+.button-arrow {
+  &--down {
+    transform: rotate(90deg);
+  }
+}
+
+button:disabled,
+.button:disabled,
+.hs-button:disabled {
+    background-color: #D0D0D0;
+    border-color: #D0D0D0;
+    color: #E6E6E6;
+}
+
+/* No button */
+
+.no-button,
+.no-button:hover,
+.no-button:focus,
+.no-button:active {
+    background: none;
+    border: none;
+    border-radius: 0;
+    color: initial;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    margin-bottom: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
+    transition: none;
+}
+
+.button-arrow {
+    flex-shrink: 0;
+}

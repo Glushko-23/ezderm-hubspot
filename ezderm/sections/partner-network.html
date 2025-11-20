@@ -1,0 +1,39 @@
+<!--
+  templateType: section
+  label: Partner network
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/partner-network.png
+  description: "Partner network"
+-->
+
+{% dnd_section
+  class="partner-network"
+%}
+  {% dnd_column
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/multi-column"
+        label="Partner network"
+        wrapper_class="partner-network-grid"
+        description={{ context.content or "<h2>Join the EZDERM Partner Network</h2><p>We work with many different vendors in the industry.</p>" }}
+        multi_column=[
+            {
+                "column_img": {"src": "../images/grayscale-mountain.png"},
+                "link": {"url": {"href": "#"}, "open_in_new_tab": false, "rel": null}
+            },
+            {
+                "column_img": {"src": "../images/grayscale-mountain.png"},
+                "link": {"url": {"href": "#"}, "open_in_new_tab": false, "rel": null}
+            },
+            {
+                "column_img": {"src": "../images/grayscale-mountain.png"},
+                "link": {"url": {"href": "#"}, "open_in_new_tab": false, "rel": null}
+            }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

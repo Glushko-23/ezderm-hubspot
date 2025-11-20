@@ -1,0 +1,135 @@
+[
+  {
+    "name": "video_id",
+    "label": "Video ID or video URL",
+    "type": "text",
+    "default": ""
+  },
+  {
+    "label": "Video source",
+    "name": "video_source",
+    "type": "choice",
+    "display": "select",
+    "required": true,
+    "choices": [
+      ["youtube", "Youtube"],
+      ["vimeo", "Vimeo"],
+      ["html", "HTML"]
+    ],
+    "default": "youtube"
+  },
+  {
+    "name": "video_html",
+    "label": "Video HTML",
+    "type": "text",
+    "default": "",
+    "visibility": {
+      "controlling_field_path": "video_source",
+      "controlling_value_regex": "html",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "id": "settings",
+    "name": "settings",
+    "label": "Video Settings",
+    "type": "group",
+    "expanded": true,
+    "children": [
+      {
+        "id": "settings.ratio",
+        "name": "ratio",
+        "label": "Ratio",
+        "type": "choice",
+        "display": "select",
+        "required": true,
+        "choices": [
+          ["16/9", "16:9"],
+          ["4/3", "4:3"],
+          ["21/9", "21:9"]
+        ],
+        "default": "16/9"
+      },
+      {
+        "id": "settings.controls",
+        "name": "controls",
+        "label": "Controls",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "id": "settings.autoplay",
+        "name": "autoplay",
+        "label": "Autoplay",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "id": "settings.muted",
+        "name": "muted",
+        "label": "Muted",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "id": "settings.show_controls_default",
+        "name": "show_controls_default",
+        "label": "Show controls by default",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "id": "settings.width",
+        "name": "width",
+        "label": "Video Width",
+        "type": "group",
+        "expanded": true,
+        "children": [
+          {
+            "id": "width.width_value",
+            "name": "width_value",
+            "label": "Width Value",
+            "type": "number",
+            "min": 0,
+            "max": 2000,
+            "step": 1,
+            "default": 100
+          },
+          {
+            "id": "width.width_unit",
+            "name": "width_unit",
+            "label": "",
+            "type": "choice",
+            "display": "radio",
+            "choices": [
+              ["px", "px"],
+              ["%", "%"]
+            ],
+            "default": "%"
+          }
+        ]
+      },
+      {
+        "id": "settings.with_shadow",
+        "name": "with_shadow",
+        "label": "With shadow",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "id": "settings.debug",
+        "name": "debug",
+        "label": "Enable debug",
+        "type": "boolean",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "wrapper_class",
+    "label": "Wrapper CSS Class",
+    "type": "text",
+    "required": false,
+    "default": ""
+  }
+]

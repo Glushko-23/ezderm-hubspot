@@ -1,0 +1,68 @@
+@use "sass:string";
+@use "../core/mixines";
+
+// Variables:
+:root {
+  // colors:
+  --color-primary: {{ theme.global_colors.primary.color }};
+  --color-accent: {{ theme.global_colors.accent.color }};
+
+  --color-accent-alpha-20: {{ theme.global_colors.accent.color ~ 33 }};
+  --color-accent-lighter: color-mix(in srgb, var(--color-accent), white 25%);
+
+  --color-pistachio: #83d39e;
+  --color-light: rgba(255, 255, 255, 0.16);
+  --color-light-10: #FDFDF5;
+  --color-grey-50: #F2F2F2;
+  --color-grey-100: #F4F0ED;
+
+  --header-height: 50px;
+  --section-gap-x: 1rem;
+
+  --container-size-main: {{ theme.spacing.maximum_content_width }}px;
+  --container-size-xl: 87.5rem;
+  --container-size-lg: 67.375rem;
+
+  --container-with-gap-x: calc(100% - (var(--section-gap-x)*2));
+
+  // font-family:
+  --ff-primary: {{ theme.global_fonts.primary.styles['font-family'] }};
+  --ff-secondary: {{ theme.global_fonts.secondary.styles['font-family'] }};
+
+  // font-sizes:
+  --fs-base: 1rem; // 16px
+  --fs-large: 1.25rem; // 20px
+  --fs-medium: 0.875rem; // 14px
+  --fs-small: 0.75rem; // 12px
+
+  --fs-title-main: 2rem; // 32px
+  --fs-title-medium: 2rem; // 32px
+
+  --line-height-medum: 1.3;
+  --line-height-lg: 1.5;
+
+  // fields:
+  --field-base-height: 3rem;
+  --field-base-radius: 0.313rem;
+  --field-base-width: 16.375rem;
+
+  // bg gradients:
+  --bg-gradient-warm-cool: linear-gradient(272.27deg, #F4F0ED 28.54%, #CFD4EB 100%);
+
+  // border radius:
+  --border-radius-main: 1.25rem;
+  --border-radius-medium: 0.625rem;
+
+  // box shadows:
+  --box-shadow-main: 0 0 35px 0 rgba(0, 0, 0, 0.25);
+
+  @include mixines.mq-from-md {
+    // font-sizes:
+    --fs-title-main: 3.25rem; // 52px
+    --fs-title-medium: 2.25rem; // 32px
+  }
+
+  @include mixines.mq-from-lg {
+    --header-height: 50px;
+  }
+}

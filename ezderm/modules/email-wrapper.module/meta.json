@@ -1,0 +1,13 @@
+{
+  "content_tags" : [ {
+    "name" : "COMPATIBLE_EMAIL",
+    "source" : "MARKETPLACE"
+  } ],
+  "global" : false,
+  "content_types" : [ "EMAIL" ],
+  "master_language" : "en",
+  "host_template_types" : [ "EMAIL" ],
+  "module_id" : 199947100989,
+  "label" : "Email Wrapper Content",
+  "is_available_for_new_content" : true
+}

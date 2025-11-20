@@ -1,0 +1,36 @@
+.faq-section {
+  > .row-fluid > .widget-span {
+    display: grid !important;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: auto auto;
+    gap: 2rem;
+
+    > .row-fluid-wrapper {
+      &:nth-child(1) {
+        grid-column: 1 / -1; /* 100% */
+      }
+
+      &:nth-child(2) {
+        grid-column: 1; /* 30% */
+      }
+
+      &:nth-child(3) {
+        grid-column: 2; /* 70% */
+      }
+    }
+
+    .row-fluid {
+      display: block;
+
+      > .widget-span {
+        width: unset;
+      }
+    }
+  }
+}
+
+.faq-tabs-wrapper {
+  .tabs__nav-link {
+    width: 100%;
+  }
+}

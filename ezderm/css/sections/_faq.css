@@ -1,0 +1,25 @@
+.faq-section > .row-fluid > .widget-span{
+  display:grid !important;
+  grid-template-columns:25% 75%;
+  grid-template-rows:auto auto;
+  gap:2rem;
+}
+.faq-section > .row-fluid > .widget-span > .row-fluid-wrapper:nth-child(1){
+  grid-column:1/-1;
+}
+.faq-section > .row-fluid > .widget-span > .row-fluid-wrapper:nth-child(2){
+  grid-column:1;
+}
+.faq-section > .row-fluid > .widget-span > .row-fluid-wrapper:nth-child(3){
+  grid-column:2;
+}
+.faq-section > .row-fluid > .widget-span .row-fluid{
+  display:block;
+}
+.faq-section > .row-fluid > .widget-span .row-fluid > .widget-span{
+  width:unset;
+}
+
+.faq-tabs-wrapper .tabs__nav-link{
+  width:100%;
+}

@@ -1,0 +1,33 @@
+.dialog {
+  &__container {
+    --swal2-close-button-outline: none;
+    --swal2-close-button-font-size: 1.625rem;
+    --swal2-border-radius: var(--border-radius-medium);
+
+    backdrop-filter: blur(14px);
+
+    .dialog-close {
+      border: none;
+      color: var(--color-primary);
+      font-family: inherit;
+      background: none;
+      outline: none;
+      box-shadow: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: var(--field-base-height);
+      height: var(--field-base-height);
+
+      &:focus,
+      &:active {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__popup {
+    box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.1);
+  }
+}

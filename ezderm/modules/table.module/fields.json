@@ -1,0 +1,9 @@
+[
+  {
+    "name": "table_only_rich_text",
+    "label": "Table Only Rich Text",
+    "type": "richtext",
+    "enabled_features": ["table", "icon", "image", "link", "text_color", "bold", "italic"],
+    "default": "<table width=\"100%\" border=\"0\"><tr><td>Cell 1</td><td>Cell 2</td></tr></table>"
+  }
+]

@@ -1,0 +1,80 @@
+<div class="team-member__wrapper {{ module.wrapper_class|default('') }}">
+    {% set team_members = hubdb_table_rows(module.table_id, false) %}
+
+    {% if not module.show_all and module.selected_slugs %}
+        {% set slugs_list = module.selected_slugs|split(',')|map('trim') %}
+        {% set team_members = team_members|selectattr("slug", "in", slugs_list)|list %}
+    {% endif %}
+
+    {% if team_members|length > 0 %}
+        <div class="team-member__grid">
+            {% for team_member in team_members %}
+                {% set full_name = team_member.first_name ~ '' ~ team_member.last_name %}
+
+                <div class="team-member__item">
+                    <div class="team-member__item--inner">
+                        <div class="team-member__item--content">
+                            {% if full_name %}
+                                <h3 class="name">
+                                    {{ full_name }}
+                                </h3>
+                            {% endif %}
+
+                            {% if team_member.role %}
+                                <p class="role">{{ team_member.role }}</p>
+                            {% endif %}
+                        </div>
+
+                        {% if team_member.photo.url %}
+                            <div class="team-member__photo">
+                                <img src="{{ team_member.photo.url }}" width="245" height="245" alt="{{ full_name }}" />
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    {% if module.use_dialog %}
+                        {% set dialog_content %}
+                            <div class="team-member__dialog--wrapper">
+                                <div class="image">
+                                    <img
+                                        src="{{ team_member.photo.url }}"
+                                        width="408"
+                                        height="480"
+                                        alt="{{ full_name }}"
+                                    >
+                                </div>
+
+                                <div class="content">
+                                    <h4>
+                                        <span>{{ team_member.first_name }} </span>
+                                        <span>{{ team_member.last_name }}</span>
+                                    </h4>
+                                    <p>{{ team_member.role }}</p>
+                                    <div>{{ team_member.bio|safe }}</div>
+                                </div>
+                            </div>
+                        {% endset %}
+
+                        <span role="button" class="dialog__trigger team-member__trigger"
+                                data-modal-id="{{ team_member.hs_id }}"
+                                data-content="{{ dialog_content|escape }}"
+                                data-is-modal="{{ module.is_modal|default(true) }}"
+                                data-settings='{
+                                    "showConfirmButton": false,
+                                    "width": 896,
+                                    "padding": "0",
+                                    "customClass": {
+                                        "htmlContainer": "team-member__dialog--html"
+                                    }
+                                }'
+                        >
+                            <span class="show-for-sr">{{ module.button_text|default('View') }}</span>
+                        </span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No members found.</p>
+    {% endif %}
+</div>

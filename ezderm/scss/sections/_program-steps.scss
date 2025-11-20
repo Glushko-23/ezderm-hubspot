@@ -1,0 +1,119 @@
+@use "../core/mixines";
+
+.program-steps-grid {
+  display: grid;
+  gap: 4.375rem;
+  counter-reset: item-counter;
+
+  .item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 6.25rem;
+
+    &:nth-child(odd) {
+      .content {
+        order: -1;
+      }
+    }
+
+    .content {
+      --count-size: 1.275rem;
+
+      position: relative;
+      padding-top: 3rem;
+
+      &::before {
+        counter-increment: item-counter;
+        content: counter(item-counter);
+        font-weight: 700;
+        width: var(--count-size);
+        height: var(--count-size);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        line-height: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #fff;
+        font-size: var(--fs-medium);
+        font-family: var(--ff-secondary), sans-serif;
+        z-index: 1;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: calc(var(--count-size)/2);
+        width: 100%;
+        border-bottom: 1px solid rgba(31, 23, 19, 0.2);
+      }
+
+      .text {
+        max-width: 29.125rem;
+      }
+
+      h2 {
+        font-size: var(--fs-title-main);
+      }
+
+      h4 {
+        font-size: var(--fs-base);
+        font-weight: 500;
+      }
+
+      h5 {
+        font-size: var(--fs-medium);
+        font-weight: 700;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: var(--fs-medium);
+        font-weight: 400;
+
+        li {
+          position: relative;
+          padding-left: 1.35rem;
+
+          &::before {
+            content: '';
+            background-color: var(--color-accent);
+            width: 0.875rem;
+            height: 0.875rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 50%;
+            background-image: mixines.svg-data-uri('<svg xmlns="http://www.w3.org/2000/svg" width="8" height="7" viewBox="0 0 8 7" fill="none"> <path d="M6.99866 -0.0078125L6.49799 0.497288C5.14004 1.85818 4.10299 2.99479 2.84265 4.28111L1.50015 3.14685L0.959601 2.69048L0.046875 3.77157L0.587422 4.23237L2.4306 5.79198L2.92684 6.2129L3.38763 5.75211C4.91462 4.22184 6.00163 2.99957 7.49933 1.49863L8 0.993528L6.99866 -0.0078125Z" fill="white"/> </svg>');
+            background-position: center;
+            background-size: 8px 6px;
+            background-repeat: no-repeat;
+          }
+
+          &:where(:not(:last-child)) {
+            margin-bottom: 0.6rem;
+          }
+        }
+      }
+
+      .button {
+        margin-top: 2.125rem;
+      }
+    }
+  }
+}
+
+.program-steps {
+
+  &.dnd-section {
+    > .row-fluid {
+      max-width: var(--container-size-lg);
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@use "../core/mixines";
+
+/* For content that needs to be visually hidden but stay visible for screenreaders */
+
+.show-for-sr {
+  border: 0 !important;
+  clip: rect(0, 0, 0, 0) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 1px !important;
+}
+
+@media (max-width: 767px) {
+  .show-for-sr--mobile {
+    border: 0 !important;
+    clip: rect(0, 0, 0, 0) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    width: 1px !important;
+  }
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.d-none-from-lg {
+  @include mixines.mq-from-lg {
+    display: none !important;
+  }
+}
+
+.container-main,
+.container-lg {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--section-gap-x);
+  padding-right: var(--section-gap-x);
+}
+
+.container-main {
+  max-width: calc(var(--container-size-main) + var(--section-gap-x)*2);
+}
+
+.container-lg {
+  max-width: calc(var(--container-size-lg) + var(--section-gap-x)*2);
+}
+
+.section-gap-y {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}

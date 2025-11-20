@@ -1,0 +1,137 @@
+[
+  {
+    "label": "Card",
+    "name": "cards",
+    "type": "group",
+    "occurrence": {
+      "default": 3,
+      "min": 1,
+      "sorting_label_field": "cards.title"
+    },
+    "children": [
+      {
+        "label": "Image",
+        "name": "image",
+        "type": "image",
+        "responsive": true,
+        "resizable": true,
+        "show_loading": true,
+        "default": {
+          "loading": "lazy"
+        }
+      },
+      {
+        "label": "Title",
+        "name": "title",
+        "type": "text",
+        "default": "Card title"
+      },
+      {
+        "label": "Content",
+        "name": "content",
+        "type": "richtext",
+        "enabled_features": [
+          "advanced_emphasis",
+          "alignment",
+          "block",
+          "emoji",
+          "font_family",
+          "font_size",
+          "lists",
+          "standard_emphasis"
+        ],
+        "default": "Card text"
+      },
+      {
+        "label": "Link",
+        "name": "link",
+        "type": "link",
+        "default": {
+          "no_follow": false,
+          "open_in_new_tab": true,
+          "url": {
+            "content_id": null,
+            "href": "https://www.google.com/",
+            "type": "EXTERNAL"
+          }
+        }
+      }
+    ],
+    "default": [
+      {
+        "image": {
+          "loading": "lazy"
+        },
+        "title": "Card title",
+        "content": "Card text",
+        "link": {
+          "url": {
+            "content_id": null,
+            "href": "https://www.google.com/",
+            "type": "EXTERNAL"
+          }
+        }
+      },
+      {
+        "image": {
+          "loading": "lazy"
+        },
+        "title": "Card title",
+        "content": "Card text",
+        "link": {
+          "url": {
+            "content_id": null,
+            "href": "https://www.google.com/",
+            "type": "EXTERNAL"
+          }
+        }
+      },
+      {
+        "image": {
+          "loading": "lazy"
+        },
+        "title": "Card title",
+        "content": "Card text",
+        "link": {
+          "url": {
+            "content_id": null,
+            "href": "https://www.google.com/",
+            "type": "EXTERNAL"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "label": "Columns count",
+    "name": "columns_count",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["columns_2", "Two columns"],
+      ["columns_3", "Three columns"],
+      ["columns_4", "Four columns"]
+    ],
+    "default": "columns_3"
+  },
+  {
+    "label": "Item direction",
+    "name": "item_direction",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["row", "Row"],
+      ["columns", "Columns"]
+    ],
+    "default": "row"
+  },
+  {
+    "id": "module.wrapper_class",
+    "name": "wrapper_class",
+    "label": "CSS Class",
+    "type": "text",
+    "tab": "STYLE",
+    "help_text": "Optional extra class to add to the wrapper.",
+    "default": null
+  }
+]

@@ -1,0 +1,64 @@
+{% if module.description %}
+    <div class="multi__column--description description">{{ module.description }}</div>
+{% endif %}
+
+<div class="multi__column wrapper columns--{{ module.column_count}} {{ module.wrapper_class|default('') }}">
+    {% for column_item in module.multi_column %}
+        {% if column_item.column_text or column_item.column_img or column_item.link.url.href %}
+            {% set has_link = column_item.link is defined and column_item.link.url is defined and column_item.link.url.href %}
+            {% set use_anchor = has_link and not column_item.button_text %}
+
+            {% set link_attributes = '' %}
+            {% if has_link %}
+                {% set link_attributes = 'href="' ~ column_item.link.url.href ~ '"' %}
+                {% if column_item.link.open_in_new_tab %} {% set link_attributes = link_attributes ~ ' target="_blank"' %} {% endif %}
+                {% if column_item.link.rel %} {% set link_attributes = link_attributes ~ ' rel="' ~ column_item.link.rel ~ '"' %} {% endif %}
+            {% endif %}
+
+            <div class="multi__column--item item span{{ module.column_count}} {% if not has_link %}no-link{% endif %}">
+                {% if use_anchor %}
+                    <a aria-label="View" class="multi__column--link link" {{ link_attributes }}></a>
+                {% endif %}
+
+                {% if column_item.column_img and column_item.column_img.src %}
+                    <div class="multi__column--image image">
+                        <img src="{{ column_item.column_img.src }}"
+                             alt="{{ column_item.column_img.alt|default('Image')|escape }}"
+                             width="{{ column_item.column_img.width|default('300') }}"
+                             height="{{ column_item.column_img.height|default('200') }}"
+                             class="multi__column--img"
+                        />
+                    </div>
+                {% endif %}
+
+                <div class="multi__column--content content">
+                    {% if column_item.column_text %}
+                        <div class="multi__column--text text">{{ column_item.column_text }}</div>
+                    {% endif %}
+
+                    {% if column_item.extra_html %}
+                        <div class="multi__column--extra extra">{{ column_item.extra_html }}</div>
+                    {% endif %}
+
+                    {% if module.extra_html %}
+                        <div class="multi__column--extra extra">{{ module.extra_html }}</div>
+                    {% endif %}
+
+                    {% if column_item.button_text and has_link %}
+                        {% set with_arrow = column_item.with_arrow|default(true) %}
+
+                        <a class="button" {{ link_attributes }}>
+                            {{ column_item.button_text }}
+
+                            {% if with_arrow %}
+                                <svg class="button-arrow" xmlns="http://www.w3.org/2000/svg" width="21" height="12" viewBox="0 0 21 12" fill="none">
+                                    <path d="M20.5303 6.53033C20.8232 6.23744 20.8232 5.76256 20.5303 5.46967L15.7574 0.696701C15.4645 0.403807 14.9896 0.403807 14.6967 0.6967C14.4038 0.989594 14.4038 1.46447 14.6967 1.75736L18.9393 6L14.6967 10.2426C14.4038 10.5355 14.4038 11.0104 14.6967 11.3033C14.9896 11.5962 15.4645 11.5962 15.7574 11.3033L20.5303 6.53033ZM0 6L-6.55671e-08 6.75L20 6.75L20 6L20 5.25L6.55671e-08 5.25L0 6Z" fill="currentColor"/>
+                                </svg>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

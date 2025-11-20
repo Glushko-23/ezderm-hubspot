@@ -1,0 +1,144 @@
+@use "../core/mixines";
+
+.team {
+  > .row-fluid {
+    @include mixines.mq-below-lg {
+      flex-wrap: wrap;
+    }
+    > .dnd-column {
+      flex-grow: 1;
+      width: 100%;
+
+      &:first-child {
+        @include mixines.mq-from-lg {
+          max-width: 28rem;
+          padding-right: 2rem;
+        }
+      }
+    }
+  }
+
+  .team-member {
+    &__grid {
+      @include mixines.mq-from-md {
+        column-count: 2;
+        gap: 1rem;
+      }
+    }
+
+    &__photo {
+      margin-top: auto;
+      display: flex;
+      justify-content: end;
+
+      @include mixines.mq-from-md {
+        max-height: 14rem;
+      }
+
+      img {
+        object-fit: contain;
+        object-position: bottom right;
+      }
+    }
+
+    &__item {
+      border-radius: var(--border-radius-main);
+      background-color: var(--color-grey-50);
+      border: 1px solid var(--color-pistachio);
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 1rem;
+      overflow: hidden;
+
+      &:nth-child(3) ~ * {
+        @include mixines.mq-from-md {
+          min-height: 25rem;
+        }
+
+        .team-member__photo {
+          @include mixines.mq-from-md {
+            min-height: 18.75rem;
+          }
+
+          img {
+            @include mixines.mq-from-md {
+              object-fit: cover;
+            }
+          }
+        }
+      }
+
+      &--inner {
+        display: flex;
+        flex-direction: column;
+        min-height: inherit;
+      }
+
+      &--content {
+        padding: 1.875rem 1.875rem 0;
+        margin-bottom: -1rem;
+      }
+
+      .name {
+        font-size: var(--fs-large);
+        font-weight: 500;
+        margin-bottom: 0.4rem;
+      }
+
+      .role {
+        margin-bottom: 0;
+      }
+    }
+
+    &__trigger {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.team-member {
+  &__dialog--wrapper {
+    display: grid;
+    text-align: left;
+
+    @include mixines.mq-from-md {
+      grid-template-columns: 408px 1fr;
+    }
+
+    img {
+      object-fit: cover;
+      object-position: bottom right;
+      display: block;
+    }
+
+    .image {
+      background: var(--color-grey-50);
+      border-radius: var(--border-radius-medium);
+      overflow: hidden;
+      display: flex;
+      justify-content: end;
+    }
+
+    .content {
+      padding: 2.5rem;
+
+      h4 {
+        font-size: 2.625rem;
+
+        @include mixines.mq-from-md {
+          display: grid;
+        }
+      }
+    }
+  }
+
+  &__dialog--html {
+    padding: 0;
+  }
+}

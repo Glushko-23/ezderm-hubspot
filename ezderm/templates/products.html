@@ -1,0 +1,101 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Products
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+{% set dynamic_page_hubdb_table_id = 131879956 %}
+
+{% if dynamic_page_hubdb_row %}
+
+{% set product_row = dynamic_page_hubdb_row %}
+
+<section class="dnd-section">
+    <div class="row-fluid">
+        <div class="span12">
+            <h1 class="title">{{ product_row.hs_name }}</h1>
+        </div>
+    </div>
+
+    <div class="row-fluid" style="margin-bottom: 40px;">
+        <div class="span12">
+            {% if product_row.features %}
+                {% set carousel_items = [] %}
+                {% for feature in product_row.features %}
+                    {% do carousel_items.append({
+                        "carousel_text": loop.index|string + '. ' + feature.label|trim,
+                        "carousel_img": {},
+                        "buttons": [],
+                        "link": {},
+                        "extra_html": ""
+                    }) %}
+                {% endfor %}
+
+                {% module "feature_carousel"
+                    path="../modules/carousel",
+                    carousel="{{ carousel_items }}"
+                    settings={
+                        "carousel_count": 3,
+                        "show_arrows": false,
+                        "show_pagination": true
+                    }
+                %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row-fluid" style="margin-bottom: 40px;">
+        <div class="span6">
+            {{ product_row.full_description }}
+        </div>
+
+        {% if product_row.image.url %}
+            <div class="span6">
+                <img src="{{ product_row.image.url }}" width="500" height="440" alt="{{ product_row.hs_name }}">
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="row-fluid">
+        {% if product_row.video %}
+            <div class="span12">
+                <h3 class="text-center">Try the Interactive Demo</h3>
+
+                <div data-video-id="{{ product_row.video|int }}">
+                    {% set video_id = product_row.video|int %}
+                    {% video_player "embed_player" overrideable=False, type='scriptV4', player_id="{{ video_id }}" %}
+                </div>
+
+                <div class="text-center">
+                    <a href="#" class="button">Book a Demo</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+{% elif dynamic_page_hubdb_table_id %}
+
+    {% dnd_area "dnd_area"
+        label="Area Products List",
+        class="area-products-list"
+    %}
+
+    {% include_dnd_partial
+        path="../sections/hero-banner.html"
+        context={
+            "background_color": "none",
+            "content": "<h1>Products + Services</h1><p>Ezderm provides a seamless suite of tools for dermatologists, streamlining patient management, documentation, billing, and more.</p>",
+            "image": {
+                "src": ""
+            },
+            "buttons": [],
+            "hide_buttons": true
+        }
+    %}
+
+    {% end_dnd_area %}
+{% endif %}
+{% endblock body %}

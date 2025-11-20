@@ -1,0 +1,63 @@
+.subscribe .widget-type-rich_text{
+  text-align:center;
+}
+.subscribe form{
+  background:none;
+  border:0;
+  display:flex;
+  align-items:center;
+  max-width:360px;
+  gap:1rem;
+  margin:0 auto;
+}
+.subscribe form label{
+  margin:0;
+}
+.subscribe form .hs-input{
+  border-color:transparent;
+}
+.subscribe form .hs-button{
+  background-color:var(--color-light);
+  backdrop-filter:blur(4px);
+}
+.subscribe .hs-form-field{
+  margin-bottom:0;
+}
+.subscribe .hsfc-Form{
+  --hsf-field-input__border-color:transparent;
+}
+.subscribe .hsfc-Form .hsfc-Step__Content{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  max-width:360px;
+  margin:0 auto;
+  position:relative;
+  padding:1.4rem 0 !important;
+}
+.subscribe .hsfc-Form .hsfc-Row{
+  --hsf-row__vertical-spacing:0;
+}
+.subscribe .hsfc-Form .hsfc-Row .hsfc-FieldLabel{
+  position:absolute;
+}
+.subscribe .hsfc-Form .hsfc-EmailField > *:not(:last-child){
+  --hsf-module__vertical-spacing:0;
+}
+.subscribe .hsfc-Form .hsfc-NavigationRow__Alerts{
+  display:none;
+}
+.subscribe .hsfc-Form .hsfc-NavigationRow{
+  --hsf-row__vertical-spacing:0;
+  flex-shrink:0;
+}
+.subscribe .hsfc-Form .hsfc-Button{
+  --hsf-button__background-color:var(--color-light);
+  backdrop-filter:blur(4px);
+}
+.subscribe .hsfc-Form .hsfc-ErrorAlert{
+  --hsf-erroralert__color:#fff;
+  position:absolute;
+  left:0;
+  bottom:0;
+}

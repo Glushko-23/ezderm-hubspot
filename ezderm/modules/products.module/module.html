@@ -1,0 +1,54 @@
+<div class="products-wrapper {{ module.wrapper_class|default('') }}">
+    {% set products = hubdb_table_rows(module.table_id, false) %}
+
+    {% if not module.show_all and module.selected_slugs %}
+        {% set slugs_list = module.selected_slugs|split(',')|map('trim') %}
+        {% set products = products|selectattr("slug", "in", slugs_list)|list %}
+    {% endif %}
+
+    {% if products|length > 0 %}
+        <div class="product-grid card-grid">
+            {% for product in products %}
+                <div class="product-item card-item">
+                    <div class="card-item__inner">
+                        <div class="card-item__group">
+                            {% if product.icon.url %}
+                                <div class="card-item__image">
+                                    <img src="{{ product.icon.url }}" width="30" height="40" alt="{{ product.name }}">
+                                </div>
+                            {% endif %}
+
+                            <div class="card-item__content">
+                                {% if product.name %}
+                                    <h4 class="card-item__title">{{ product.name }}</h4>
+                                {% endif %}
+
+                                {% if product.short_description %}
+                                    <div class="card-item__description">{{ product.short_description }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if product.hs_path %}
+                        <a href="{{ request.path }}/{{ product.hs_path }}" class="product-link card-item__link">
+                            <span class="show-for-sr">View Product</span>
+
+                            <div class="card-button__icon">
+                                <svg class="icon" width="48" height="48">
+                                    <use xlink:href="#icon-arrow-link"></use>
+                                </svg>
+                            </div>
+                        </a>
+                    {% endif %}
+
+                    <div class="card-item__decor">
+                        {% include "ezderm/templates/partials/decor/decor-item-bottom.html" %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No products found.</p>
+    {% endif %}
+</div>

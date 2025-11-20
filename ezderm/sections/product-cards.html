@@ -1,0 +1,30 @@
+<!--
+  templateType: section
+  label: Product Cards
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/grid-items.png
+  description: "Product Cards Section"
+-->
+{% dnd_section
+  class="product-cards"
+%}
+  {% dnd_column
+    width=12
+  %}
+    {% dnd_row %}
+        {% dnd_module
+            path="@hubspot/rich_text",
+            html={{ context.column_one_content or "<h2>Explore our products and services</h2><p>Ezderm is built specifically for dermatology practices with essential tools and expert support to power your practice.</p>" }}
+        %}
+        {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/products"
+        label="Product Cards"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

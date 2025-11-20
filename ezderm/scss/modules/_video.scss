@@ -1,0 +1,26 @@
+:root {
+  --plyr-color-main: var(--color-accent);
+}
+
+.plyr__control {
+  &--overlaid {
+    --plyr-control-icon-size: 60px;
+    --plyr-color-main: transparent;
+  }
+}
+
+.video-wrapper {
+  overflow: hidden;
+  border-radius: var(--border-radius-main);
+
+  &.with-shadow {
+    box-shadow: var(--box-shadow-main);
+  }
+}
+
+.hero-video {
+  .oembed_container {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+}

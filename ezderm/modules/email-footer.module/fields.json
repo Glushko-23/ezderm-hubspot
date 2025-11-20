@@ -1,0 +1,145 @@
+[
+  {
+    "name": "footer_logo",
+    "label": "Logo",
+    "type": "image",
+    "required": false,
+    "locked": false,
+    "default": ""
+  },
+  {
+    "name": "footer_logo_link",
+    "label": "Logo Link",
+    "type": "link",
+    "supported_types": [
+      "EXTERNAL",
+      "FILE",
+      "CALL_TO_ACTION"
+    ],
+    "required": false,
+    "locked": false,
+    "default": ""
+  },
+  {
+    "name": "footer_text",
+    "label": "Footer Text",
+    "type": "richtext",
+    "required": false,
+    "locked": false,
+    "default": ""
+  },
+  {
+    "name": "footer_social_follow",
+    "label": "Footer social follow",
+    "required": false,
+    "type": "group",
+    "locked": false,
+    "occurrence": {
+      "min": 0,
+      "max": null
+    },
+    "children": [
+      {
+        "name": "social_name",
+        "label": "Social name",
+        "type": "text",
+        "locked": false,
+        "default": ""
+      },
+      {
+        "name": "icon",
+        "label": "Social icon",
+        "type": "image",
+        "locked": false,
+        "default": ""
+      },
+      {
+        "name": "link",
+        "label": "Social link",
+        "type": "link",
+        "supported_types": [
+          "EXTERNAL",
+          "FILE",
+          "CALL_TO_ACTION"
+        ],
+        "locked": false,
+        "default": ""
+      }
+    ],
+    "default": [
+      {
+        "social_name": "Facebook",
+        "icon": "",
+        "link": {
+          "url": {
+            "href": "https://www.facebook.com/",
+            "type": "EXTERNAL"
+          }
+        }
+      },
+      {
+        "social_name": "Instagram",
+        "icon": "",
+        "link": {
+          "url": {
+            "href": "https://instagram.com/",
+            "type": "EXTERNAL"
+          }
+        }
+      },
+      {
+        "social_name": "LinkedIn",
+        "icon": "",
+        "link": {
+          "url": {
+            "href": "https://www.linkedin.com/",
+            "type": "EXTERNAL"
+          }
+        }
+      },
+      {
+        "social_name": "X",
+        "icon": "",
+        "link": {
+          "url": {
+            "href": "https://x.com/",
+            "type": "EXTERNAL"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "unsubscribe_type",
+    "label": "Unsubscribe type",
+    "type": "choice",
+    "display": "select",
+    "locked": false,
+    "choices": [
+      ["all", "All"],
+      ["preferences", "Select preferences"]
+    ],
+    "default": "all",
+    "required": true
+  },
+  {
+    "label": "Styles",
+    "name": "styles",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "name": "background_color",
+        "label": "Footer Background Color",
+        "type": "color",
+        "default": "#080B4C"
+      },
+      {
+        "label": "Footer Text Color",
+        "name": "text_color",
+        "type": "color",
+        "default": "#ffffff"
+      }
+    ]
+  }
+]

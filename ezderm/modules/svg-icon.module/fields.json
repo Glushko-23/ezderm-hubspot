@@ -1,0 +1,19 @@
+[
+  {
+    "name": "svg_icons",
+    "label": "SVG Icons",
+    "type": "group",
+    "children": [
+      {
+        "label": "Icons",
+        "name": "icons",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["arrow-link", "Arrow Link"]
+        ],
+        "default": ""
+      }
+    ]
+  }
+]

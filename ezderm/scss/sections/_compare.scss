@@ -1,0 +1,125 @@
+@use "../core/mixines";
+
+.compare {
+  color: #fff;
+
+  > .row-fluid {
+    background-color: var(--color-accent-lighter);
+    border-radius: var(--border-radius-main);
+    padding: 2.5rem 1rem;
+    gap: 1.875rem;
+
+    @include mixines.mq-from-md {
+      padding: 4.375rem;
+    }
+
+    @include mixines.mq-below-lg {
+      flex-wrap: wrap;
+    }
+
+    > .dnd-column {
+      flex-grow: 1;
+
+      @include mixines.mq-below-lg {
+        width: 100%;
+      }
+
+      &:first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        @include mixines.mq-from-md {
+          align-items: flex-start;
+          max-width: 25rem;
+        }
+      }
+
+      &:first-child h2 {
+        font-size: var(--fs-title-main);
+      }
+    }
+  }
+
+  h2 {
+    color: #fff;
+  }
+}
+
+.comparison-table {
+  --text-column-width: 50%;
+  --check-column-width: 25%;
+  --check-column-min-width: 5.875rem;
+  --row-border-color: var(--color-accent-lighter);
+
+  width: 100%;
+  font-family: var(--ff-secondary), sans-serif;
+  position: relative;
+  padding-bottom: 2.2rem;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: var(--text-column-width);
+    top: 0;
+    height: 100%;
+    width: var(--check-column-width);
+    min-width: var(--check-column-min-width);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-main);
+    background-color: var(--color-accent);
+    pointer-events: none;
+  }
+
+  .accent-theme & {
+    --row-border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .flex-table {
+    &__header {
+      .feature-title {
+        margin: 0;
+
+        @include mixines.mq-from-lg {
+          font-size: var(--fs-large);
+        }
+      }
+    }
+
+    &__row {
+      border-bottom: 1px solid var(--row-border-color);
+    }
+
+    &__column {
+      flex-basis: var(--check-column-width);
+      min-width: var(--check-column-min-width);
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 1rem;
+
+      @include mixines.mq-from-lg {
+        padding: 1.625rem 1rem;
+      }
+
+      &:where(:not(:first-child)) {
+        justify-content: center;
+      }
+
+      &:first-child {
+        flex-shrink: 0;
+        padding-left: 0;
+        flex-basis: var(--text-column-width);
+      }
+
+      .icon {
+        @include mixines.mq-below-lg {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+    }
+  }
+}

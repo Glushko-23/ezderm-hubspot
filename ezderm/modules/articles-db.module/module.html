@@ -1,0 +1,129 @@
+{% import '../../macros/pagination.html' as pagination_macros %}
+{% import '../../macros/category-filters.html' as filters_macros %}
+{% import '../../macros/utils.html' as utils %}
+{% import '../../macros/article-item.html' as article_macros %}
+
+{% set pagination_enabled = module.pagination %}
+{% set live_reload = module.pagination_settings.live_reload and pagination_enabled %}
+{# All entries #}
+{% set articles_all = hubdb_table_rows(module.table_id, true) %}
+{% set featured_articles = articles_all|selectattr('featured')|list %}
+{% set variant = module.variant %}
+
+{% set cache_config = {
+    "enabled": module.use_cache,
+    "ttl": module.cache_ttl,
+    "buster": "v" ~ module.cache_buster ~ "-" ~ hubdb_table(module.table_id).updated_at
+} %}
+
+{% set pagination_config = {
+    "loader": module.pagination_settings.show_loader,
+    "perPage": module.pagination_settings.per_page,
+    "scrollTop": module.pagination_settings.scroll_top
+} %}
+
+{% if featured_articles|length > 0 and not module.hide_featured %}
+    <div class="article__grid article__grid--{{ variant }} article__grid--featured">
+        {% for article in featured_articles %}
+            {{ article_macros.render(article, utils, show_label=false, variant=variant) }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div
+    class="article__wrapper{{  module.wrapper_class|default('') }}"
+    data-table-id="{{ module.table_id }}"
+    data-live-reload="{{ live_reload }}"
+    data-pagination-wrapper
+    data-cache='{{ cache_config|tojson|safe }}'
+    data-pagination='{{ pagination_config|tojson|safe }}'
+>
+
+    {# Unique categories #}
+    {% set categories = [] %}
+    {% for article in articles_all %}
+        {% if article.category is defined and article.category is iterable %}
+            {% for cat in article.category %}
+                {% set cat_id = cat.hs_id %}
+                {% set cat_name = cat.name %}
+                {% set cat_slug = utils.slugify(cat_name)|trim %}
+                {% set exists = categories|selectattr('slug', 'equalto', cat_slug)|list %}
+                {% if exists|length == 0 %}
+                    {% do categories.append({
+                        'id': cat_id,
+                        'slug': cat_slug,
+                        'name': cat_name
+                    }) %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+    {# Filters #}
+    {% set articles = articles_all %}
+
+    {# By slugs #}
+    {% if not module.show_all and module.selected_slugs %}
+        {% set slugs_list = module.selected_slugs|split(',')|map('trim')|list %}
+        {% set articles = articles|selectattr("slug", "in", slugs_list)|list %}
+    {% endif %}
+
+    {# By category - comparing slugs #}
+    {% set category_filter = request.query_dict.category|default('all') %}
+    {% if category_filter != 'all' %}
+        {% set articles = [] %}
+        {% for w in articles_all %}
+            {% if w.category is defined and w.category is iterable %}
+                {% for cat in w.category %}
+                    {% if utils.slugify(cat[1])|trim == category_filter %}
+                        {% do articles.append(w) %}
+                        {% break %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {# Pagination #}
+    {% set pagination = pagination_enabled %}
+    {% set per_page = module.pagination_settings.per_page %}
+    {% set page = request.query_dict.page|default(1)|int %}
+    {% set offset = (page - 1) * per_page %}
+    {% set total_rows = articles|length %}
+    {% set enabled_rows = pagination ? articles[offset:offset + per_page] : articles %}
+
+    {# Filters — output slug → title #}
+    {% if module.filters %}
+        {{ filters_macros.render(categories) }}
+    {% endif %}
+
+    {# Cards #}
+    {% if enabled_rows|length > 0 %}
+        <div class="article__grid article__grid--{{ variant }}" data-pagination-list>
+            {% for article in enabled_rows %}
+                {{ article_macros.render(article, utils, show_label=true, variant=variant) }}
+            {% endfor %}
+        </div>
+
+        {# Pagination render #}
+        {% if pagination %}
+            {% set total_pages = (total_rows / per_page)|round(0, 'ceil')|int %}
+            <div class="pagination-wrapper" data-total-pages="{{ total_pages }}">
+                {{ pagination_macros.pagination(page, total_pages, request.path, preserve_category=live_reload) }}
+            </div>
+        {% endif %}
+
+    {% else %}
+        <p>{{ module.empty_text }}</p>
+    {% endif %}
+</div>
+
+<template id="article-template">
+    {{ article_macros.render({
+        name: '',
+        description: '',
+        hs_path: '#',
+        image: { url: '' },
+        category: ['uncategorized'],
+    }, utils, variant=variant) }}
+</template>

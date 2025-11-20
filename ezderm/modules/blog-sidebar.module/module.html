@@ -1,0 +1,37 @@
+{# =======================
+DOWNLOADABLE CTA
+======================= #}
+{% unless module.group_downloadable_cta.hide_downloadable_widget %}
+    <div class="blog-post__widget">
+        <h5 class="w-title">Downloadable CTA</h5>
+
+        {% if module.group_downloadable_cta.downloadable_description %}
+            <div class="w-text">
+                {{ module.group_downloadable_cta.downloadable_description }}
+            </div>
+        {% endif %}
+
+        {% if module.group_downloadable_cta.download_button_link %}
+            <a href="{{ module.group_downloadable_cta.download_button_link.url.href }}"
+               class="button"
+               {% if module.group_downloadable_cta.download_button_link.open_in_new_tab %}target="_blank"{% endif %}
+               {% if module.group_downloadable_cta.download_button_link.no_follow %}rel="nofollow"{% endif %}>
+                {{ module.group_downloadable_cta.download_button_text }}
+                <svg class="button-arrow" xmlns="http://www.w3.org/2000/svg" width="21" height="12" viewBox="0 0 21 12" fill="none">
+                    <path d="M20.5303 6.53033C20.8232 6.23744 20.8232 5.76256 20.5303 5.46967L15.7574 0.696701C15.4645 0.403807 14.9896 0.403807 14.6967 0.6967C14.4038 0.989594 14.4038 1.46447 14.6967 1.75736L18.9393 6L14.6967 10.2426C14.4038 10.5355 14.4038 11.0104 14.6967 11.3033C14.9896 11.5962 15.4645 11.5962 15.7574 11.3033L20.5303 6.53033ZM0 6L-6.55671e-08 6.75L20 6.75L20 6L20 5.25L6.55671e-08 5.25L0 6Z" fill="currentColor"/>
+                </svg>
+            </a>
+        {% endif %}
+    </div>
+{% endunless %}
+
+{# =======================
+ESSENTIAL TAKEAWAYS
+======================= #}
+{% unless module.group_essential_takeaways.hide_essential_takeaways_widget %}
+    <div class="blog-post__widget">
+        <h5 class="w-title">Essential Takeaways</h5>
+
+        {{ module.group_essential_takeaways.essential_takeaways }}
+    </div>
+{% endunless %}

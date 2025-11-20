@@ -1,0 +1,61 @@
+/* Theme base styles */
+
+/* Tools
+Any animations, or functions used throughout the project.
+Note: _macros.css needs to be imported into each stylesheet where macros are used and not included here
+*/
+
+{% include './core/_var.css' %}
+{% include './core/_theme-variants.css' %}
+
+/* Generic
+This is where reset, normalize & box-sizing styles go.
+*/
+
+{% include './generic/_reset.css' %}
+{% include './generic/_normalize.css' %}
+
+/* Utilities
+Helper classes with ability to override anything that comes before it
+*/
+
+{% include './utilities/_helper.css' %}
+{% include './utilities/_animations.css' %}
+
+/* Objects
+Non-cosmetic design patterns including grid and layout classes)
+*/
+
+{% include './objects/_layout.css' %}
+{% include './objects/_containers-dnd.css' %}
+
+/* Elements
+Base HTML elements are styled in this section (<body>, <h1>, <a>, <p>, <button> etc.)
+*/
+
+{% include './elements/_typography.css' %}
+{% include './elements/_buttons.css' %}
+{% include './elements/_forms.css' %}
+{% include './elements/_tables.css' %}
+{% include './elements/_card.css' %}
+{% include './elements/_dialog.css' %}
+
+/* Components
+Specific pieces of UI that are stylized. Typically used for global partial styling
+*/
+
+{% include './components/_header.css' %}
+{% include './components/_footer.css' %}
+{% include './components/_hs-form.css' %}
+{% include './components/_mega-menu.css' %}
+{% include './components/_pagination.css' %}
+{% include './components/_default-modules.css' %}
+
+/* Modules
+*/
+{% include './modules/_video.css' %}
+
+/* Templates
+*/
+{% include './templates/article.css' %}
+{% include './templates/webinars.css' %}

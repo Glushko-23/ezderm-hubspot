@@ -1,0 +1,37 @@
+{% set menu_id = module.menu %}
+
+{% if menu_id %}
+    {% set footer_menu = menu(menu_id, "site_root").children %}
+
+    {% macro render_link_item(link, depth) %}
+        {% set title_class = '' %}
+        {% if depth == 1 %}
+            {% set title_class = 'f-title' %}
+        {% endif %}
+        <li class="f-menu-item f-menu-item--depth-{{ depth }}">
+            {% if link.url %}
+                <a class="f-menu-link {{ title_class }}" href="{{ link.url|escape_url }}">
+                    {{ link.label|escape_html }}
+                </a>
+            {% else %}
+                <span class="f-menu-link {{ title_class }}">{{ link.label|escape_html }}</span>
+            {% endif %}
+
+            {% if link.children %}
+                <ul class="f-menu-submenu f-menu-submenu--level-{{ depth + 1 }}">
+                    {% for sublink in link.children %}
+                        {{ render_link_item(sublink, depth + 1) }}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endmacro %}
+
+    <nav class="footer-menu" aria-label="Footer menu">
+        <ul class="f-menu-wrapper no-list">
+            {% for link in footer_menu %}
+                {{ render_link_item(link, 1) }}
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}

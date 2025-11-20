@@ -1,0 +1,53 @@
+<!--
+  templateType: section
+  label: Multi-column content with CTA
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/multi-column-content.png
+  description: "Full size background color section separated in three columns with an image, text and CTA in each."
+-->
+
+{% dnd_section
+  background_color={{ context.background_color or "#ffffff" }}
+  vertical_alignment="MIDDLE"
+  class="multi-column"
+%}
+  {% dnd_column
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_area "header-top"
+        label="Top header",
+        class="content-wrapper" %}
+      {% end_dnd_area %}
+
+      {% dnd_module
+        path="../modules/multi-column"
+        label="Multi Column With CTA"
+        wrapper_class="multi-column-grid row-fluid"
+        column_count="4"
+        description={{ context.content or '<h2 class="main-title text-center">This is your main headline.</h2>' }}
+        multi_column=[
+          {
+            "column_img": {"src": "../images/grayscale-mountain.png"},
+            "column_text": "<h3>Title</h3><p>Description</p>",
+            "link": {"url": {"href": "#"}, "open_in_new_tab": false, "rel": null},
+            "button_text": "Get Started"
+          },
+          {
+            "column_img": {"src": "../images/grayscale-mountain.png"},
+            "column_text": "<h3>Title</h3><p>Description</p>",
+            "link": {"url": {"href": "#"}, "open_in_new_tab": false, "rel": null},
+            "button_text": "Get Started"
+          },
+          {
+            "column_img": {"src": "../images/grayscale-mountain.png"},
+            "column_text": "<h3>Title</h3><p>Description</p>",
+            "link": {"url": {"href": "#"}, "open_in_new_tab": false, "rel": null},
+            "button_text": "Get Started"
+          }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

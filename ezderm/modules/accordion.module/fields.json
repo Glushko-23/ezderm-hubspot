@@ -1,0 +1,100 @@
+[
+  {
+    "id": "accordion",
+    "name": "accordion",
+    "label": "Accordion Item",
+    "required": false,
+    "type": "group",
+    "occurrence": { "min": 1, "max": null },
+    "children": [
+      {
+        "id": "accordion.accordion_button",
+        "name": "accordion_button",
+        "label": "Button",
+        "type": "text",
+        "required": true,
+        "default": "Accordion Button Text"
+      },
+      {
+        "id": "accordion.accordion_content",
+        "name": "accordion_content",
+        "label": "Content",
+        "type": "richtext",
+        "required": true,
+        "default": "Accordion Content Text"
+      }
+    ],
+    "default": [
+      {
+        "accordion_button": "Accordion Button Text",
+        "accordion_content": "Accordion Content Text"
+      }
+    ]
+  },
+  {
+    "id": "settings",
+    "name": "settings",
+    "label": "Accordion Settings",
+    "type": "group",
+    "children": [
+      {
+        "id": "settings.show_multiple",
+        "name": "show_multiple",
+        "label": "Show multiple",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "id": "settings.duration",
+        "name": "duration",
+        "label": "Duration",
+        "type": "number",
+        "default": 300
+      },
+      {
+        "id": "settings.open_on_init",
+        "name": "open_on_init",
+        "label": "Open on init",
+        "type": "text",
+        "default": "0",
+        "help_text": "Show accordion elements during initialization. 0, 1..."
+      }
+    ]
+  },
+  {
+    "id": "module.wrapper_class",
+    "name": "wrapper_class",
+    "label": "CSS Class",
+    "type": "text",
+    "tab": "STYLE",
+    "help_text": "Optional extra class for the wrapper.",
+    "default": null
+  },
+  {
+    "id": "module.accordion_id",
+    "name": "accordion_id",
+    "label": "ID",
+    "type": "text",
+    "default": null
+  },
+  {
+    "id": "module.description",
+    "name": "description",
+    "label": "Description",
+    "type": "richtext",
+    "default": null
+  },
+  {
+    "label": "Theme",
+    "name": "theme",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["light", "Light Theme"],
+      ["dark", "Dark Theme"],
+      ["accent", "Accent Theme"]
+    ],
+    "default": "light",
+    "help_text": "Select a theme for the module. Default is Light."
+  }
+]

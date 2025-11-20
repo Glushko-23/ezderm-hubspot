@@ -1,0 +1,161 @@
+<!--
+    templateType: "email"
+    isAvailableForNewContent: true
+    label: Base Email Template
+-->
+<!doctype html>
+<html>
+<head>
+    <title>{% if content.html_title and content.html_title != '' %}{{ content.html_title }}{% else %}{{ content.body.subject }}{% endif %}</title>
+    {% if content.meta_description %}<meta name="description" content="{{ content.meta_description }}"/>{% endif %}
+
+    {% set custom_font = 'Lato, Tahoma, Arial, sans-serif' %}
+
+    <style type="text/css" id="hs-inline-css">
+        /*<![CDATA[*/
+        /* everything in this style tag will be inlined onto matching elements */
+        html {
+            background-color: {{ background_color }};
+        }
+
+        body {
+            font-size: {{ primary_font_size }};
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            vertical-align: bottom;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        a:link, a:visited {
+            border-bottom: none;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            line-height: 135%;
+        }
+
+        .button,
+        .button strong,
+        h1, h2, h3, h4, h5, h6, p, blockquote,
+        td, th, span, body {
+            font-family: {{ custom_font }};
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 32px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        .table {
+            font-family: inherit;
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+            margin-bottom: 0;
+            padding: 0;
+        }
+
+        .spacing-column {
+            padding: 10px 20px;
+        }
+
+        .hs_cos_wrapper_type_rich_text a {
+            color: {{ primary_accent_color }};
+            -webkit-text-size-adjust: none;
+            text-decoration: underline;
+            font-weight: normal
+        }
+        /*]]>*/
+    </style>
+
+    <style type="text/css">
+        /*<![CDATA[*/
+        /* ==== Mobile Styles ==== */
+        @media only screen and (max-width: 639px) {
+            img {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            .section-with-bg {
+                width: auto !important;
+            }
+
+            .width-full--mobile {
+                width: 100% !important;
+            }
+
+            h2 {
+                font-size: 24px !important;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            h2 br {
+                display: none !important;
+            }
+
+        }
+        /*]]>*/
+    </style>
+
+    {{ dnd_area_stylesheet }}
+</head>
+<body>
+
+<!-- Preview text (text which appears right after subject in certain email clients) -->
+<div id="preview_text" style="display:none;">{% text "preview_text" label="Preview Text <span class=help-text>This will be used as the preview text that displays in some email clients</span>", value="", no_wrapper=True %}</div>
+
+<!-- View as webpage link -->
+{% if content.create_page %}
+    <div>
+        Not rendering correctly? <a class="hubspot-mergetag" data-viewaswebpage="true" href="{{ view_as_page_url }}">View this email as a web page</a>.
+    </div>
+{% endif %}
+
+{% dnd_area "main" label="Main Email Content" %}
+    <!-- Header -->
+    {% dnd_section background_color={{ context.background_color or "#0033FF" }} %}
+        {% dnd_column %}
+            {% dnd_row %}
+                {% dnd_module path="../../modules/email-header" label="Email Header" %}
+                {% end_dnd_module %}
+            {% end_dnd_row %}
+        {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    <!-- Insert body here -->
+    {% dnd_section %}
+        {% dnd_column %}
+            {% dnd_row %}
+                {% dnd_module path="@hubspot/email_body" label="Body Text" %}
+                {% end_dnd_module %}
+            {% end_dnd_row %}
+        {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    <!-- Footer -->
+    {% dnd_section background_color={{ context.background_color or "#080B4C" }} %}
+        {% dnd_column %}
+            {% dnd_row %}
+                {% dnd_module path="../../modules/email-footer" label="Email Footer" %}
+                {% end_dnd_module %}
+            {% end_dnd_row %}
+        {% end_dnd_column %}
+    {% end_dnd_section %}
+{% end_dnd_area %}
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% macro slugify(input) %}
+{% set value = input|default('all')|trim %}
+{% if value|lower == 'all' %}
+all
+{% else %}
+{{ value
+|replace('&', 'and')
+|replace(' ', '_')
+|lower }}
+{% endif %}
+{% endmacro %}
+
+{% macro encode_title(title) %}
+{{ title
+|replace('and', '&')
+|replace(' ', '%20') }}
+{% endmacro %}

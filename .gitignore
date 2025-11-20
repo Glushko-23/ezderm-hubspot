@@ -1,0 +1,21 @@
+# IDE settings
+.idea/
+.vscode/
+
+# Node / frontend
+node_modules/
+dist/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.tmp
+
+# Drafts HubSpot
+drafts/
+
+# Config
+hubspot.config.yml

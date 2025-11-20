@@ -1,0 +1,5 @@
+{% if module.svg_icons.icons %}
+    <svg class="icon icon--{{ module.svg_icons.icons }}" fill="none">
+        <use xlink:href="#icon-{{ module.svg_icons.icons }}"></use>
+    </svg>
+{% endif %}

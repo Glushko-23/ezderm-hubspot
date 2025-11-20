@@ -1,0 +1,63 @@
+{% set wrapper_class = module.wrapper_class|default('') %}
+{% set theme = module.theme %}
+
+{% macro check_icon(checked, color="#0033FF") %}
+    {% set circle_fill = checked ? "white" : "none" %}
+
+    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <circle cx="15" cy="15" r="14.25" stroke="white" stroke-width="1.5" fill="{{ circle_fill }}"/>
+        {% if checked %}
+            <path d="M5.57129 16.4405L11.882 22.7143L23.9999 10.7023L22.2601 9L11.882 19.2857L7.28691 14.7262L5.57129 16.4405Z" fill="{{ color }}"/>
+        {% endif %}
+    </svg>
+{% endmacro %}
+
+<div class="comparison__wrapper {{ theme }}-theme {{ wrapper_class }}">
+    <div class="comparison-table flex-table">
+        <div class="comparison-row flex-table__row flex-table__header">
+            <div class="flex-table__column">&nbsp;</div>
+            <div class="header-column premium-feature flex-table__column">
+                {% if module.premium_feature_title %}
+                    <h5 class="feature-title">{{ module.premium_feature_title }}</h5>
+                {% endif %}
+
+                {% if module.premium_feature_logo.src %}
+                    <img src="{{ module.premium_feature_logo.src }}"
+                         alt="{{ module.premium_feature_logo.alt|default('Image')|escape }}"
+                         width="{{ module.premium_feature_logo.width }}"
+                         height="{{ module.premium_feature_logo.height }}"
+                    />
+                {% endif %}
+            </div>
+            <div class="header-column standard-feature flex-table__column">
+                {% if module.standard_feature_title %}
+                    <h5 class="feature-title">{{ module.standard_feature_title }}</h5>
+                {% endif %}
+
+                {% if module.standard_feature_logo.src %}
+                    <img src="{{ module.standard_feature_logo.src }}"
+                         alt="{{ module.standard_feature_logo.alt|default('Image')|escape }}"
+                         width="{{ module.standard_feature_logo.width }}"
+                         height="{{ module.standard_feature_logo.height }}"
+                    />
+                {% endif %}
+            </div>
+        </div>
+
+        {% for item in module.comparison %}
+            <div class="comparison-row flex-table__row">
+                <div class="comparison-text flex-table__column">
+                    <span>{{ item.description }}</span>
+                </div>
+
+                <div class="check-column premium-feature flex-table__column">
+                    {{ check_icon(item.premium_feature_check) }}
+                </div>
+
+                <div class="check-column standard-feature comparison-checks flex-table__column">
+                    {{ check_icon(item.standard_feature_check) }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

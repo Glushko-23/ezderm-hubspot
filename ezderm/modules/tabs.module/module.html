@@ -1,0 +1,30 @@
+{% set wrapper_class = module.wrapper_class|default('') %}
+{% set theme = module.theme %}
+
+<div data-tabs class="tabs-container {{ theme }}-theme {{ wrapper_class }}" style="{{ theme.global_fonts.secondary.style }}">
+    {% set unique_prefix = "tab_" ~ name %}
+
+    <ul class="tabs__nav {% if module.settings.vertical_nav %}vertical{% endif %}">
+        {% for tab_item in module.tabs %}
+            {% set tab_index = loop.index0 %}
+            {% set tab_id = tab_item.tab_id if tab_item.tab_id else unique_prefix ~ "_" ~ tab_index %}
+            {% if tab_item.tab_button %}
+                <li class="tab__item" data-tab="{{ tab_id }}">
+                    <a class="tabs__nav-link" href="#{{ tab_id }}" {% if loop.first %}data-tab-default{% endif %}>
+                        {{ tab_item.tab_button }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    {% for tab_item in module.tabs %}
+        {% set tab_index = loop.index0 %}
+        {% set tab_id = tab_item.tab_id if tab_item.tab_id else unique_prefix ~ "_" ~ tab_index %}
+        {% if tab_item.tab_content %}
+            <div id="{{ tab_id }}" class="tab__panel">
+                {{ tab_item.tab_content }}
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

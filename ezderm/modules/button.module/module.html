@@ -1,0 +1,84 @@
+{# Module styles #}
+
+{% require_css %}
+  <style>
+    {% scope_css %}
+
+      {# Button wrapper #}
+
+      {% if module.styles.alignment.alignment %}
+        .button-wrapper {
+          text-align: {{ module.styles.alignment.alignment.horizontal_align }};
+        }
+      {% endif %}
+
+      {# Button #}
+
+      .button {
+        {% if module.styles.background.color.color %}
+          background-color: rgba({{ module.styles.background.color.color|convert_rgb }}, {{ module.styles.background.color.opacity / 100 }});
+        {% endif %}
+        {{ module.styles.border.border.css }}
+        {% if module.styles.corner.radius >= 0 %}
+          border-radius: {{ module.styles.corner.radius ~ "px" }};
+        {% endif %}
+        {{ module.styles.text.font.css }}
+        {{ module.styles.spacing.spacing.css }}
+          {% if module.with_arrow %}
+            justify-content: space-between;
+          {% endif %}
+      }
+
+      .button:hover,
+      .button:focus {
+        {% if module.styles.background.color.color %}
+          background-color: rgba({{ color_variant(module.styles.background.color.color, -80)|convert_rgb }}, {{ module.styles.background.color.opacity / 100 }});
+        {% endif %}
+      }
+
+      .button:active {
+        {% if module.styles.background.color.color %}
+          background-color: rgba({{ color_variant(module.styles.background.color.color, 80)|convert_rgb }}, {{ module.styles.background.color.opacity / 100 }});
+        {% endif %}
+      }
+
+    {% end_scope_css %}
+  </style>
+{% end_require_css %}
+
+{# Sets attributes used for the link field #}
+
+{% set href = module.link.url.href %}
+{% if module.link.url.type == "EMAIL_ADDRESS" %}
+  {% set href = "mailto:" + href %}
+{% endif %}
+{% set rel = [] %}
+{% if module.link.no_follow %}
+  {% do rel.append("nofollow") %}
+{% endif %}
+{% if module.link.open_in_new_tab %}
+  {% do rel.append("noopener") %}
+{% endif %}
+
+{# Button #}
+
+<div class="button-wrapper">
+  <a class="button button--{{ module.variant }} {% if module.with_arrow %}button--has-arrow{% endif %}" href="{{ href|escape_url }}"
+  {% if module.link.open_in_new_tab %}target="_blank"{% endif %}
+  {% if rel %}rel="{{ rel|join(" ")|escape_attr }}"{% endif %}
+  >
+    <span class="button--text {% if module.hide_label %}show-for-sr{% endif %}">
+        {{ module.button_text|escape_html }}
+    </span>
+
+    {% if module.extra_html %}
+        {{ module.extra_html }}
+    {% endif %}
+
+    {% if module.with_arrow %}
+        <svg class="button-arrow button-arrow--{{ module.arrow_direction }}" xmlns="http://www.w3.org/2000/svg" width="21" height="12" viewBox="0 0 21 12" fill="none">
+            <path d="M20.5303 6.53033C20.8232 6.23744 20.8232 5.76256 20.5303 5.46967L15.7574 0.696701C15.4645 0.403807 14.9896 0.403807 14.6967 0.6967C14.4038 0.989594 14.4038 1.46447 14.6967 1.75736L18.9393 6L14.6967 10.2426C14.4038 10.5355 14.4038 11.0104 14.6967 11.3033C14.9896 11.5962 15.4645 11.5962 15.7574 11.3033L20.5303 6.53033ZM0 6L-6.55671e-08 6.75L20 6.75L20 6L20 5.25L6.55671e-08 5.25L0 6Z" fill="currentColor"/>
+        </svg>
+    {% endif %}
+  </a>
+</div>

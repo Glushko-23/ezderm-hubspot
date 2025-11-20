@@ -1,0 +1,181 @@
+[
+  {
+    "label": "Item display type",
+    "name": "variant",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["post", "Post"],
+      ["video", "Video"]
+    ],
+    "default": "post",
+    "required": true
+  },
+  {
+    "id": "filters",
+    "name": "filters",
+    "label": "Show filters",
+    "type": "boolean",
+    "display": "toggle",
+    "default": true,
+    "help_text": "Works with live reload only"
+  },
+  {
+    "id": "pagination",
+    "name": "pagination",
+    "label": "Show pagination",
+    "type": "boolean",
+    "display": "toggle",
+    "default": true
+  },
+  {
+    "id": "pagination_settings",
+    "name": "pagination_settings",
+    "label": "Pagination Settings",
+    "type": "group",
+    "expanded": false,
+    "visibility": {
+      "controlling_field_path": "pagination",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    },
+    "children": [
+      {
+        "id": "pagination_settings.per_page",
+        "name": "per_page",
+        "label": "Per page",
+        "type": "number",
+        "required": false,
+        "default": 10
+      },
+      {
+        "id": "pagination_settings.live_reload",
+        "name": "live_reload",
+        "label": "Live reload",
+        "type": "boolean",
+        "display": "toggle",
+        "default": true
+      },
+      {
+        "id": "pagination_settings.show_loader",
+        "name": "show_loader",
+        "label": "Show loader",
+        "type": "boolean",
+        "display": "toggle",
+        "default": true
+      },
+      {
+        "id": "pagination_settings.scroll_top",
+        "name": "scroll_top",
+        "label": "Scroll to top",
+        "type": "boolean",
+        "display": "toggle",
+        "default": true,
+        "help_text": "When enabled, the page automatically scrolls to the top of the list after changing pages or categories. Improves user experience on long pages."
+      }
+    ]
+  },
+  {
+    "label": "Sort by (API)",
+    "name": "sort_by",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["-publish_date", "Newest first"],
+      ["publish_date", "Oldest first"],
+      ["-updated", "Recently updated"],
+      ["updated", "Least recently updated"],
+      ["-created", "Recently created"],
+      ["created", "Oldest created"],
+      ["-name", "Title A → Z"],
+      ["name", "Title Z → A"],
+      ["-views", "Most viewed"],
+      ["views", "Least viewed"]
+    ],
+    "default": "-publish_date",
+    "required": true,
+    "help_text": "Select how blog posts should be sorted. This value is passed directly to the HubSpot API as the 'orderBy' parameter, controlling the sort order of returned posts."
+  },
+  {
+    "label": "Display mode",
+    "name": "display_mode",
+    "type": "choice",
+    "choices": [
+      ["pagination", "Pagination (default)"],
+      ["slider", "Slider"]
+    ],
+    "default": "pagination",
+    "display": "select",
+    "required": true,
+    "help_text": "Choose how articles are displayed: as paginated list or slider."
+  },
+  {
+    "name": "hide_featured",
+    "label": "Hide featured",
+    "type": "boolean",
+    "display": "toggle",
+    "default": false
+  },
+  {
+    "name": "use_cache",
+    "label": "Use cache",
+    "type": "boolean",
+    "display": "toggle",
+    "default": true,
+    "help_text": "Enable caching to speed up navigation between pages and categories. Data is stored in sessionStorage and expires after the set TTL (in seconds). Improves performance by avoiding repeated API calls. Default: 300 (5 minutes)."
+  },
+  {
+    "name": "cache_buster",
+    "label": "Cache buster",
+    "type": "number",
+    "default": 1,
+    "help_text": "Change this value to force refresh of all cached data. Useful after updating content. Example: increase from '1' to '2' to clear old cache.",
+    "visibility": {
+      "controlling_field_path": "use_cache",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    }
+  },
+  {
+    "name": "cache_ttl",
+    "label": "Cache TTL (seconds)",
+    "type": "number",
+    "default": 300,
+    "step": 100,
+    "help_text": "Time in seconds to keep data in cache. After expiration, API is called again. Default: 300 (5 minutes). Set 0 to disable caching.",
+    "visibility": {
+      "controlling_field_path": "use_cache",
+      "operator": "EQUAL",
+      "controlling_value_regex": "true"
+    }
+  },
+  {
+    "name": "empty_text",
+    "label": "Empty text",
+    "type": "text",
+    "required": false,
+    "default": "No articles found."
+  },
+  {
+    "name": "wrapper_class",
+    "label": "Wrapper CSS Class",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "name": "selected_slugs",
+    "label": "Selected Articles (slugs, comma-separated)",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "name": "show_all",
+    "label": "Show All Articles",
+    "type": "boolean",
+    "required": false,
+    "display": "toggle",
+    "default": true
+  }
+]

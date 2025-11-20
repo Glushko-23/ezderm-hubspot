@@ -1,0 +1,160 @@
+.hero {
+  position: relative;
+
+  &.content-align {
+    &--center {
+      text-align: center;
+
+      .hero__actions {
+        justify-content: center;
+      }
+    }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+
+  &__content {
+    flex-grow: 1;
+    max-width: 38rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__text {
+    h1, h2, h3 {
+      color: inherit;
+    }
+
+    .accent-theme & {
+      color: #fff;
+    }
+  }
+
+  &__wrapper {
+    min-height: 21.875rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: var(--container-with-gap-x);
+    max-width: var(--container-size-xl);
+    margin: 0 auto;
+    border-radius: var(--border-radius-main);
+
+    &[class*='background-image'] {
+      isolation: isolate;
+      position: relative;
+
+      &::before {
+        content: '';
+        background: rgba(31, 23, 19, 0.35);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+      }
+
+      .hero__text {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.hero-video {
+  h3, .h3 {
+    font-size: 3.25rem;
+  }
+}
+
+.hero-carousel {
+  position: relative;
+  min-height: unset;
+
+  &.dnd-section {
+    padding-top: unset;
+    padding-bottom: unset;
+
+    > .row-fluid {
+      max-width: unset;
+    }
+  }
+
+  .carousel--text {
+    max-width: 40rem;
+  }
+
+  .dark-theme {
+    .carousel--image {
+      &::before {
+        content: '';
+        background: rgba(31, 23, 19, .35);
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        border-radius: inherit;
+      }
+    }
+  }
+
+  .carousel--image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--border-radius-main);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+  }
+
+  .carousel--content {
+    position: relative;
+    z-index: 1;
+    max-width: 50%;
+    margin-left: auto;
+    padding: 6rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 32rem;
+
+    h1, h2, h3 {
+      font-size: 3.25rem;
+    }
+
+    p {
+
+    }
+  }
+
+  .splide__pagination {
+    position: absolute;
+    bottom: 3rem;
+    max-width: 50%;
+    right: 0;
+    width: 100%;
+    justify-content: flex-start;
+    margin: 0;
+  }
+}

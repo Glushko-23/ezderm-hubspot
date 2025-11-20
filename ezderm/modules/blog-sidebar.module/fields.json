@@ -1,0 +1,62 @@
+[
+  {
+    "label": "Downloadable CTA",
+    "name": "group_downloadable_cta",
+    "type": "group",
+    "children": [
+      {
+        "name": "hide_downloadable_widget",
+        "label": "Hide Downloadable Widget",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "downloadable_description",
+        "label": "Description",
+        "type": "text",
+        "required": false,
+        "default": "Downloadable description text"
+      },
+      {
+        "name": "download_button_text",
+        "label": "Button Text",
+        "type": "text",
+        "required": false,
+        "default": "Download Now"
+      },
+      {
+        "name": "download_button_link",
+        "label": "Button Link",
+        "type": "link",
+        "supported_types": ["EXTERNAL", "CONTENT", "FILE"],
+        "default": {
+          "url": {
+            "href": "",
+            "type": "FILE"
+          },
+          "open_in_new_tab": false,
+          "no_follow": false
+        }
+      }
+    ]
+  },
+  {
+    "label": "Essential Takeaways",
+    "name": "group_essential_takeaways",
+    "type": "group",
+    "children": [
+      {
+        "name": "hide_essential_takeaways_widget",
+        "label": "Hide Essential Takeaways Widget",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "essential_takeaways",
+        "label": "Content",
+        "type": "richtext",
+        "default": "<ul><li>Lorem ipsum dolor sit amet</li><li>Lorem ipsum dolor sit amet</li></ul>"
+      }
+    ]
+  }
+]

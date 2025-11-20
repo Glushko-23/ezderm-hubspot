@@ -1,0 +1,13 @@
+@use "sass:string";
+
+.hsfc-Renderer {
+  --hsf-default-background__padding: 0;
+  --hsf-erroralert__font-size: var(--fs-medium);
+
+  --hsf-field-input__border-radius: var(--field-base-radius);
+  --hsf-field-input__font-family: var(--ff-primary);
+
+  .hsfc-TextInput {
+    min-height: var(--field-base-height);
+  }
+}

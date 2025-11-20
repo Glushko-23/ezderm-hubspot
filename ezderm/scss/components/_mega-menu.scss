@@ -1,0 +1,212 @@
+@use "../core/mixines";
+
+.mega-nav {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: grid;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 1.8rem;
+  row-gap: 1.4rem;
+
+  @include mixines.mq-from-lg {
+    display: flex;
+    row-gap: 0.2rem;
+    column-gap: 0;
+  }
+
+  &__wrapper {
+    background: none;
+
+    @include mixines.mq-below-lg {
+      padding-top: 1.6rem;
+    }
+  }
+
+  &__submenu {
+    display: none;
+
+    @include mixines.mq-from-lg {
+      position: absolute;
+      background-color: var(--color-light-10);
+      padding: 1rem;
+      width: max-content;
+      left: 0;
+      top: 100%;
+      min-width: fit-content;
+      border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: calc(-1 * var(--header-height));
+        width: 100%;
+        height: calc(100% + var(--header-height));
+        pointer-events: none;
+        border-radius: var(--border-radius-medium);
+        box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.1);
+        background-color: inherit;
+        z-index: -1;
+      }
+    }
+
+    .mega-nav__link {
+      padding: 0.4rem 0;
+
+      @include mixines.mq-from-lg {
+        padding: 0.2rem;
+      }
+
+      @include mixines.mq-below-lg {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    position: relative;
+    font-weight: 500;
+    font-family: var(--ff-primary), sans-serif;
+    z-index: 1;
+
+    @include mixines.mq-below-lg {
+      font-size: 1.5rem;
+    }
+
+    @include mixines.mq-from-lg {
+      padding: 0.2rem 1.2rem;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: 0.3s opacity ease-in-out;
+
+    &:hover, &:active, &:focus {
+      text-decoration: none;
+      color: var(--color-primary);
+    }
+
+    @include mixines.hover-supported {
+      opacity: 0.8;
+    }
+  }
+
+  &__toggle {
+    display: none;
+    cursor: pointer;
+  }
+
+  &__item {
+    position: relative;
+
+    &--active {
+      .mega-nav__link {
+        // color: var(--color-accent);
+      }
+    }
+
+    .mega-nav {
+      @include mixines.mq-below-lg {
+        padding-top: 1rem;
+      }
+    }
+
+    &--has-complex {
+      position: static;
+
+      .mega-nav__submenu {
+        @include mixines.mq-from-lg {
+          width: 100%;
+        }
+      }
+
+      @include mixines.mq-from-lg {
+        &::before {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    &--has-toggle {
+      @include mixines.mq-below-lg {
+        .mega-nav__toggle {
+          display: flex;
+        }
+
+        > .mega-nav__link:not(.mega-nav__toggle) {
+          display: none;
+        }
+
+        .mega-nav__submenu {
+          .mega-nav__toggle {
+            display: none;
+          }
+        }
+
+        &.open {
+          .mega-nav__submenu {
+            display: block;
+          }
+        }
+      }
+    }
+
+    &--has-children {
+      > .mega-nav__link {
+        &::after {
+          width: 10px;
+          content: ' +';
+        }
+
+        &.open {
+          &::after {
+            content: ' -';
+          }
+        }
+      }
+
+      &:hover {
+        @include mixines.mq-from-lg {
+          &:where(:not(.mega-nav__item--has-complex)) {
+            z-index: 2;
+          }
+
+          .mega-nav__submenu {
+            display: block;
+            animation: fadeIn 0.3s ease forwards;
+          }
+
+          > .mega-nav__link {
+            // color: var(--color-accent);
+
+            &::after {
+              content: ' -';
+            }
+
+            &::before {
+              content: '';
+              display: block;
+              width: 100%;
+              height: 100%;
+              top: 90%;
+              left: 0;
+              position: absolute;
+            }
+          }
+        }
+      }
+    }
+  }
+}

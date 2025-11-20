@@ -1,0 +1,52 @@
+[
+  {
+    "name": "table_id",
+    "label": "Table ID",
+    "type": "text",
+    "required": true,
+    "default": "136551433"
+  },
+  {
+    "label": "Type",
+    "name": "type",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["customer", "Customer"],
+      ["employee", "Employee"]
+    ],
+    "default": "customer"
+  },
+  {
+    "label": "View",
+    "name": "view",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["variant_1", "V1"],
+      ["variant_2", "V2"]
+    ],
+    "default": "variant_1"
+  },
+  {
+    "name": "wrapper_class",
+    "label": "Wrapper CSS Class",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "name": "selected_slugs",
+    "label": "Selected Products (slugs, comma-separated)",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "name": "show_all",
+    "label": "Show All Products",
+    "type": "boolean",
+    "required": false,
+    "default": true
+  }
+]
