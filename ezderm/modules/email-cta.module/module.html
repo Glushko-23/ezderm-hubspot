@@ -6,6 +6,7 @@
 {% set variant = module.styles.variant %}
 {% set background_color = module.styles.background_color %}
 {% set text_color = module.styles.text_color %}
+{% set theme = module.styles.theme %}
 {% set align = module.styles.align %}
 {% set border_radius = "10px" %}
 {% set cta_width = module.styles.full_width ? "100%" : "auto" %}
@@ -25,5 +26,6 @@
     button_bg=button_bg,
     text_color=text_color,
     border_radius=border_radius,
-    button_border_color=button_border_color
+    button_border_color=button_border_color,
+    theme=theme
 ) }}

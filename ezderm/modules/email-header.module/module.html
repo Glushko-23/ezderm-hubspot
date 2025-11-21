@@ -3,24 +3,26 @@
 {% set logo = module.header_logo %}
 {% set logo_src = logo.src|default(site_settings.logo_src) %}
 {% set logo_link = module.header_logo_link %}
+{% set header_spacing = '14px 20px' %}
 
-<table role="presentation" class="table" width="100%" cellpadding="0" cellspacing="0">
-    <tbody>
-        {{ email_macros.vspace(12) }}
-
-        <tr>
-            <td align="center" valign="top" style="word-break:break-word; text-align: center; margin-bottom: 0; line-height: 135%; padding: 0 20px">
-                <a href="{{ logo_link.href }}" style="border-width: 0px; border: 0px; text-decoration: none;" target="_blank">
-                    <img src="{{ logo_src }}"
-                         alt="{{ logo.alt|default('Logo')|escape }}"
-                         width="{{ logo.width|default(site_settings.logo_width ) }}"
-                         height="{{ logo.height|default(site_settings.logo_height) }}"
-                         style="height: auto; max-height: {{ logo.height|default(site_settings.logo_height) }}; max-width: {{ logo.width|default(site_settings.logo_width) }}; border-width:0px; border:0px;"
-                    />
-                </a>
-            </td>
-        </tr>
-
-        {{ email_macros.vspace(12) }}
-    </tbody>
+<table role="presentation" class="table header" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+        <td style="padding: {{ header_spacing }}; mso-padding-alt: {{ header_spacing }};">
+            <table role="presentation" class="table" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" valign="middle" style="word-break:break-word; text-align: center; margin-bottom: 0; line-height: 135%;">
+                        <a href="{{ logo_link.href }}" style="border-width: 0px; border: 0px; text-decoration: none;" target="_blank">
+                            <img src="{{ logo_src }}"
+                                 class="logo--header"
+                                 alt="{{ logo.alt|default('Logo')|escape }}"
+                                 width="{{ logo.width|default(site_settings.logo_width ) }}"
+                                 height="{{ logo.height|default(site_settings.logo_height) }}"
+                                 style="height: auto; max-height: {{ logo.height|default(site_settings.logo_height) }}; max-width: {{ logo.width|default(site_settings.logo_width) }}; border-width:0px; border:0px;"
+                            />
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
 </table>

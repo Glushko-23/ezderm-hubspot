@@ -189,13 +189,13 @@
             "label": "Padding X",
             "name": "padding_x",
             "type": "number",
-            "default": "20"
+            "default": "50"
           },
           {
             "label": "Padding Y",
             "name": "padding_y",
             "type": "number",
-            "default": "20"
+            "default": "30"
           }
         ]
       },

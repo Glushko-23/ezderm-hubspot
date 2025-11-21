@@ -66,6 +66,27 @@
         "required": true
       },
       {
+        "name": "theme",
+        "label": "Theme",
+        "type": "choice",
+        "display": "select",
+        "locked": false,
+        "choices": [
+          ["dark", "Dark"],
+          ["light", "Light"]
+        ],
+        "default": "dark",
+        "required": true
+      },
+      {
+        "name": "with_arrow",
+        "label": "With arrow",
+        "locked": false,
+        "display": "toggle",
+        "type": "boolean",
+        "default": true
+      },
+      {
         "name": "full_width",
         "label": "Full width",
         "locked": false,

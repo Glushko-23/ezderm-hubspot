@@ -21,8 +21,72 @@
     "default": ""
   },
   {
+    "name": "footer_copyright",
+    "label": "Enable copyright",
+    "type": "boolean",
+    "default": true,
+    "display": "checkbox"
+  },
+  {
+    "name": "address_group",
+    "label": "Full address",
+    "type": "group",
+    "help_text": "To edit these fields, go to your HubSpot settings: Marketing → Email → Configuration → Footer",
+    "children": [
+      {
+        "name": "street_address_1",
+        "label": "Enable street address 1",
+        "type": "boolean",
+        "default": true,
+        "display": "checkbox"
+      },
+      {
+        "name": "street_address_2",
+        "label": "Enable street address 2",
+        "type": "boolean",
+        "default": true,
+        "display": "checkbox"
+      },
+      {
+        "name": "company_city",
+        "label": "Enable company city",
+        "type": "boolean",
+        "default": true,
+        "display": "checkbox"
+      },
+      {
+        "name": "company_state",
+        "label": "Enable company state",
+        "type": "boolean",
+        "default": true,
+        "display": "checkbox"
+      },
+      {
+        "name": "company_zip",
+        "label": "Enable company zip",
+        "type": "boolean",
+        "default": true,
+        "display": "checkbox"
+      },
+      {
+        "name": "company_country",
+        "label": "Enable company country",
+        "type": "boolean",
+        "default": true,
+        "display": "checkbox"
+      },
+      {
+        "name": "company_phone",
+        "label": "Enable company phone number",
+        "type": "boolean",
+        "default": true,
+        "display": "checkbox"
+      }
+    ]
+  },
+  {
     "name": "footer_text",
-    "label": "Footer Text",
+    "label": "Additional Footer Text",
     "type": "richtext",
     "required": false,
     "locked": false,
@@ -116,11 +180,18 @@
     "display": "select",
     "locked": false,
     "choices": [
-      ["all", "All"],
-      ["preferences", "Select preferences"]
+      ["all", "Unsubscribe from all future emails"],
+      ["preferences", "Email preferences"]
     ],
     "default": "all",
     "required": true
+  },
+  {
+    "name": "unsubscribe_text",
+    "label": "Unsubscribe text",
+    "type": "text",
+    "locked": false,
+    "default": "Unsubscribe"
   },
   {
     "label": "Styles",
