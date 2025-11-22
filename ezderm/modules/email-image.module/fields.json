@@ -49,6 +49,12 @@
         "display": "toggle"
       },
       {
+        "label": "Corner radius (in px)",
+        "name": "radius",
+        "type": "number",
+        "default": "0"
+      },
+      {
         "label": "Outer paddings",
         "name": "outer_paddings",
         "type": "group",
@@ -57,13 +63,14 @@
             "label": "Padding X",
             "name": "padding_x",
             "type": "number",
-            "default": "20"
+            "max": 40,
+            "default": 0
           },
           {
             "label": "Padding Y",
             "name": "padding_y",
             "type": "number",
-            "default": "20"
+            "default": 0
           }
         ]
       },
@@ -76,13 +83,14 @@
             "label": "Padding X",
             "name": "padding_x",
             "type": "number",
-            "default": "40"
+            "max": 40,
+            "default": 0
           },
           {
             "label": "Padding Y",
             "name": "padding_y",
             "type": "number",
-            "default": "40"
+            "default": 0
           }
         ]
       }

@@ -6,13 +6,6 @@
 {% set address = module.address_group %}
 {% set text = module.footer_text %}
 {% set social_follow = module.footer_social_follow %}
-{% set unsubscribe_type = module.unsubscribe_type %}
-{% set unsubscribe_link_href =
-    unsubscribe_type == "all"
-    ? unsubscribe_link_all
-    : unsubscribe_link
-%}
-{% set unsubscribe_text = module.unsubscribe_text %}
 
 {% set background_color = module.styles.background_color %}
 {% set text_color = module.styles.text_color %}
@@ -23,7 +16,7 @@
         <td style="padding: {{ footer_spacing }}; mso-padding-alt: {{ footer_spacing }};">
             <table role="presentation" class="table" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center" valign="top" style="word-break: break-word; text-align: center; margin-bottom: 0; line-height: 135%;">
+                    <td align="center" valign="top" style="padding: 0 20px 26px 20px; mso-padding-alt: 0 20px 26px 20px; word-break: break-word; text-align: center; margin-bottom: 0; line-height: 16px;">
                         <a href="{{ logo_link.href }}" style="border-width: 0px; border: 0px; color: {{ text_color }}; text-decoration: none;" target="_blank">
                             <img src="{{ logo.src }}"
                                  class="logo--footer"
@@ -36,16 +29,14 @@
                     </td>
                 </tr>
 
-                {{ email_macros.vspace(26) }}
-
                 <tr>
-                    <td style="padding: 0 20px;">
+                    <td style="padding: 0 0 30px 0; mso-padding-alt: 0 0 30px 0;">
                         <table class="table" role="presentation" cellpadding="0" cellspacing="0" style="width:auto; text-align:center; margin:0 auto;">
                             <tr>
                                 {% for social in social_follow %}
                                     {% if social.social_name %}
                                         <td>
-                                            <a aria-label="{{ social.social_name }}" href="{{ social.link.href }}" target="_blank" style="text-decoration: none; border: 0; color: {{ text_color }};">
+                                            <a aria-label="{{ social.social_name }}" href="{{ social.link.url.href }}" target="_blank" style="text-decoration: none; border: 0; color: {{ text_color }};">
 
                                                 {% if social.icon.src %}
                                                 <img src="{{ social.icon.src }}"
@@ -67,42 +58,40 @@
                     </td>
                 </tr>
 
-                {{ email_macros.vspace(30) }}
-
+                {% if module.footer_divider %}
                 <tr>
-                    <td>
+                    <td style="padding: 0; margin: 0; line-height: 0;">
                         {{ email_macros.hr() }}
                     </td>
                 </tr>
-
-                {{ email_macros.vspace(20) }}
+                {% endif %}
 
                 <tr>
-                    <td class="footer-text" align="center" valign="top" style="word-break:break-word; text-align:center; margin-bottom:0; padding:10px 20px; color: {{ text_color }};">
+                    <td class="footer-text footer-address" align="center" valign="top" style="color: {{ text_color }} !important; word-break:break-word; text-align:center; margin-bottom:0; padding: 30px 0 10px 0; mso-padding-alt: 30px 0 10px 0; color: {{ text_color }};">
                         {% if module.footer_copyright %}
                             &copy; {{ site_settings.company_name }} {{ year }}<br />
                         {% endif %}
 
                         {% if address.street_address_1 %}
-                            {{ site_settings.company_street_address_1 }}
+                            <span class="footer-address" style="color: {{ text_color }} !important;">{{ site_settings.company_street_address_1 }} </span>
                         {% endif %}
                         {% if address.street_address_2 %}
-                            {{ site_settings.company_street_address_2 }}
+                            <span class="footer-address" style="color: {{ text_color }} !important;">{{ site_settings.company_street_address_2 }} </span>
                         {% endif %}
                         {% if address.company_city %}
-                            {{ site_settings.company_city }}
+                            <span class="footer-address" style="color: {{ text_color }} !important;">{{ site_settings.company_city }} </span>
                         {% endif %}
                         {% if address.company_state %}
-                            {{ site_settings.company_state }}
+                            <span class="footer-address" style="color: {{ text_color }} !important;">{{ site_settings.company_state }} </span>
                         {% endif %}
                         {% if address.company_zip %}
-                            {{ site_settings.company_zip }}
+                            <span class="footer-address" style="color: {{ text_color }} !important;">{{ site_settings.company_zip }} </span>
                         {% endif %}
                         {% if address.company_country %}
-                            {{ site_settings.company_country }}
+                            <span class="footer-address" style="color: {{ text_color }} !important;">{{ site_settings.company_country }} </span>
                         {% endif %}
                         {% if address.company_phone %}
-                            {{ site_settings.company_phone }}
+                            <span class="footer-address" style="color: {{ text_color }} !important;">{{ site_settings.company_phone }}</span>
                         {% endif %}
 
                         {% if text %}
@@ -112,10 +101,18 @@
                 </tr>
 
                 <tr>
-                    <td class="footer-text" align="center" valign="top" style="word-break:break-word; text-align:center; margin-bottom:0; padding:10px 20px; color: {{ text_color }};">
-                        <a style="color: {{ text_color }};" class="footer-text" data-unsubscribe="true" href="{{ unsubscribe_link_href }}">
-                            {{ unsubscribe_text }}
-                        </a>
+                    <td class="footer-text" align="center" valign="top" style="word-break:break-word; text-align:center; margin-bottom:0; padding: 10px 0; color: {{ text_color }};">
+                        {% if module.unsubscribe %}
+                            &nbsp;
+                            <a style="color: {{ text_color }};" class="footer-text" data-unsubscribe="true" href="{{ unsubscribe_link_all }}">{{ module.unsubscribe_text }}</a>
+                            &nbsp;
+                        {% endif %}
+
+                        {% if module.email_preferences %}
+                            &nbsp;
+                            <a style="color: {{ text_color }};" class="footer-text" data-unsubscribe="true" href="{{ unsubscribe_link }}">{{ module.email_preferences_text }}</a>
+                            &nbsp;
+                        {% endif %}
                     </td>
                 </tr>
             </table>

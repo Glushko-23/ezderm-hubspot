@@ -11,10 +11,10 @@
 {% macro hr(height=1, bg='#525583') %}
 <table class="table" role="presentation" width="100%" cellspacing="0" cellpadding="0">
     <tr>
-        <td style="padding: 0; line-height: 0;">
+        <td style="padding: 0; line-height: 0; mso-line-height-rule: exactly;">
             <table class="table" role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td height="{{ height }}" bgcolor="{{ bg }}" style="border-top: {{ height }}px solid transparent; height: {{ height }}px; background: {{ bg }}; font-size: 0; line-height: 0;"></td>
+                    <td height="{{ height }}" style="border-top: {{ height }}px solid {{ bg }}; height: {{ height }}px; background: none; padding: 0; mso-line-height-rule: exactly; mso-padding-alt: 0; margin: 0px 0px 0px 0px; font-size: 0; line-height: 0;"></td>
                 </tr>
             </table>
         </td>
@@ -24,26 +24,41 @@
 
 {% macro cta(cta_link="#", cta_text="CTA text", cta_width="auto", align="center", button_bg="#FB8569", text_color="#1F1713", border_radius="10px", button_border_color="#FB8569", theme="dark", with_arrow=true) %}
 {% set button_spacing = with_arrow ? '14px 16px 14px 18px' : '14px 40px' %}
+{% set button_align_text = with_arrow ? 'left' : 'center' %}
+{% set button_line_height = '18px' %}
 
-<table role="presentation" width="{{ cta_width }}" cellpadding="0" cellspacing="0" border="0" align="{{ align }}" style="text-align: {{ align }}; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse:separate!important;">
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" align="{{ align }}" style="text-align: {{ align }}; mso-line-height-rule: exactly; line-height: {{ button_line_height }}; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse:separate!important;">
     <tr>
-        <td align="{{ align }}" valign="middle" bgcolor="{{ button_bg }}" style="word-break: break-word; text-align: {{ align }}; border-radius: {{ border_radius }}; cursor: auto; border: 2px solid {{ button_border_color }}; box-sizing: border-box; mso-padding-alt: {{ button_spacing }};">
-            <a class="button" href="{{ cta_link }}" target="_blank"
-               style="display: block; width: {{ cta_width }}; box-sizing: border-box; padding: {{ button_spacing }}; font-weight: normal; font-size: 16px; color: {{ text_color }}; text-transform: none; text-decoration: none; border-radius: {{ border_radius }};">
-                <table class="table" cellspacing="0" cellpadding="0" valign="middle">
-                    <tr>
-                        <td>
-                            <span style="color: {{ text_color }}; font-weight: normal; text-decoration: none; font-style: normal;">{{ cta_text }}</span>
-                        </td>
+        <td data-align="{{ align }}" align="{{ align }}" style="box-sizing: border-box; padding: 0;">
+            <table style="border-collapse: separate!important; mso-line-height-rule: exactly; line-height: {{ button_line_height }};" width="{{ cta_width }}" role="presentation" cellpadding="0" cellspacing="0" border="0" class="table">
+                <tr>
+                    <td align="{{ align }}" valign="middle" bgcolor="{{ button_bg }}" style="word-break: break-word; text-align: {{ align }}; border-radius: {{ border_radius }}; cursor: auto; border: 2px solid {{ button_border_color }}; box-sizing: border-box;">
+                        <a class="button" href="{{ cta_link }}" target="_blank"
+                           style="display: block; text-align: {{ button_align_text }}; width: {{ cta_width }}; box-sizing: border-box; font-weight: normal; font-size: 16px; color: {{ text_color }}; text-transform: none; text-decoration: none; border-radius: {{ border_radius }};">
+                            <table style="mso-line-height-rule: exactly; line-height: {{ button_line_height }}" class="table" cellspacing="0" cellpadding="0" valign="middle">
+                                <tr>
+                                    <td style="box-sizing: border-box; padding: {{ button_spacing }}; mso-padding-alt: {{ button_spacing }}; mso-line-height-rule: exactly; line-height: {{ button_line_height }};">
+                                        <table style="mso-line-height-rule: exactly; line-height: {{ button_line_height }}" class="table" cellspacing="0" cellpadding="0" valign="middle">
+                                            <tr>
+                                                <td style="mso-line-height-rule: exactly; line-height: {{ button_line_height }};">
+                                                    <span style="text-align: {{ button_align_text }}; color: {{ text_color }}; font-weight: normal; text-decoration: none; font-style: normal;">{{ cta_text }}</span>
+                                                </td>
 
-                        {% if with_arrow %}
-                            <td style="padding-left: 30px; mso-padding-alt: 0 0 0 30px;">
-                                <img style="vertical-align: middle; max-width: 20px; max-height: 15px; border: none; text-decoration: none;" src="{{ get_asset_url('../images/email/email-arrow-right--' ~ theme ~ '.png') }}" width="20" height="15" alt="arrow" />
-                            </td>
-                        {% endif %}
-                    </tr>
-                </table>
-            </a>
+                                                {% if with_arrow %}
+                                                <td style="text-align: right; padding-left: 30px; mso-padding-alt: 0 0 0 30px; line-height: 16px; mso-line-height-rule: at-least;">
+                                                    <img style="vertical-align: middle; max-width: 20px; max-height: 15px; border: none; text-decoration: none;" src="{{ get_asset_url('../images/email/email-arrow-right--' ~ theme ~ '.png') }}" width="20" height="15" alt="arrow" />
+                                                </td>
+                                                {% endif %}
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </a>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
 </table>

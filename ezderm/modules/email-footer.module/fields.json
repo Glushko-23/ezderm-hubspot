@@ -21,6 +21,13 @@
     "default": ""
   },
   {
+    "name": "footer_divider",
+    "label": "Enable divider",
+    "type": "boolean",
+    "default": true,
+    "display": "checkbox"
+  },
+  {
     "name": "footer_copyright",
     "label": "Enable copyright",
     "type": "boolean",
@@ -174,24 +181,42 @@
     ]
   },
   {
-    "name": "unsubscribe_type",
-    "label": "Unsubscribe type",
-    "type": "choice",
-    "display": "select",
-    "locked": false,
-    "choices": [
-      ["all", "Unsubscribe from all future emails"],
-      ["preferences", "Email preferences"]
-    ],
-    "default": "all",
-    "required": true
+    "name": "unsubscribe",
+    "label": "Enable unsubscribe",
+    "type": "boolean",
+    "default": true,
+    "display": "checkbox"
   },
   {
     "name": "unsubscribe_text",
     "label": "Unsubscribe text",
     "type": "text",
     "locked": false,
-    "default": "Unsubscribe"
+    "default": "Unsubscribe",
+    "visibility": {
+      "controlling_field_path": "unsubscribe",
+      "controlling_value_regex": true,
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "name": "email_preferences",
+    "label": "Enable email preferences",
+    "type": "boolean",
+    "default": true,
+    "display": "checkbox"
+  },
+  {
+    "name": "email_preferences_text",
+    "label": "Email preferences text",
+    "type": "text",
+    "locked": false,
+    "default": "Email preferences",
+    "visibility": {
+      "controlling_field_path": "email_preferences",
+      "controlling_value_regex": true,
+      "operator": "EQUAL"
+    }
   },
   {
     "label": "Styles",

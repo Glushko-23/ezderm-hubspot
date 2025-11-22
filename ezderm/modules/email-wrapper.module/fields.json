@@ -112,6 +112,17 @@
         }
       },
       {
+        "label": "Image Corner radius (in px)",
+        "name": "block_image_radius",
+        "type": "number",
+        "default": "0",
+        "visibility": {
+          "controlling_field_path": "blocks.block_type",
+          "controlling_value_regex": "image",
+          "operator": "EQUAL"
+        }
+      },
+      {
         "name": "block_cta",
         "label": "CTA Link",
         "type": "link",
@@ -125,6 +136,23 @@
         "name": "block_cta_text",
         "label": "CTA Text",
         "type": "text",
+        "visibility": {
+          "controlling_field_path": "blocks.block_type",
+          "controlling_value_regex": "cta",
+          "operator": "EQUAL"
+        }
+      },
+      {
+        "name": "block_cta_type",
+        "label": "CTA type",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["button", "Button"],
+          ["link", "Link"]
+        ],
+        "default": "button",
+        "required": true,
         "visibility": {
           "controlling_field_path": "blocks.block_type",
           "controlling_value_regex": "cta",
@@ -205,16 +233,28 @@
         "type": "group",
         "children": [
           {
-            "label": "Padding X",
-            "name": "padding_x",
+            "label": "Padding Left",
+            "name": "padding_left",
             "type": "number",
-            "default": "40"
+            "default": "20"
           },
           {
-            "label": "Padding Y",
-            "name": "padding_y",
+            "label": "Padding Right",
+            "name": "padding_right",
             "type": "number",
-            "default": "40"
+            "default": "20"
+          },
+          {
+            "label": "Padding Top",
+            "name": "padding_top",
+            "type": "number",
+            "default": "20"
+          },
+          {
+            "label": "Padding Bottom",
+            "name": "padding_bottom",
+            "type": "number",
+            "default": "20"
           }
         ]
       }

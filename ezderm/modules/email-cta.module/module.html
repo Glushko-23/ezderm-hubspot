@@ -7,6 +7,7 @@
 {% set background_color = module.styles.background_color %}
 {% set text_color = module.styles.text_color %}
 {% set theme = module.styles.theme %}
+{% set with_arrow = module.styles.with_arrow %}
 {% set align = module.styles.align %}
 {% set border_radius = "10px" %}
 {% set cta_width = module.styles.full_width ? "100%" : "auto" %}
@@ -20,12 +21,14 @@
 {% endif %}
 
 {{ email_macros.cta(
-    cta_link=cta_link,
+    cta_link=cta_link.url.href,
     cta_text=cta_text,
     cta_width=cta_width,
+    align=align,
     button_bg=button_bg,
     text_color=text_color,
     border_radius=border_radius,
     button_border_color=button_border_color,
-    theme=theme
+    theme=theme,
+    with_arrow=with_arrow
 ) }}

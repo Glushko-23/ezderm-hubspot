@@ -5,7 +5,7 @@
     "type": "number",
     "required": false,
     "locked": false,
-    "default": "1"
+    "default": "10"
   },
   {
     "name": "variant",

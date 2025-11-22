@@ -13,12 +13,15 @@
     {% set block_width_render = '100%' %}
 {% endif %}
 
+{% set inner_padding_group = inner_paddings.padding_top ~ 'px ' ~ inner_paddings.padding_right ~ 'px ' ~ inner_paddings.padding_bottom ~ 'px ' ~ inner_paddings.padding_left ~ 'px' %}
+{% set outer_padding_reset_class = outer_paddings.padding_x == '0' ? 'outer-padding-reset' : 'inner-padding' %}
+
 <table role="presentation" class="table" width="100%" cellpadding="0" cellspacing="0">
     <tr>
-        <td class="section-with-bg--wrapper" align="center" style="padding: {{ outer_paddings.padding_y }}px {{ outer_paddings.padding_x }}px; mso-padding-alt: {{ outer_paddings.padding_y }}px {{ outer_paddings.padding_x }}px;">
+        <td class="section-with-bg--wrapper {{ outer_padding_reset_class }}" align="center" style="padding: {{ outer_paddings.padding_y }}px {{ outer_paddings.padding_x }}px; mso-padding-alt: {{ outer_paddings.padding_y }}px {{ outer_paddings.padding_x }}px;">
             <table width="{{ block_width_render }}" role="presentation" class="table section-with-bg" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td style="padding: {{ inner_paddings.padding_y }}px {{ inner_paddings.padding_x }}px; mso-padding-alt: {{ inner_paddings.padding_y }}px {{ inner_paddings.padding_x }}px; border-radius: {{ radius }}px; background: {{ bg }};" bgcolor="{{ bg }}">
+                    <td style="padding: {{ inner_padding_group }}; mso-padding-alt: {{ inner_padding_group }}; border-radius: {{ radius }}px; background: {{ bg }};" bgcolor="{{ bg }}">
                         {% for block in module.blocks %}
                             {% if block.block_type == "text" %}
                                 {% set text_width = block.text_width_group.block_text_width|default(100) %}
@@ -44,12 +47,12 @@
 
                                 <table role="presentation" width="100%" align="{{ image_align }}" class="table" cellpadding="0" cellspacing="0">
                                     <tr>
-                                        <td align="{{ image_align }}">
+                                        <td class="image-wrapper-response" align="{{ image_align }}">
                                             <img
                                                 src="{{ block.block_image.src }}"
                                                 width="{{ block.block_image.width }}"
                                                 height="{{ block.block_image.height }}"
-                                                style="border: 0; text-decoration: none; max-height: {{ block.block_image.height }}px; max-width: {{ block.block_image.width }}px;"
+                                                style="border-radius: {{ block.block_image_radius|default('0') }}px; border: 0; text-decoration: none; max-height: {{ block.block_image.height }}px; max-width: {{ block.block_image.width }}px;"
                                                 alt="{{ block.block_image.alt }}"
                                             />
                                         </td>
@@ -59,10 +62,18 @@
                                 <table role="presentation" width="100%" class="table" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td style="padding-top: 20px; mso-padding-alt: 20px 0 0 0;">
-                                            {{ email_macros.cta(
-                                                cta_link=block.block_cta.href,
-                                                cta_text=block.block_cta_text
-                                            ) }}
+                                            {% set cta_type = block.block_cta_type|default('button') %}
+
+                                            {% if cta_type == "button" %}
+                                                {{ email_macros.cta(
+                                                    cta_link=block.block_cta.url.href,
+                                                    cta_text=block.block_cta_text
+                                                ) }}
+                                            {% else %}
+                                                <a class="link" target="_blank" href="{{ block.block_cta.url.href }}">
+                                                    {{ block.block_cta_text }}
+                                                </a>
+                                            {% endif %}
                                         </td>
                                     </tr>
                                 </table>

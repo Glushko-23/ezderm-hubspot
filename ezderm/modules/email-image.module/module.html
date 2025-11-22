@@ -4,6 +4,7 @@
 {% set image_link = module.image_link %}
 {% set image_align = module.styles.image_align|default('left') %}
 {% set full_width = module.styles.full_width %}
+{% set radius = module.styles.radius %}
 
 {% if full_width %}
     {% set image_width = '100%' %}
@@ -13,7 +14,7 @@
     {% set image_height = image.height ~ 'px' %}
 {% endif %}
 
-<table width="100%" align="{{ image_align }}" class="table image-wrapper" cellpadding="0" cellspacing="0">
+<table width="100%" align="{{ image_align }}" class="table image-wrapper-response" cellpadding="0" cellspacing="0">
     <tr>
         <td align="{{ image_align }}" class="spacing-column">
             {% if image_link.url.href %}
@@ -23,7 +24,7 @@
                 src="{{ image.src }}"
                 width="{{ image.width }}"
                 height="{{ image.height }}"
-                style="border: 0; text-decoration: none; width: {{ image_width }}; height: {{ image_height }}; max-height: {{ image_height }}; max-width: {{ image_width }};"
+                style="border-radius: {{ radius }}px; border: 0; text-decoration: none; width: {{ image_width }}; height: {{ image_height }}; max-height: {{ image_height }}; max-width: {{ image_width }};"
                 alt="{{ image.alt }}"
             />
             {% if image_link.url.href %}
